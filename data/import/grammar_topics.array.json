@@ -1,0 +1,218 @@
+[
+  {
+    "id": "g_present_perfect",
+    "title": "现在完成时",
+    "category": "时态语态",
+    "frequency": "高频",
+    "summary": "have/has + done，强调过去动作对现在的影响。",
+    "content": "have/has + done，强调过去动作对现在的影响。",
+    "examples": [
+      {
+        "en": "I have finished my homework.",
+        "cn": "我已经完成作业了。"
+      }
+    ],
+    "order": 1,
+    "isActive": true,
+    "createdAt": "2026-04-27T08:47:59.620Z",
+    "_id": "g_present_perfect"
+  },
+  {
+    "id": "g_passive_voice",
+    "title": "被动语态",
+    "category": "时态语态",
+    "frequency": "高频",
+    "summary": "be + done，强调动作承受者。",
+    "content": "be + done，强调动作承受者。",
+    "examples": [
+      {
+        "en": "The book was written by a famous scholar.",
+        "cn": "这本书由一位著名学者撰写。"
+      }
+    ],
+    "order": 2,
+    "isActive": true,
+    "createdAt": "2026-04-27T08:47:59.620Z",
+    "_id": "g_passive_voice"
+  },
+  {
+    "id": "g_attributive_clause",
+    "title": "定语从句",
+    "category": "从句",
+    "frequency": "高频",
+    "summary": "用 who/which/that/where 等关系词修饰名词。",
+    "content": "用 who/which/that/where 等关系词修饰名词。",
+    "examples": [
+      {
+        "en": "This is the book that I bought yesterday.",
+        "cn": "这是我昨天买的书。"
+      }
+    ],
+    "order": 3,
+    "isActive": true,
+    "createdAt": "2026-04-27T08:47:59.620Z",
+    "_id": "g_attributive_clause"
+  },
+  {
+    "id": "g_adverbial_clause",
+    "title": "状语从句",
+    "category": "从句",
+    "frequency": "高频",
+    "summary": "表示时间、条件、原因、让步等逻辑关系。",
+    "content": "表示时间、条件、原因、让步等逻辑关系。",
+    "examples": [
+      {
+        "en": "Although it was raining, they kept studying.",
+        "cn": "尽管下雨，他们仍继续学习。"
+      }
+    ],
+    "order": 4,
+    "isActive": true,
+    "createdAt": "2026-04-27T08:47:59.620Z",
+    "_id": "g_adverbial_clause"
+  },
+  {
+    "id": "g_nonfinite_to_do",
+    "title": "不定式",
+    "category": "非谓语动词",
+    "frequency": "高频",
+    "summary": "to do 可作主语、宾语、定语、状语。",
+    "content": "to do 可作主语、宾语、定语、状语。",
+    "examples": [
+      {
+        "en": "To improve vocabulary, you need daily review.",
+        "cn": "为了提高词汇量，你需要每日复习。"
+      }
+    ],
+    "order": 5,
+    "isActive": true,
+    "createdAt": "2026-04-27T08:47:59.620Z",
+    "_id": "g_nonfinite_to_do"
+  },
+  {
+    "id": "g_gerund",
+    "title": "动名词",
+    "category": "非谓语动词",
+    "frequency": "中频",
+    "summary": "doing 可作名词性成分。",
+    "content": "doing 可作名词性成分。",
+    "examples": [
+      {
+        "en": "Reading English every day is helpful.",
+        "cn": "每天阅读英语很有帮助。"
+      }
+    ],
+    "order": 6,
+    "isActive": true,
+    "createdAt": "2026-04-27T08:47:59.620Z",
+    "_id": "g_gerund"
+  },
+  {
+    "id": "g_subjunctive",
+    "title": "虚拟语气",
+    "category": "特殊句式",
+    "frequency": "中频",
+    "summary": "表达非真实条件、愿望或建议。",
+    "content": "表达非真实条件、愿望或建议。",
+    "examples": [
+      {
+        "en": "If I were you, I would start now.",
+        "cn": "如果我是你，我会现在开始。"
+      }
+    ],
+    "order": 7,
+    "isActive": true,
+    "createdAt": "2026-04-27T08:47:59.620Z",
+    "_id": "g_subjunctive"
+  },
+  {
+    "id": "g_inversion",
+    "title": "倒装句",
+    "category": "特殊句式",
+    "frequency": "中频",
+    "summary": "否定词或 only 位于句首时常用部分倒装。",
+    "content": "否定词或 only 位于句首时常用部分倒装。",
+    "examples": [
+      {
+        "en": "Never have I seen such progress.",
+        "cn": "我从未见过这样的进步。"
+      }
+    ],
+    "order": 8,
+    "isActive": true,
+    "createdAt": "2026-04-27T08:47:59.620Z",
+    "_id": "g_inversion"
+  },
+  {
+    "id": "g_emphasis",
+    "title": "强调句",
+    "category": "特殊句式",
+    "frequency": "中频",
+    "summary": "It is/was ... that/who ... 强调句子成分。",
+    "content": "It is/was ... that/who ... 强调句子成分。",
+    "examples": [
+      {
+        "en": "It was practice that made the difference.",
+        "cn": "正是练习带来了不同。"
+      }
+    ],
+    "order": 9,
+    "isActive": true,
+    "createdAt": "2026-04-27T08:47:59.620Z",
+    "_id": "g_emphasis"
+  },
+  {
+    "id": "g_modal_verbs",
+    "title": "情态动词",
+    "category": "词法",
+    "frequency": "高频",
+    "summary": "must/may/might/could 表推测、能力或许可。",
+    "content": "must/may/might/could 表推测、能力或许可。",
+    "examples": [
+      {
+        "en": "You must review the words before the test.",
+        "cn": "考试前你必须复习单词。"
+      }
+    ],
+    "order": 10,
+    "isActive": true,
+    "createdAt": "2026-04-27T08:47:59.620Z",
+    "_id": "g_modal_verbs"
+  },
+  {
+    "id": "g_preposition_collocation",
+    "title": "介词搭配",
+    "category": "词汇搭配",
+    "frequency": "高频",
+    "summary": "常见动词/形容词与介词固定搭配。",
+    "content": "常见动词/形容词与介词固定搭配。",
+    "examples": [
+      {
+        "en": "She is good at memorizing new words.",
+        "cn": "她擅长记新单词。"
+      }
+    ],
+    "order": 11,
+    "isActive": true,
+    "createdAt": "2026-04-27T08:47:59.620Z",
+    "_id": "g_preposition_collocation"
+  },
+  {
+    "id": "g_comparative",
+    "title": "比较级与最高级",
+    "category": "词法",
+    "frequency": "中频",
+    "summary": "用于比较两者或三者以上。",
+    "content": "用于比较两者或三者以上。",
+    "examples": [
+      {
+        "en": "This method is more effective than rote learning.",
+        "cn": "这种方法比死记硬背更有效。"
+      }
+    ],
+    "order": 12,
+    "isActive": true,
+    "createdAt": "2026-04-27T08:47:59.620Z",
+    "_id": "g_comparative"
+  }
+]

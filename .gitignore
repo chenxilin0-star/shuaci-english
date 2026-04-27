@@ -1,0 +1,8 @@
+# dependencies
+node_modules/
+
+# generated temp import data
+.tmp-cloudbase-import/
+
+# raw upstream dictionary is large; regenerate with README commands
+data/raw/ecdict.csv

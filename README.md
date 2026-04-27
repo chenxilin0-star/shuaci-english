@@ -49,6 +49,7 @@ npm run validate
 node scripts/clean-ecdict-cet.js --input=data/samples/ecdict_sample.csv --output=data/processed/cet_words.sample.json
 node scripts/init-cloudbase.js --dry-run
 node scripts/import-cloudbase-data.js --dry-run --input=data/processed/cet_words.sample.json
+node scripts/prepare-cloudbase-import-files.js --input=data/processed/cet_words.full.json --out=data/import
 ```
 
 校验会检查关键文件、页面、云函数是否存在，并确认项目代码中没有旧品牌名。

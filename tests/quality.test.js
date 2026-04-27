@@ -25,6 +25,8 @@ describe('刷词英语 phase-2 delivery', () => {
     const cleaned = JSON.parse(read('data/processed/cet_words.sample.json'));
     assert.ok(cleaned.words.length >= 4);
     assert.ok(cleaned.words.every(w => w.text && (w.is_in_cet4 || w.is_in_cet6)));
+    assert.ok(cleaned.words.every(w => Array.isArray(w.bankIds) && w.bankIds.length >= 1));
+    assert.ok(cleaned.grammarTopics.length >= 8);
   });
 
   it('implements real local learning loop helpers for favorites, mistakes and spelling sessions', () => {
@@ -56,5 +58,12 @@ describe('刷词英语 phase-2 delivery', () => {
     assert.match(banksJs, /wx\.setStorageSync\(['"]shuaci_selected_bank['"]/);
     const studyJs = read('miniprogram/pages/study/study.js');
     assert.match(studyJs, /wx\.getStorageSync\(['"]shuaci_selected_bank['"]\)/);
+  });
+
+  it('cloud getWordList supports imported ECDICT words by CET flags instead of only bankId equality', () => {
+    const code = read('cloudfunctions/getWordList/index.js');
+    assert.match(code, /bankIdToWhere/);
+    assert.match(code, /is_in_cet4/);
+    assert.match(code, /is_in_cet6/);
   });
 });
