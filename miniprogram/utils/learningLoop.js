@@ -1,11 +1,19 @@
 const { checkSpelling, nextReviewDate } = require('./study');
-const DAILY_PLAN = { newCount: 35, reviewCount: 10, mistakeCount: 5, total: 50 };
+
+const MODE_PLANS = {
+  daily: { newCount: 35, reviewCount: 10, mistakeCount: 5, total: 50 },
+  review: { newCount: 0, reviewCount: 40, mistakeCount: 10, total: 50 },
+  mistake: { newCount: 0, reviewCount: 0, mistakeCount: 50, total: 50 }
+};
+const DAILY_PLAN = MODE_PLANS.daily;
+
 function nowIso() { return new Date().toISOString(); }
 function createInitialState(openid = 'local-user') {
   return { openid, wordRecords: {}, favorites: [], mistakes: [], sessions: [], updatedAt: nowIso() };
 }
 function clone(state) { return JSON.parse(JSON.stringify(state || createInitialState())); }
 function normalizeAnswer(v) { return String(v || '').trim().toLowerCase(); }
+function normalizeMode(mode) { return MODE_PLANS[mode] ? mode : 'daily'; }
 function ensureRecord(state, word) {
   const id = word.id || word.text;
   const old = state.wordRecords[id] || {};
@@ -23,33 +31,63 @@ function ensureRecord(state, word) {
     nextReviewAt: old.nextReviewAt || new Date(nextReviewDate(0)).toISOString()
   };
 }
-function tagItems(items, planType, limit) {
+function getItemId(item, idx, planType) { return item.id || item.wordId || item.itemId || item.text || `${planType}_${idx}`; }
+function tagItems(items, planType, limit, used = new Set()) {
   const labels = { new: '新词', review: '复习', mistake: '错题' };
-  return (items || []).slice(0, limit).map((item, idx) => ({ ...item, id: item.id || item.wordId || item.itemId || `${planType}_${idx}`, text: item.text || item.itemText || item.wordText || '', planType, planLabel: labels[planType] }));
+  const out = [];
+  for (const item of items || []) {
+    if (out.length >= limit) break;
+    const id = getItemId(item, out.length, planType);
+    if (used.has(id)) continue;
+    used.add(id);
+    out.push({ ...item, id, text: item.text || item.itemText || item.wordText || '', planType, planLabel: labels[planType] });
+  }
+  return out;
 }
-function buildDailyPlan({ newWords = [], reviewWords = [], mistakeWords = [] } = {}) {
-  const pickedMistakes = tagItems(mistakeWords, 'mistake', DAILY_PLAN.mistakeCount);
-  const pickedReviews = tagItems(reviewWords, 'review', DAILY_PLAN.reviewCount);
-  const pickedNew = tagItems(newWords, 'new', DAILY_PLAN.newCount);
-  const used = new Set([...pickedMistakes, ...pickedReviews, ...pickedNew].map(w => w.id));
-  const items = [...pickedNew, ...pickedReviews, ...pickedMistakes];
-  const pool = [...newWords, ...reviewWords, ...mistakeWords];
-  for (const w of pool) {
-    if (items.length >= DAILY_PLAN.total) break;
-    const id = w.id || w.wordId || w.itemId || w.text;
-    if (!used.has(id)) { used.add(id); items.push({ ...w, id, text: w.text || w.itemText || w.wordText || '', planType: 'new', planLabel: '补充' }); }
+function fillShortage(items, pools, used, targetTotal, fallbackType = 'review') {
+  const fallbackLabels = { new: '补充新词', review: '补充复习', mistake: '补充错题' };
+  for (const pool of pools) {
+    for (const item of pool || []) {
+      if (items.length >= targetTotal) return items;
+      const id = getItemId(item, items.length, fallbackType);
+      if (used.has(id)) continue;
+      used.add(id);
+      items.push({ ...item, id, text: item.text || item.itemText || item.wordText || '', planType: fallbackType, planLabel: fallbackLabels[fallbackType] || '补充' });
+    }
+  }
+  return items;
+}
+function buildStudyPlan({ mode = 'daily', newWords = [], reviewWords = [], mistakeWords = [] } = {}) {
+  const normalizedMode = normalizeMode(mode);
+  const target = MODE_PLANS[normalizedMode];
+  const used = new Set();
+  let items = [];
+  if (normalizedMode === 'mistake') {
+    items = items.concat(tagItems(mistakeWords, 'mistake', target.mistakeCount, used));
+    fillShortage(items, [reviewWords, newWords], used, target.total, 'mistake');
+  } else if (normalizedMode === 'review') {
+    items = items.concat(tagItems(reviewWords, 'review', target.reviewCount, used));
+    items = items.concat(tagItems(mistakeWords, 'mistake', target.mistakeCount, used));
+    fillShortage(items, [reviewWords, mistakeWords, newWords], used, target.total, 'review');
+  } else {
+    items = items.concat(tagItems(newWords, 'new', target.newCount, used));
+    items = items.concat(tagItems(reviewWords, 'review', target.reviewCount, used));
+    items = items.concat(tagItems(mistakeWords, 'mistake', target.mistakeCount, used));
+    fillShortage(items, [newWords, reviewWords, mistakeWords], used, target.total, 'new');
   }
   return {
-    items,
-    total: items.length,
+    mode: normalizedMode,
+    items: items.slice(0, target.total),
+    total: Math.min(items.length, target.total),
     stats: {
-      new: items.filter(i => i.planType === 'new').length,
-      review: items.filter(i => i.planType === 'review').length,
-      mistake: items.filter(i => i.planType === 'mistake').length
+      new: items.slice(0, target.total).filter(i => i.planType === 'new').length,
+      review: items.slice(0, target.total).filter(i => i.planType === 'review').length,
+      mistake: items.slice(0, target.total).filter(i => i.planType === 'mistake').length
     },
-    target: { ...DAILY_PLAN }
+    target: { ...target }
   };
 }
+function buildDailyPlan(args = {}) { return buildStudyPlan({ ...args, mode: 'daily' }); }
 function summarizeStudySession(items = [], completedCount = 0) {
   const learned = items.slice(0, completedCount);
   return {
@@ -72,6 +110,27 @@ function toggleFavoriteState(state, word, isFavorite) {
   if (isFavorite) next.favorites.unshift({ itemId:id, itemType:'word', itemText:word.text, meaning_cn:word.meaning_cn || '', createdAt:nowIso() });
   next.updatedAt = nowIso();
   return next;
+}
+function markWordStudied(state, word, planType = 'new') {
+  const next = clone(state);
+  const id = word.id || word.text;
+  const record = ensureRecord(next, word);
+  record.correctCount += 1;
+  record.lastStudyAt = nowIso();
+  record.familiarity = Math.min(100, record.familiarity + (planType === 'review' ? 15 : 20));
+  record.status = record.familiarity >= 80 ? 'mastered' : 'review';
+  record.nextReviewAt = new Date(nextReviewDate(record.familiarity)).toISOString();
+  next.wordRecords[id] = record;
+  next.sessions.unshift({ sessionType:'word-card', itemId:id, planType, isCorrect:true, createdAt:nowIso() });
+  next.updatedAt = nowIso();
+  return next;
+}
+function listReviewCandidates(state) {
+  const records = Object.values((state || createInitialState()).wordRecords || {});
+  return records
+    .filter(r => r.status === 'review' || r.status === 'mastered')
+    .sort((a, b) => String(a.nextReviewAt || '').localeCompare(String(b.nextReviewAt || '')))
+    .map(r => ({ id:r.wordId, text:r.wordText, wordText:r.wordText, planType:'review', planLabel:'复习' }));
 }
 function upsertMistake(next, item, wrongAnswer, correctAnswer, itemType = 'word') {
   const id = item.id || item.text;
@@ -128,4 +187,4 @@ function markMistakeReviewed(state, itemId) {
   next.updatedAt = nowIso();
   return next;
 }
-module.exports = { DAILY_PLAN, createInitialState, buildDailyPlan, summarizeStudySession, toggleFavoriteState, submitSpellingAnswer, submitGrammarAnswer, markMistakeReviewed };
+module.exports = { MODE_PLANS, DAILY_PLAN, createInitialState, buildStudyPlan, buildDailyPlan, summarizeStudySession, toggleFavoriteState, markWordStudied, listReviewCandidates, submitSpellingAnswer, submitGrammarAnswer, markMistakeReviewed };

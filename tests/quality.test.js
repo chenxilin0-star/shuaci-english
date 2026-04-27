@@ -56,7 +56,7 @@ describe('刷词英语 phase-2 delivery', () => {
     const banksJs = read('miniprogram/pages/banks/banks.js');
     assert.match(banksJs, /wx\.switchTab\(\{\s*url:\s*['"]\/pages\/study\/study['"]/s);
     assert.doesNotMatch(banksJs, /navigateTo\(\{\s*url:\s*['"]\/pages\/study\/study\?/s);
-    assert.match(banksJs, /wx\.setStorageSync\(['"]shuaci_selected_bank['"]/);
+    assert.match(banksJs, /wx\.setStorageSync\(['"]shuaci_study_mode['"],\s*mode\)/);
     const studyJs = read('miniprogram/pages/study/study.js');
     assert.match(studyJs, /wx\.getStorageSync\(['"]shuaci_selected_bank['"]\)/);
     assert.match(studyJs, /daily/);
@@ -106,20 +106,30 @@ describe('刷词英语 phase-2 delivery', () => {
     assert.match(read('miniprogram/pages/banks/banks.wxml'), /查看详情/);
   });
 
-  it('implements a real 35 new + 10 review + 5 mistake daily plan and completion result page', () => {
+  it('implements mode-specific study plans matching bank page promises', () => {
     const loop = require('../miniprogram/utils/learningLoop');
-    assert.strictEqual(loop.DAILY_PLAN.newCount, 35);
-    assert.strictEqual(loop.DAILY_PLAN.reviewCount, 10);
-    assert.strictEqual(loop.DAILY_PLAN.mistakeCount, 5);
-    const plan = loop.buildDailyPlan({
-      newWords: Array.from({ length: 60 }, (_, i) => ({ id: 'n' + i, text: 'new' + i })),
-      reviewWords: Array.from({ length: 20 }, (_, i) => ({ id: 'r' + i, text: 'review' + i })),
-      mistakeWords: Array.from({ length: 10 }, (_, i) => ({ id: 'm' + i, text: 'mistake' + i }))
-    });
-    assert.strictEqual(plan.items.filter(i => i.planType === 'new').length, 35);
-    assert.strictEqual(plan.items.filter(i => i.planType === 'review').length, 10);
-    assert.strictEqual(plan.items.filter(i => i.planType === 'mistake').length, 5);
-    assert.strictEqual(plan.total, 50);
+    assert.strictEqual(loop.MODE_PLANS.daily.newCount, 35);
+    assert.strictEqual(loop.MODE_PLANS.daily.reviewCount, 10);
+    assert.strictEqual(loop.MODE_PLANS.daily.mistakeCount, 5);
+    assert.deepStrictEqual(loop.MODE_PLANS.review, { newCount: 0, reviewCount: 40, mistakeCount: 10, total: 50 });
+    assert.deepStrictEqual(loop.MODE_PLANS.mistake, { newCount: 0, reviewCount: 0, mistakeCount: 50, total: 50 });
+    const pools = {
+      newWords: Array.from({ length: 80 }, (_, i) => ({ id: 'n' + i, text: 'new' + i })),
+      reviewWords: Array.from({ length: 80 }, (_, i) => ({ id: 'r' + i, text: 'review' + i })),
+      mistakeWords: Array.from({ length: 80 }, (_, i) => ({ id: 'm' + i, text: 'mistake' + i }))
+    };
+    const daily = loop.buildStudyPlan({ ...pools, mode: 'daily' });
+    const review = loop.buildStudyPlan({ ...pools, mode: 'review' });
+    const mistake = loop.buildStudyPlan({ ...pools, mode: 'mistake' });
+    assert.strictEqual(daily.items.filter(i => i.planType === 'new').length, 35);
+    assert.strictEqual(daily.items.filter(i => i.planType === 'review').length, 10);
+    assert.strictEqual(daily.items.filter(i => i.planType === 'mistake').length, 5);
+    assert.strictEqual(review.items.filter(i => i.planType === 'new').length, 0);
+    assert.strictEqual(review.items.filter(i => i.planType === 'review').length, 40);
+    assert.strictEqual(review.items.filter(i => i.planType === 'mistake').length, 10);
+    assert.strictEqual(mistake.items.filter(i => i.planType === 'mistake').length, 50);
+    assert.notDeepStrictEqual(daily.stats, review.stats);
+    assert.notDeepStrictEqual(review.stats, mistake.stats);
     assert.ok(JSON.parse(read('miniprogram/app.json')).pages.includes('pages/study-result/study-result'));
     assert.match(read('miniprogram/pages/study/study.js'), /finishToday/);
     assert.match(read('miniprogram/pages/study-result/study-result.wxml'), /今日学习成果/);

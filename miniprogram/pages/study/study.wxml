@@ -8,11 +8,11 @@
   </view>
 
   <view class="card plan-card">
-    <view class="plan-title">今日真实学习计划</view>
+    <view class="plan-title">{{modeTitle}} · 今日真实学习计划</view>
     <view class="grid-3">
-      <view><view class="stat-num">{{planStats.new}}</view><view class="muted">新词 / 35</view></view>
-      <view><view class="stat-num">{{planStats.review}}</view><view class="muted">复习 / 10</view></view>
-      <view><view class="stat-num">{{planStats.mistake}}</view><view class="muted">错词 / 5</view></view>
+      <view><view class="stat-num">{{planStats.new}}</view><view class="muted">新词 / {{target.newCount}}</view></view>
+      <view><view class="stat-num">{{planStats.review}}</view><view class="muted">复习 / {{target.reviewCount}}</view></view>
+      <view><view class="stat-num">{{planStats.mistake}}</view><view class="muted">错词 / {{target.mistakeCount}}</view></view>
     </view>
   </view>
 

@@ -6,7 +6,7 @@ const BANK_META = {
     slogan: '先把考试高频词打牢，适合四级备考和基础薄弱同学。',
     dailyGoal: 50,
     newWords: 35,
-    reviewWords: 15,
+    reviewWords: 10,
     levelText: '基础 → 高频 → 真题语境',
     accentClass: 'cet4'
   },
@@ -14,7 +14,7 @@ const BANK_META = {
     exam: 'CET-6',
     slogan: '默认优先六级新增词，减少与四级重复，适合冲刺提分。',
     dailyGoal: 50,
-    newWords: 40,
+    newWords: 35,
     reviewWords: 10,
     levelText: '新增词 → 学术词 → 长难句词汇',
     accentClass: 'cet6'
@@ -61,10 +61,10 @@ Page({
     this.setData({ selectedBank, modes });
   },
   startMode(e) {
-    const mode = e.currentTarget.dataset.mode || 'daily-plan';
+    const mode = e.currentTarget.dataset.mode || 'daily';
     const includeOverlap = e.currentTarget.dataset.overlap === true || e.currentTarget.dataset.overlap === 'true';
     wx.setStorageSync('shuaci_selected_bank', this.data.selectedBank.id);
-    wx.setStorageSync('shuaci_study_mode', mode === 'daily' ? 'daily-plan' : mode);
+    wx.setStorageSync('shuaci_study_mode', mode);
     wx.setStorageSync('shuaci_include_overlap', includeOverlap);
     wx.switchTab({ url: '/pages/study/study' });
   },

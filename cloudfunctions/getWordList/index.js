@@ -26,9 +26,13 @@ function dailySkip(bankId, limit, event = {}) {
   return (seed * limit) % Math.max(limit, total - limit);
 }
 function bankIdToWhere(bankId, event = {}) {
+  const mode = event.mode || 'daily';
   if (bankId === 'cet4_core' || bankId === 'cet4') return { is_in_cet4: true };
-  // 六级优先学习 CET-6 新增词，避免一进来全是四级/六级重叠词。
-  if (bankId === 'cet6_core' || bankId === 'cet6') return event.includeOverlap ? { is_in_cet6: true } : { is_in_cet6: true, cet6_new: true };
+  // 新词模式：六级默认只取六级新增词；复习/错题模式：允许重叠词回炉。
+  if (bankId === 'cet6_core' || bankId === 'cet6') {
+    if (mode === 'daily' && !event.includeOverlap) return { is_in_cet6: true, cet6_new: true };
+    return { is_in_cet6: true };
+  }
   return bankId ? { bankId } : {};
 }
 function inMockBank(word, bankId, includeOverlap) {
