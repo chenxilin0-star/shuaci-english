@@ -27,12 +27,17 @@
 
         <view class="word-content">
           <view class="word-line">
-            <view class="word-text">{{word.text}}</view>
-            <button class="audio-btn" catchtap="playAudio">🔊</button>
-          </view>
-          <view class="phonetic-row">
-            <text class="phonetic-label">音标</text>
-            <text class="phonetic-text">{{word.phonetic_us || word.phonetic_uk || '暂无音标，点击右侧喇叭听发音'}}</text>
+            <view class="word-main">
+              <view class="word-text">{{word.text}}</view>
+              <view class="phonetic-row">
+                <text class="phonetic-label">音标</text>
+                <text class="phonetic-text">{{word.phonetic_us || word.phonetic_uk || '暂无音标，点击按钮听发音'}}</text>
+              </view>
+            </view>
+            <button class="audio-control" catchtap="playAudio" aria-label="播放单词发音">
+              <view class="audio-ring"></view>
+              <text class="audio-glyph">♪</text>
+            </button>
           </view>
         </view>
 

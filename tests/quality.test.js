@@ -152,7 +152,12 @@ describe('刷词英语 phase-2 delivery', () => {
     assert.match(wxml, /action-bar/);
     assert.match(wxml, /补充词/);
     assert.match(wxml, /playAudio/);
-    assert.match(wxml, /audio-btn/);
+    assert.match(wxml, /audio-control/);
+    assert.match(wxml, /audio-glyph/);
+    assert.doesNotMatch(wxml, /<button class="audio-btn"[^>]*>🔊<\/button>/);
+    assert.match(wxss, /audio-control\{width:88rpx;height:88rpx/);
+    assert.match(wxss, /audio-ring/);
+    assert.match(wxss, /linear-gradient\(135deg,#EAFBF1,#FFFFFF\)/);
     assert.match(wxss, /has-supplement/);
     assert.match(wxss, /word-text/);
     assert.match(wxss, /phonetic-row/);
