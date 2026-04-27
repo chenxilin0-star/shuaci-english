@@ -1,6 +1,7 @@
 const cloud = require('wx-server-sdk');
 cloud.init({ env: cloud.DYNAMIC_CURRENT_ENV });
 const db = cloud.database();
+const _ = db.command;
 const mock = {
   words: [
     { id:'w001', bankId:'cet4_core', bankIds:['cet4_core'], is_in_cet4:true, text:'abandon', phonetic_us:'/əˈbændən/', pos:'v.', meaning_cn:'放弃；抛弃', example_sentence:'He abandoned his car and ran for help.' },
@@ -28,7 +29,6 @@ function dailySkip(bankId, limit, event = {}) {
 function bankIdToWhere(bankId, event = {}) {
   const mode = event.mode || 'daily';
   if (bankId === 'cet4_core' || bankId === 'cet4') return { is_in_cet4: true };
-  // 新词模式：六级默认只取六级新增词；复习/错题模式：允许重叠词回炉。
   if (bankId === 'cet6_core' || bankId === 'cet6') {
     if (mode === 'daily' && !event.includeOverlap) return { is_in_cet6: true, cet6_new: true };
     return { is_in_cet6: true };
@@ -41,14 +41,71 @@ function inMockBank(word, bankId, includeOverlap) {
   if (bankId === 'cet6_core' || bankId === 'cet6') return includeOverlap ? (word.is_in_cet6 || word.bankId === 'cet6_core') : !!word.cet6_new;
   return word.bankId === bankId || (word.bankIds || []).includes(bankId);
 }
-exports.main = async (event = {}) => {
+exports.main = async (event = {}, context) => {
   const bankId = event.bankId || 'cet4_core';
   const limit = Math.min(Number(event.limit || 50), 100);
-  const skip = dailySkip(bankId, limit, event);
   const where = bankIdToWhere(bankId, event);
+
+  // ===== 拼写练习：错题优先 → 随机补全 =====
+  if (event.mode === 'spelling') {
+    const { OPENID } = cloud.getWXContext();
+    const openid = OPENID || event.openid || 'local-user';
+    const total = BANK_TOTALS[bankId] || 1000;
+    let words = [];
+
+    try {
+      // 1) 先取错题本（按错误次数降序）
+      const mistakeRes = await db.collection('mistake_books')
+        .where({ openid, itemType: 'word' })
+        .orderBy('wrongCount', 'desc')
+        .limit(limit)
+        .get();
+      const mistakeIds = mistakeRes.data.map(m => m.itemId).filter(Boolean);
+
+      if (mistakeIds.length) {
+        const wordRes = await db.collection('words')
+          .where({ ...where, id: _.in(mistakeIds) })
+          .get();
+        words = wordRes.data;
+      }
+
+      // 2) 不足则随机补全
+      if (words.length < limit) {
+        const remaining = limit - words.length;
+        const excludeIds = words.map(w => w.id);
+        const randomSkip = Math.floor(Math.random() * Math.max(1, total - remaining));
+
+        const supplementRes = await db.collection('words')
+          .where({ ...where, id: _.nin(excludeIds) })
+          .skip(randomSkip)
+          .limit(remaining)
+          .get();
+        words = words.concat(supplementRes.data);
+
+        // 随机 skip 到末尾导致不足，再从开头补齐
+        if (words.length < limit && supplementRes.data.length < remaining) {
+          const headRes = await db.collection('words')
+            .where({ ...where, id: _.nin(words.map(w => w.id)) })
+            .limit(limit - words.length)
+            .get();
+          words = words.concat(headRes.data);
+        }
+      }
+
+      return ok(words.length ? words : mock.words.filter(w => inMockBank(w, bankId, event.includeOverlap)), {
+        bankId, limit, mode: 'spelling', mistakeCount: mistakeIds.length
+      });
+    } catch (e) {
+      return ok(mock.words.filter(w => inMockBank(w, bankId, event.includeOverlap)), {
+        bankId, fallback: true, mode: 'spelling', error: e.message
+      });
+    }
+  }
+
+  // ===== 原有 daily 逻辑 =====
+  const skip = dailySkip(bankId, limit, event);
   try {
     let res = await db.collection('words').where(where).skip(skip).limit(limit).get();
-    // 如果今日 skip 接近末尾导致不足，则从开头补齐；如果六级新增词为空，则回退到全部六级词。
     if (res.data.length < limit && skip > 0) {
       const head = await db.collection('words').where(where).limit(limit - res.data.length).get();
       res.data = res.data.concat(head.data);
