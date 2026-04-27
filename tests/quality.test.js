@@ -145,13 +145,17 @@ describe('刷词英语 phase-2 delivery', () => {
   it('uses polished study page layout classes for release UI', () => {
     const wxml = read('miniprogram/pages/study/study.wxml');
     const wxss = read('miniprogram/pages/study/study.wxss');
-    assert.match(wxml, /study-hero/);
+    assert.match(wxml, /study-header/);
+    assert.match(wxml, /word-stage/);
+    assert.match(wxml, /phonetic-label/);
     assert.match(wxml, /plan-stat/);
     assert.match(wxml, /action-bar/);
     assert.match(wxml, /补充词/);
     assert.match(wxml, /playAudio/);
     assert.match(wxml, /audio-btn/);
     assert.match(wxss, /has-supplement/);
+    assert.match(wxss, /word-text/);
+    assert.match(wxss, /phonetic-row/);
     assert.match(wxss, /action-btn\{height:92rpx;width:100%;min-width:0;margin:0;padding:0;box-sizing:border-box/);
     assert.match(read('miniprogram/utils/pronunciation.js'), /dictvoice/);
     assert.match(read('miniprogram/pages/spelling/spelling.wxml'), /playAudio/);

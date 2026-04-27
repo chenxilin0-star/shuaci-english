@@ -1,75 +1,65 @@
-<view class="container study-page">
-  <view class="study-hero">
-    <view class="hero-main">
-      <view class="eyebrow">{{modeTitle}}</view>
-      <view class="title">单词学习</view>
-      <view class="hero-desc">{{batchLabel}}</view>
-    </view>
-    <view class="counter-pill">{{words.length ? index+1 : 0}}/{{words.length}}</view>
-  </view>
-
-  <view class="card plan-card">
-    <view class="plan-head">
+<view class="study-page">
+  <view class="study-shell">
+    <view class="study-header">
       <view>
-        <view class="plan-title">今日计划</view>
-        <view class="muted">按当前学习模式自动分配任务</view>
+        <view class="study-kicker">{{modeTitle}}</view>
+        <view class="study-title">今日刷词</view>
       </view>
-      <text class="tag">{{modeTitle}}</text>
+      <view class="study-count">{{words.length ? index+1 : 0}} / {{words.length}}</view>
     </view>
-    <view class="plan-grid {{planStats.supplement ? 'has-supplement' : ''}}">
-      <view class="plan-stat new-stat">
-        <view class="stat-num">{{planStats.new}}</view>
-        <view class="stat-label">新词目标 {{target.newCount}}</view>
-      </view>
-      <view class="plan-stat review-stat">
-        <view class="stat-num">{{planStats.review}}</view>
-        <view class="stat-label">复习目标 {{target.reviewCount}}</view>
-      </view>
-      <view class="plan-stat mistake-stat">
-        <view class="stat-num">{{planStats.mistake}}</view>
-        <view class="stat-label">错词目标 {{target.mistakeCount}}</view>
-      </view>
-      <view wx:if="{{planStats.supplement}}" class="plan-stat supplement-stat">
-        <view class="stat-num">{{planStats.supplement}}</view>
-        <view class="stat-label">补充词</view>
-      </view>
-    </view>
-  </view>
 
-  <view wx:if="{{word}}" class="card word-card" bindtap="flip">
-    <view class="word-top">
-      <view class="tag plan-tag">{{word.planLabel}}</view>
-      <view class="muted">点击卡片翻面</view>
-    </view>
-    <view class="word-main">
-      <view class="word-line">
-        <view class="word">{{word.text}}</view>
-        <button class="audio-btn" catchtap="playAudio">🔊</button>
+    <view class="mode-card">
+      <view class="mode-desc">{{batchLabel}}</view>
+      <view class="plan-grid {{planStats.supplement ? 'has-supplement' : ''}}">
+        <view class="plan-stat new-stat"><view class="stat-num">{{planStats.new}}</view><view class="stat-label">新词 {{target.newCount}}</view></view>
+        <view class="plan-stat review-stat"><view class="stat-num">{{planStats.review}}</view><view class="stat-label">复习 {{target.reviewCount}}</view></view>
+        <view class="plan-stat mistake-stat"><view class="stat-num">{{planStats.mistake}}</view><view class="stat-label">错词 {{target.mistakeCount}}</view></view>
+        <view wx:if="{{planStats.supplement}}" class="plan-stat supplement-stat"><view class="stat-num">{{planStats.supplement}}</view><view class="stat-label">补充词</view></view>
       </view>
-      <view class="phonetic">{{word.phonetic_us || word.phonetic_uk || '点击喇叭听发音'}}</view>
     </view>
-    <view wx:if="{{flipped}}" class="back">
-      <text class="tag pos-tag">{{word.pos || '词汇'}}</text>
-      <view class="meaning">{{word.meaning_cn || '暂无释义'}}</view>
-      <view wx:if="{{word.example_sentence}}" class="example">{{word.example_sentence}}</view>
-      <view wx:if="{{word.example_cn}}" class="muted example-cn">{{word.example_cn}}</view>
+
+    <view wx:if="{{word}}" class="word-stage">
+      <view class="word-card" bindtap="flip">
+        <view class="word-card-top">
+          <text class="pill">{{word.planLabel}}</text>
+          <text class="flip-tip">点击卡片查看释义</text>
+        </view>
+
+        <view class="word-content">
+          <view class="word-line">
+            <view class="word-text">{{word.text}}</view>
+            <button class="audio-btn" catchtap="playAudio">🔊</button>
+          </view>
+          <view class="phonetic-row">
+            <text class="phonetic-label">音标</text>
+            <text class="phonetic-text">{{word.phonetic_us || word.phonetic_uk || '暂无音标，点击右侧喇叭听发音'}}</text>
+          </view>
+        </view>
+
+        <view wx:if="{{flipped}}" class="answer-panel">
+          <view class="pos-row"><text class="pill light-pill">{{word.pos || '词汇'}}</text></view>
+          <view class="meaning-text">{{word.meaning_cn || '暂无释义'}}</view>
+          <view wx:if="{{word.example_sentence}}" class="example-en">{{word.example_sentence}}</view>
+          <view wx:if="{{word.example_cn}}" class="example-cn">{{word.example_cn}}</view>
+        </view>
+        <view wx:else class="memory-hint">先在脑中回忆释义，再翻面确认</view>
+      </view>
     </view>
-    <view wx:else class="front-hint">先回忆释义，再点卡片查看答案</view>
-  </view>
 
-  <view wx:else class="card empty-card">
-    <view class="empty-icon">📭</view>
-    <view class="h2">暂无学习词单</view>
-    <view class="muted">请先在词库页选择 CET-4 或 CET-6，并确认数据库已导入词库。</view>
-  </view>
+    <view wx:else class="empty-card">
+      <view class="empty-icon">📭</view>
+      <view class="empty-title">暂无学习词单</view>
+      <view class="empty-desc">请先在词库页选择 CET-4 或 CET-6，并确认数据库已导入词库。</view>
+    </view>
 
-  <view class="action-bar" wx:if="{{word}}">
-    <button class="action-btn secondary" catchtap="toggleFavorite">{{word.isFavorite?'取消收藏':'收藏'}}</button>
-    <button class="action-btn primary" catchtap="next">{{index >= words.length-1 ? '完成今日目标' : '下一个'}}</button>
-  </view>
+    <view wx:if="{{word}}" class="action-bar">
+      <button class="action-btn secondary" catchtap="toggleFavorite">{{word.isFavorite?'取消收藏':'收藏'}}</button>
+      <button class="action-btn primary" catchtap="next">{{index >= words.length-1 ? '完成今日目标' : '下一个'}}</button>
+    </view>
 
-  <view class="tool-row" wx:if="{{word}}">
-    <button class="tool-btn" catchtap="goSpell">拼写练习</button>
-    <button class="tool-btn" catchtap="goDetail">单词详情</button>
+    <view wx:if="{{word}}" class="tool-row">
+      <button class="tool-btn" catchtap="goSpell">拼写练习</button>
+      <button class="tool-btn" catchtap="goDetail">单词详情</button>
+    </view>
   </view>
 </view>
