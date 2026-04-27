@@ -1,3 +1,4 @@
+const share = require('../../utils/share');
 const { callCloud } = require('../../utils/api');
 const store = require('../../utils/store');
 
@@ -80,5 +81,7 @@ Page({
     const selectedTopic = topics.find(t => t.id === id);
     this.setData({ topics }, () => this.setSelected(selectedTopic));
     wx.showToast({ title: '已记录学习', icon: 'none' });
-  }
+  },
+  onShareAppMessage() { return share.onShareAppMessage(); },
+  onShareTimeline() { return share.onShareTimeline(); }
 });

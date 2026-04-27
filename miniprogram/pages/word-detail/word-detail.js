@@ -1,3 +1,4 @@
+const share = require('../../utils/share');
 const { callCloud } = require('../../utils/api');
 const pronunciation = require('../../utils/pronunciation');
 
@@ -16,5 +17,7 @@ Page({
   playAudio() {
     if (this.data.word) pronunciation.playWord(this.data.word.text);
   },
-  back() { wx.navigateBack({ fail() { wx.switchTab({ url: '/pages/index/index' }); } }); }
+  back() { wx.navigateBack({ fail() { wx.switchTab({ url: '/pages/index/index' }); } }); },
+  onShareAppMessage() { return share.onShareAppMessage(); },
+  onShareTimeline() { return share.onShareTimeline(); }
 });

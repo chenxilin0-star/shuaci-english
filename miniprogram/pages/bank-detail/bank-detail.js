@@ -1,3 +1,4 @@
+const share = require('../../utils/share');
 const { callCloud } = require('../../utils/api');
 
 const BANK_META = {
@@ -58,5 +59,7 @@ Page({
     wx.setStorageSync('shuaci_study_mode', 'daily-plan');
     wx.setStorageSync('shuaci_include_overlap', this.data.bank.id === 'cet6_core' ? false : true);
     wx.switchTab({ url: '/pages/study/study' });
-  }
+  },
+  onShareAppMessage() { return share.onShareAppMessage(); },
+  onShareTimeline() { return share.onShareTimeline(); }
 });

@@ -1,3 +1,4 @@
+const share = require('../../utils/share');
 const { callCloud } = require('../../utils/api');
 const store = require('../../utils/store');
 
@@ -78,5 +79,7 @@ Page({
   },
   openBank(e) {
     this.selectBank(e);
-  }
+  },
+  onShareAppMessage() { return share.onShareAppMessage(); },
+  onShareTimeline() { return share.onShareTimeline(); }
 });

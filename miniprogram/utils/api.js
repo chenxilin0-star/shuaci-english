@@ -31,7 +31,7 @@ function localFallback(name, data) {
   const get = key => wx.getStorageSync(key) || [];
   const set = (key, value) => wx.setStorageSync(key, value);
   switch (name) {
-    case 'authLogin': return { success:true, data:{ openid:'local-user', nickName:'刷词同学', avatarUrl:'' } };
+    case 'authLogin': return { success:true, data:{ openid:'local-user', nickName:data.nickName || '', avatarUrl:data.avatarUrl || '' } };
     case 'getWordBanks': return { success:true, data: mock.wordBanks };
     case 'getWordList': return { success:true, data: mock.words.filter(w => inBank(w, data.bankId)).slice(0, data.limit || 50) };
     case 'getWordDetail': return { success:true, data: mock.words.find(w => w.id === data.wordId || w.text === data.wordId) || mock.words[0] };

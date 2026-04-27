@@ -1,16 +1,61 @@
 const { callCloud } = require('../../utils/api');
 const store = require('../../utils/store');
+const share = require('../../utils/share');
+
+const DEFAULT_USER = {
+  nickName: '',
+  avatarUrl: ''
+};
+
+function normalizeUser(user = {}) {
+  return {
+    ...DEFAULT_USER,
+    ...user,
+    nickName: user.nickName || '',
+    avatarUrl: user.avatarUrl || ''
+  };
+}
 
 Page({
-  data: { user: null, stats: {}, hasLogin: false },
+  data: {
+    user: DEFAULT_USER,
+    stats: {},
+    hasLogin: false,
+    pendingNickName: '',
+    pendingAvatarUrl: '',
+    feedbackWechat: 'xym7563'
+  },
   onShow() {
-    const user = wx.getStorageSync('shuaci_user') || null;
-    this.setData({ user, hasLogin: !!user, stats: store.getLearningStats() });
+    const user = normalizeUser(wx.getStorageSync('shuaci_user') || {});
+    this.setData({
+      user,
+      hasLogin: !!(user.openid || user.nickName || user.avatarUrl),
+      pendingNickName: user.nickName || '',
+      pendingAvatarUrl: user.avatarUrl || '',
+      stats: store.getLearningStats()
+    });
+  },
+  onChooseAvatar(e) {
+    const avatarUrl = e && e.detail ? e.detail.avatarUrl : '';
+    if (!avatarUrl) return;
+    this.setData({ pendingAvatarUrl: avatarUrl, user: normalizeUser({ ...this.data.user, avatarUrl }) });
+  },
+  onNicknameInput(e) {
+    const nickName = e && e.detail ? e.detail.value : '';
+    this.setData({ pendingNickName: nickName, user: normalizeUser({ ...this.data.user, nickName }) });
   },
   login() {
-    callCloud('authLogin').then(r => {
-      const user = r.data || { nickName: '刷词同学' };
+    const nickName = (this.data.pendingNickName || '').trim();
+    const avatarUrl = this.data.pendingAvatarUrl || '';
+    if (!nickName) {
+      wx.showToast({ title: '请先填写微信昵称', icon: 'none' });
+      return;
+    }
+    callCloud('authLogin', { nickName, avatarUrl }).then(r => {
+      const user = normalizeUser({ ...(r.data || {}), nickName, avatarUrl });
       wx.setStorageSync('shuaci_user', user);
+      const app = typeof getApp === 'function' ? getApp() : null;
+      if (app && app.globalData) app.globalData.user = user;
       this.setData({ user, hasLogin: true });
       wx.showToast({ title: '登录成功' });
     });
@@ -23,8 +68,16 @@ Page({
       wx.showToast({ title: '已记录打卡', icon: 'none' });
     });
   },
+  copyFeedbackWechat() {
+    wx.setClipboardData({
+      data: this.data.feedbackWechat,
+      success: () => wx.showToast({ title: '微信号已复制', icon: 'none' })
+    });
+  },
   goFav() { wx.navigateTo({ url: '/pages/favorites/favorites' }); },
   goMistakes() { wx.navigateTo({ url: '/pages/mistakes/mistakes' }); },
   goBanks() { wx.switchTab({ url: '/pages/banks/banks' }); },
-  goGrammar() { wx.switchTab({ url: '/pages/grammar/grammar' }); }
+  goGrammar() { wx.switchTab({ url: '/pages/grammar/grammar' }); },
+  onShareAppMessage() { return share.onShareAppMessage({ title: '刷词英语｜一起刷四六级核心词' }); },
+  onShareTimeline() { return share.onShareTimeline({ title: '刷词英语｜四六级刷词、语法和错题复盘' }); }
 });

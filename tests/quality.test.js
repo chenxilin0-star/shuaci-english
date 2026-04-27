@@ -165,6 +165,37 @@ describe('刷词英语 phase-2 delivery', () => {
     assert.match(wxss, /action-bar/);
   });
 
+  it('implements real WeChat profile login, share entry points and feedback copy action', () => {
+    const app = JSON.parse(read('miniprogram/app.json'));
+    assert.ok(exists('miniprogram/utils/share.js'));
+    assert.match(read('miniprogram/utils/share.js'), /onShareAppMessage/);
+    assert.match(read('miniprogram/utils/share.js'), /onShareTimeline/);
+
+    const profileJs = read('miniprogram/pages/profile/profile.js');
+    const profileWxml = read('miniprogram/pages/profile/profile.wxml');
+    const authCloud = read('cloudfunctions/authLogin/index.js');
+    assert.match(profileWxml, /open-type="chooseAvatar"/);
+    assert.match(profileWxml, /type="nickname"/);
+    assert.match(profileJs, /onChooseAvatar/);
+    assert.match(profileJs, /onNicknameInput/);
+    assert.match(profileJs, /nickName/);
+    assert.match(profileJs, /avatarUrl/);
+    assert.doesNotMatch(profileJs, /nickName:\s*'刷词同学'/);
+    assert.match(profileWxml, /意见反馈/);
+    assert.match(profileWxml, /xym7563/);
+    assert.match(profileJs, /copyFeedbackWechat/);
+    assert.match(profileJs, /setClipboardData/);
+    assert.match(authCloud, /nickName:user\.nickName/);
+    assert.match(authCloud, /avatarUrl:user\.avatarUrl/);
+
+    for (const pagePath of app.pages) {
+      const jsPath = `miniprogram/${pagePath}.js`;
+      const code = read(jsPath);
+      assert.match(code, /onShareAppMessage\s*\(/, `${jsPath} missing friend share`);
+      assert.match(code, /onShareTimeline\s*\(/, `${jsPath} missing timeline share`);
+    }
+  });
+
   it('uses real local learning stats for home/profile/banks instead of hardcoded fake counters', () => {
     const loop = require('../miniprogram/utils/learningLoop');
     const state = loop.createInitialState('u1');

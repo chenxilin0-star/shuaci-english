@@ -1,9 +1,12 @@
 <view class="container profile-page">
   <view class="card profile-hero">
-    <view class="avatar">刷</view>
+    <button class="avatar-btn" open-type="chooseAvatar" bindchooseavatar="onChooseAvatar">
+      <image wx:if="{{user.avatarUrl || pendingAvatarUrl}}" class="avatar-img" src="{{pendingAvatarUrl || user.avatarUrl}}" mode="aspectFill" />
+      <view wx:else class="avatar-placeholder">刷</view>
+    </button>
     <view class="profile-main">
-      <view class="title">{{hasLogin ? '刷词同学' : '未登录用户'}}</view>
-      <view class="muted">本地学习记录实时统计 · 登录后同步云端</view>
+      <input class="nickname-input" type="nickname" placeholder="点击填写微信昵称" value="{{pendingNickName}}" bindinput="onNicknameInput" />
+      <view class="muted">使用微信头像昵称登录 · 学习记录同步云端</view>
     </view>
   </view>
 
@@ -19,7 +22,7 @@
     <view class="progress"><view class="progress-bar" style="width: {{stats.completionPercent || 0}}%"></view></view>
   </view>
 
-  <button class="btn btn-primary" bindtap="login">{{hasLogin ? '重新同步登录' : '微信一键登录'}}</button>
+  <button class="btn btn-primary" bindtap="login">{{hasLogin ? '同步微信资料' : '微信头像昵称登录'}}</button>
   <button class="btn btn-secondary" bindtap="checkin">今日打卡</button>
 
   <view class="card menu-card">
@@ -27,5 +30,13 @@
     <view class="menu-row" bindtap="goMistakes"><view><text class="menu-icon">🎯</text><text>错题本</text></view><text class="muted">{{stats.mistakeCount || 0}} ›</text></view>
     <view class="menu-row" bindtap="goBanks"><view><text class="menu-icon">📚</text><text>学习计划</text></view><text class="muted">›</text></view>
     <view class="menu-row" bindtap="goGrammar"><view><text class="menu-icon">🧩</text><text>语法专项</text></view><text class="muted">›</text></view>
+  </view>
+
+  <view class="card feedback-card">
+    <view>
+      <view class="h2">意见反馈</view>
+      <view class="muted">联系微信：xym7563</view>
+    </view>
+    <button class="copy-btn" bindtap="copyFeedbackWechat">复制微信号</button>
   </view>
 </view>

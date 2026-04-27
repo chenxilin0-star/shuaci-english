@@ -1,3 +1,4 @@
+const share = require('../../utils/share');
 const { callCloud } = require('../../utils/api');
 const store = require('../../utils/store');
 const loop = require('../../utils/learningLoop');
@@ -103,5 +104,7 @@ Page({
   goDetail() {
     if (!this.data.word) return;
     wx.navigateTo({ url: '/pages/word-detail/word-detail?wordId=' + this.data.word.id });
-  }
+  },
+  onShareAppMessage() { return share.onShareAppMessage(); },
+  onShareTimeline() { return share.onShareTimeline(); }
 });

@@ -1,3 +1,4 @@
+const share = require('../../utils/share');
 const store = require('../../utils/store');
 
 Page({
@@ -14,5 +15,7 @@ Page({
   goBanks() { wx.switchTab({ url: '/pages/banks/banks' }); },
   goStudy() { wx.switchTab({ url: '/pages/study/study' }); },
   goGrammar() { wx.switchTab({ url: '/pages/grammar/grammar' }); },
-  goMistakes() { wx.navigateTo({ url: '/pages/mistakes/mistakes' }); }
+  goMistakes() { wx.navigateTo({ url: '/pages/mistakes/mistakes' }); },
+  onShareAppMessage() { return share.onShareAppMessage(); },
+  onShareTimeline() { return share.onShareTimeline(); }
 });
