@@ -25,7 +25,7 @@ exports.main = async (event = {}) => {
   const limit = Math.min(Number(event.limit || 50), 100);
   const skip = Number(event.skip || 0);
   try {
-    const query = db.collection('words').where(where).orderBy('frequency_tag', 'asc').skip(skip).limit(limit);
+    const query = db.collection('words').where(where).skip(skip).limit(limit);
     const res = await query.get();
     return ok(res.data.length ? res.data : mock.words.filter(w => inMockBank(w, event.bankId)));
   } catch(e) {

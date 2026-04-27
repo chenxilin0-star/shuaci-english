@@ -60,10 +60,18 @@ describe('刷词英语 phase-2 delivery', () => {
     assert.match(studyJs, /wx\.getStorageSync\(['"]shuaci_selected_bank['"]\)/);
   });
 
-  it('cloud getWordList supports imported ECDICT words by CET flags instead of only bankId equality', () => {
+  it('cloud getWordList supports imported ECDICT words by CET flags and avoids unindexed ordering', () => {
     const code = read('cloudfunctions/getWordList/index.js');
     assert.match(code, /bankIdToWhere/);
     assert.match(code, /is_in_cet4/);
     assert.match(code, /is_in_cet6/);
+    assert.doesNotMatch(code, /orderBy\(/);
+  });
+
+  it('mini program cloud API has a client-side timeout fallback', () => {
+    const code = read('miniprogram/utils/api.js');
+    assert.match(code, /CLOUD_TIMEOUT_MS/);
+    assert.match(code, /setTimeout/);
+    assert.match(code, /localFallback\(name, data\)/);
   });
 });
