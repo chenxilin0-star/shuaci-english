@@ -1,0 +1,1 @@
+const { callCloud } = require('../../utils/api'); Page({ data:{banks:[]}, onShow(){callCloud('getWordBanks').then(r=>this.setData({banks:r.data||[]}));}, openBank(e){ wx.navigateTo({url:'/pages/study/study?bankId='+e.currentTarget.dataset.id}); }});

@@ -1,0 +1,1 @@
+<view class="container"><view class="card"><view class="title">错题本</view><view class="muted">拼写/阅读错误会自动归档，用于薄弱点闭环。</view><button class="btn btn-primary" bindtap="back">返回</button></view></view>

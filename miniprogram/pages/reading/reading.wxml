@@ -1,0 +1,1 @@
+<view class="container"><view class="card"><view class="title">阅读练习</view><view class="muted">阅读文章并完成选择题，支持错题解析。</view><button class="btn btn-primary" bindtap="back">返回</button></view></view>

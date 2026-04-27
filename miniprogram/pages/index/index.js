@@ -1,0 +1,2 @@
+const { callCloud } = require('../../utils/api');
+Page({ data:{ progress:{}, percent:0 }, onShow(){ callCloud('getStudyProgress').then(r=>{ const p=r.data||{}; this.setData({progress:p, percent: Math.min(100, Math.round((p.learnedWords||0)/(p.todayGoal||20)*10))}); }); }, goBanks(){ wx.switchTab({url:'/pages/banks/banks'}); }, goStudy(){ wx.switchTab({url:'/pages/study/study'}); } });

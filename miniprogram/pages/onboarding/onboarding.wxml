@@ -1,0 +1,1 @@
+<view class="container"><view class="card"><view class="title">新手引导</view><view class="muted">选择 CET-4/CET-6，设定每日目标，开始刷词。</view><button class="btn btn-primary" bindtap="back">返回</button></view></view>

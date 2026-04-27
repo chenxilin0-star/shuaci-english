@@ -1,0 +1,1 @@
+.profile{display:flex;align-items:center;gap:24rpx}.avatar{width:96rpx;height:96rpx;border-radius:999rpx;background:#2AAE67;color:#fff;display:flex;align-items:center;justify-content:center;font-size:44rpx;font-weight:700}.center{text-align:center}.btn{margin-bottom:24rpx}

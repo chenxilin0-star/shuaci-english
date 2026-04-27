@@ -1,0 +1,1 @@
+.hero{background:linear-gradient(135deg,#2AAE67,#187A47);color:#fff}.hero .title{color:#fff}.stats{display:flex;gap:64rpx;margin:32rpx 0}.num{font-size:64rpx;font-weight:700}.entry{text-align:center;font-weight:600}.entry text:first-child{font-size:56rpx}.purple{border-top:8rpx solid #7B6AD7}

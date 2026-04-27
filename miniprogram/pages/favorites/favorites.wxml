@@ -1,0 +1,1 @@
+<view class="container"><view class="card"><view class="title">生词本</view><view class="muted">收藏的单词会出现在这里，后续可一键复习。</view><button class="btn btn-primary" bindtap="back">返回</button></view></view>

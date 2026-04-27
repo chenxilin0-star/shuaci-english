@@ -1,0 +1,1 @@
+<view class="container"><view class="card"><view class="title">单词详情</view><view class="muted">展示音标、释义、例句、搭配与收藏。</view><button class="btn btn-primary" bindtap="back">返回</button></view></view>
