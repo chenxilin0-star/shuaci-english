@@ -91,4 +91,54 @@ describe('刷词英语 phase-2 delivery', () => {
     assert.match(grammarJs, /selectTopic/);
     assert.match(grammarJs, /masteryLabel/);
   });
+
+  it('adds bank detail page with structure, completion estimate and learning curve', () => {
+    const app = JSON.parse(read('miniprogram/app.json'));
+    assert.ok(app.pages.includes('pages/bank-detail/bank-detail'));
+    assert.ok(exists('miniprogram/pages/bank-detail/bank-detail.js'));
+    const wxml = read('miniprogram/pages/bank-detail/bank-detail.wxml');
+    const js = read('miniprogram/pages/bank-detail/bank-detail.js');
+    assert.match(wxml, /词库结构/);
+    assert.match(wxml, /预计完成/);
+    assert.match(wxml, /学习曲线/);
+    assert.match(js, /estimateDays/);
+    assert.match(js, /curvePoints/);
+    assert.match(read('miniprogram/pages/banks/banks.wxml'), /查看详情/);
+  });
+
+  it('implements a real 35 new + 10 review + 5 mistake daily plan and completion result page', () => {
+    const loop = require('../miniprogram/utils/learningLoop');
+    assert.strictEqual(loop.DAILY_PLAN.newCount, 35);
+    assert.strictEqual(loop.DAILY_PLAN.reviewCount, 10);
+    assert.strictEqual(loop.DAILY_PLAN.mistakeCount, 5);
+    const plan = loop.buildDailyPlan({
+      newWords: Array.from({ length: 60 }, (_, i) => ({ id: 'n' + i, text: 'new' + i })),
+      reviewWords: Array.from({ length: 20 }, (_, i) => ({ id: 'r' + i, text: 'review' + i })),
+      mistakeWords: Array.from({ length: 10 }, (_, i) => ({ id: 'm' + i, text: 'mistake' + i }))
+    });
+    assert.strictEqual(plan.items.filter(i => i.planType === 'new').length, 35);
+    assert.strictEqual(plan.items.filter(i => i.planType === 'review').length, 10);
+    assert.strictEqual(plan.items.filter(i => i.planType === 'mistake').length, 5);
+    assert.strictEqual(plan.total, 50);
+    assert.ok(JSON.parse(read('miniprogram/app.json')).pages.includes('pages/study-result/study-result'));
+    assert.match(read('miniprogram/pages/study/study.js'), /finishToday/);
+    assert.match(read('miniprogram/pages/study-result/study-result.wxml'), /今日学习成果/);
+  });
+
+  it('expands grammar practice to 3-5 questions per topic and archives grammar mistakes', () => {
+    const topics = JSON.parse(read('data/grammar_topics.json'));
+    assert.ok(topics.length >= 50);
+    assert.ok(topics.every(t => Array.isArray(t.practice) && t.practice.length >= 3 && t.practice.length <= 5));
+    const grammarWxml = read('miniprogram/pages/grammar/grammar.wxml');
+    const grammarJs = read('miniprogram/pages/grammar/grammar.js');
+    assert.match(grammarWxml, /专项练习/);
+    assert.match(grammarWxml, /上一题/);
+    assert.match(grammarWxml, /下一题/);
+    assert.match(grammarJs, /answerPractice/);
+    assert.match(grammarJs, /submitGrammarAnswer/);
+    const loop = require('../miniprogram/utils/learningLoop');
+    const result = loop.submitGrammarAnswer(loop.createInitialState('u1'), { id: 'g1', title: '测试语法' }, { id: 'q1', answer: 'A', question: 'Q?' }, 'B');
+    assert.strictEqual(result.isCorrect, false);
+    assert.ok(result.state.mistakes.some(m => m.itemType === 'grammar'));
+  });
 });

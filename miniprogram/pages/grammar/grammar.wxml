@@ -2,7 +2,7 @@
   <view class="page-hero">
     <view class="eyebrow">考点地图</view>
     <view class="title">语法不是背概念，是会做题</view>
-    <view class="muted">按四六级高频考点拆成知识卡：看规则、看例句、记考试提醒，再做 1 道小练习。</view>
+    <view class="muted">按四六级高频考点拆成知识卡：看规则、看例句、记考试提醒，再做 3-5 道专项练习。</view>
   </view>
 
   <input class="input search" placeholder="搜索语法点 / 从句 / 虚拟语气" bindinput="onSearch" value="{{search}}" />
@@ -15,7 +15,7 @@
     <view class="topic-list">
       <view wx:for="{{filtered}}" wx:key="id" class="topic-item {{selectedTopic && selectedTopic.id===item.id?'active':''}}" bindtap="selectTopic" data-id="{{item.id}}">
         <view class="topic-title">{{item.title}}</view>
-        <view class="topic-meta"><text>{{item.category}}</text><text>{{item.frequency}}</text><text>{{item.masteryLabel}}</text></view>
+        <view class="topic-meta"><text>{{item.category}}</text><text>{{item.frequency}}</text><text>{{item.practiceCount}}题</text><text>{{item.masteryLabel}}</text></view>
       </view>
     </view>
 
@@ -37,12 +37,15 @@
         <view class="example-en">{{selectedTopic.example.en}}</view>
         <view class="muted">{{selectedTopic.example.cn}}</view>
       </view>
-      <view class="block-title">小练习</view>
+      <view class="block-title">小练习 / 专项练习 {{practiceIndex+1}}/{{selectedTopic.practiceCount}}</view>
       <view class="practice-card">
-        <view>{{selectedTopic.firstPractice.question}}</view>
-        <view class="answer">答案：{{selectedTopic.firstPractice.answer}}</view>
-        <view class="muted">{{selectedTopic.firstPractice.explanation}}</view>
+        <view class="question">{{selectedTopic.currentPractice.question}}</view>
+        <view wx:for="{{selectedTopic.currentPractice.options}}" wx:key="*this" class="option {{selectedAnswer===item?'active':''}}" bindtap="chooseAnswer" data-answer="{{item}}">{{item}}</view>
+        <view wx:if="{{practiceResult}}" class="answer">{{practiceResult}}</view>
+        <view wx:if="{{practiceResult}}" class="muted">解析：{{selectedTopic.currentPractice.explanation}}</view>
       </view>
+      <view class="grid-2 practice-actions"><button bindtap="prevPractice">上一题</button><button bindtap="nextPractice">下一题</button></view>
+      <button class="btn btn-secondary learned-btn" bindtap="answerPractice">提交答案</button>
       <button class="btn btn-primary learned-btn" bindtap="markLearned">学会了，加入复习</button>
     </view>
 

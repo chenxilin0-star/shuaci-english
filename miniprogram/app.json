@@ -2,7 +2,9 @@
   "pages": [
     "pages/index/index",
     "pages/banks/banks",
+    "pages/bank-detail/bank-detail",
     "pages/study/study",
+    "pages/study-result/study-result",
     "pages/grammar/grammar",
     "pages/profile/profile",
     "pages/onboarding/onboarding",
@@ -12,13 +14,40 @@
     "pages/favorites/favorites",
     "pages/mistakes/mistakes"
   ],
-  "window": {"navigationBarTitleText":"刷词英语","navigationBarBackgroundColor":"#FFFFFF","navigationBarTextStyle":"black","backgroundColor":"#F8F9FA"},
-  "tabBar": {"color":"#ADB5BD","selectedColor":"#2AAE67","backgroundColor":"#FFFFFF","borderStyle":"white","list":[
-    {"pagePath":"pages/index/index","text":"首页"},
-    {"pagePath":"pages/banks/banks","text":"词库"},
-    {"pagePath":"pages/study/study","text":"学习"},
-    {"pagePath":"pages/grammar/grammar","text":"语法"},
-    {"pagePath":"pages/profile/profile","text":"我的"}
-  ]},
-  "style":"v2","sitemapLocation":"sitemap.json"
+  "window": {
+    "navigationBarTitleText": "刷词英语",
+    "navigationBarBackgroundColor": "#FFFFFF",
+    "navigationBarTextStyle": "black",
+    "backgroundColor": "#F8F9FA"
+  },
+  "tabBar": {
+    "color": "#ADB5BD",
+    "selectedColor": "#2AAE67",
+    "backgroundColor": "#FFFFFF",
+    "borderStyle": "white",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "首页"
+      },
+      {
+        "pagePath": "pages/banks/banks",
+        "text": "词库"
+      },
+      {
+        "pagePath": "pages/study/study",
+        "text": "学习"
+      },
+      {
+        "pagePath": "pages/grammar/grammar",
+        "text": "语法"
+      },
+      {
+        "pagePath": "pages/profile/profile",
+        "text": "我的"
+      }
+    ]
+  },
+  "style": "v2",
+  "sitemapLocation": "sitemap.json"
 }

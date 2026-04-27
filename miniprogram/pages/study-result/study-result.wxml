@@ -1,0 +1,24 @@
+<view class="container result-page">
+  <view class="hero-card">
+    <view class="emoji">🎉</view>
+    <view class="title">今日学习成果</view>
+    <view class="muted">完成不是终点，明天会自动进入下一批和复习。</view>
+  </view>
+  <view class="card score-card">
+    <view class="big-score">{{result.completionRate}}%</view>
+    <view class="muted">{{result.completed}} / {{result.total}} 个学习任务</view>
+    <view class="progress"><view class="progress-bar" style="width: {{result.completionRate}}%"></view></view>
+  </view>
+  <view class="grid-3 card stats-card">
+    <view><view class="stat-num">{{result.newCount}}</view><view class="muted">新词</view></view>
+    <view><view class="stat-num">{{result.reviewCount}}</view><view class="muted">复习</view></view>
+    <view><view class="stat-num">{{result.mistakeCount}}</view><view class="muted">错词</view></view>
+  </view>
+  <view class="card tip-card">
+    <view class="h2">下一步建议</view>
+    <view class="muted">如果今天错题较多，先进入错题本复盘；如果完成率达到 100%，明天继续按 35+10+5 推进。</view>
+  </view>
+  <button class="btn btn-primary" bindtap="continueStudy">继续学习</button>
+  <button class="btn btn-secondary" bindtap="reviewMistakes">复盘错题本</button>
+  <button class="plain" bindtap="backHome">返回首页</button>
+</view>

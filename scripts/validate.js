@@ -2,7 +2,7 @@ const fs = require('fs');
 const path = require('path');
 const root = path.resolve(__dirname, '..');
 const required = ['project.config.json','miniprogram/app.json','miniprogram/app.js','miniprogram/app.wxss','miniprogram/data/mockData.js','miniprogram/utils/api.js'];
-const pages = ['index','banks','study','grammar','profile','onboarding','word-detail','spelling','reading','favorites','mistakes'];
+const pages = ['index','banks','bank-detail','study','study-result','grammar','profile','onboarding','word-detail','spelling','reading','favorites','mistakes'];
 const funcs = ['authLogin','getWordBanks','getWordList','getWordDetail','updateWordProgress','getStudyProgress','getGrammarTopics','toggleFavorite','checkin','submitSpellingAnswer','getFavorites','getMistakeBook'];
 let errors = [];
 for (const f of required) if (!fs.existsSync(path.join(root, f))) errors.push(`missing ${f}`);

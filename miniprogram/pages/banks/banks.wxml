@@ -29,6 +29,7 @@
       <view><view class="stat-num">{{selectedBank.reviewWords}}</view><view class="muted">建议复习</view></view>
     </view>
     <view class="path-line">{{selectedBank.levelText}}</view>
+    <button class="btn btn-secondary detail-btn" bindtap="viewDetail">查看详情：词库结构 / 预计完成 / 学习曲线</button>
   </view>
 
   <view class="section-title">学习模式</view>

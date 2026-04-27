@@ -61,12 +61,16 @@ Page({
     this.setData({ selectedBank, modes });
   },
   startMode(e) {
-    const mode = e.currentTarget.dataset.mode || 'daily';
+    const mode = e.currentTarget.dataset.mode || 'daily-plan';
     const includeOverlap = e.currentTarget.dataset.overlap === true || e.currentTarget.dataset.overlap === 'true';
     wx.setStorageSync('shuaci_selected_bank', this.data.selectedBank.id);
-    wx.setStorageSync('shuaci_study_mode', mode);
+    wx.setStorageSync('shuaci_study_mode', mode === 'daily' ? 'daily-plan' : mode);
     wx.setStorageSync('shuaci_include_overlap', includeOverlap);
     wx.switchTab({ url: '/pages/study/study' });
+  },
+  viewDetail() {
+    if (!this.data.selectedBank) return;
+    wx.navigateTo({ url: '/pages/bank-detail/bank-detail?bankId=' + this.data.selectedBank.id });
   },
   openBank(e) {
     this.selectBank(e);

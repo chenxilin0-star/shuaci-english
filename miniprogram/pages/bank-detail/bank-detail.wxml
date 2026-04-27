@@ -1,0 +1,36 @@
+<view class="container detail-page" wx:if="{{bank}}">
+  <view class="page-hero">
+    <view class="eyebrow">{{bank.exam}} 词库详情</view>
+    <view class="title">{{bank.name}}</view>
+    <view class="muted">从结构、周期和复习曲线看清楚怎么学完，而不是盲刷。</view>
+  </view>
+
+  <view class="card summary-card">
+    <view class="grid-3">
+      <view><view class="stat-num">{{bank.totalWords}}</view><view class="muted">总词量</view></view>
+      <view><view class="stat-num">{{bank.remaining}}</view><view class="muted">剩余词</view></view>
+      <view><view class="stat-num">{{bank.estimateDays}}</view><view class="muted">预计完成/天</view></view>
+    </view>
+    <view class="plan-line">每日计划：35 新词 + 10 复习 + 5 错词，完成后进入学习成果页。</view>
+  </view>
+
+  <view class="section-title">词库结构</view>
+  <view wx:for="{{bank.sections}}" wx:key="name" class="card section-card">
+    <view class="row"><view class="h2">{{item.name}}</view><text class="tag">约 {{item.count}} 词</text></view>
+    <view class="muted">{{item.desc}}</view>
+  </view>
+
+  <view class="section-title">学习曲线</view>
+  <view class="card curve-card">
+    <view wx:for="{{bank.curvePoints}}" wx:key="label" class="curve-row">
+      <view class="dot"></view>
+      <view class="curve-main">
+        <view class="row"><text class="curve-title">{{item.label}}</text><text class="muted">{{item.percent}}%</text></view>
+        <view class="progress"><view class="progress-bar" style="width: {{item.percent}}%"></view></view>
+        <view class="muted">{{item.desc}}</view>
+      </view>
+    </view>
+  </view>
+
+  <button class="btn btn-primary" bindtap="startPlan">按这个计划开始学习</button>
+</view>

@@ -1,1 +1,37 @@
-<view class="container"><view class="row"><view><view class="title">单词学习</view><view class="muted">{{batchLabel}}</view></view><text class="muted">{{index+1}}/{{words.length}}</text></view><view wx:if="{{word}}" class="card word-card" bindtap="flip"><view class="word">{{word.text}}</view><view class="phonetic">{{word.phonetic_us}}</view><view wx:if="{{flipped}}" class="back"><text class="tag">{{word.pos}}</text><view class="meaning">{{word.meaning_cn}}</view><view class="example">{{word.example_sentence}}</view><view class="muted">{{word.example_cn}}</view></view><view wx:else class="muted">点击卡片查看释义</view></view><view class="grid-2"><button class="btn btn-secondary" bindtap="toggleFavorite">{{word.isFavorite?'取消收藏':'收藏'}}</button><button class="btn btn-primary" bindtap="next">下一个</button></view><view class="grid-2 tools"><button bindtap="goSpell">拼写练习</button><button bindtap="goDetail">单词详情</button></view></view>
+<view class="container study-page">
+  <view class="row header-row">
+    <view>
+      <view class="title">单词学习</view>
+      <view class="muted">{{batchLabel}}</view>
+    </view>
+    <text class="muted">{{index+1}}/{{words.length}}</text>
+  </view>
+
+  <view class="card plan-card">
+    <view class="plan-title">今日真实学习计划</view>
+    <view class="grid-3">
+      <view><view class="stat-num">{{planStats.new}}</view><view class="muted">新词 / 35</view></view>
+      <view><view class="stat-num">{{planStats.review}}</view><view class="muted">复习 / 10</view></view>
+      <view><view class="stat-num">{{planStats.mistake}}</view><view class="muted">错词 / 5</view></view>
+    </view>
+  </view>
+
+  <view wx:if="{{word}}" class="card word-card" bindtap="flip">
+    <view class="tag plan-tag">{{word.planLabel}}</view>
+    <view class="word">{{word.text}}</view>
+    <view class="phonetic">{{word.phonetic_us}}</view>
+    <view wx:if="{{flipped}}" class="back">
+      <text class="tag">{{word.pos}}</text>
+      <view class="meaning">{{word.meaning_cn}}</view>
+      <view class="example">{{word.example_sentence}}</view>
+      <view class="muted">{{word.example_cn}}</view>
+    </view>
+    <view wx:else class="muted">点击卡片查看释义</view>
+  </view>
+
+  <view class="grid-2">
+    <button class="btn btn-secondary" bindtap="toggleFavorite">{{word.isFavorite?'取消收藏':'收藏'}}</button>
+    <button class="btn btn-primary" bindtap="next">{{index >= words.length-1 ? '完成今日目标' : '下一个'}}</button>
+  </view>
+  <view class="grid-2 tools"><button bindtap="goSpell">拼写练习</button><button bindtap="goDetail">单词详情</button></view>
+</view>
