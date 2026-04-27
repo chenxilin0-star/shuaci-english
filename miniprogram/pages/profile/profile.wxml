@@ -1,12 +1,12 @@
 <view class="container profile-page">
   <view class="card profile-hero">
-    <button class="avatar-btn" open-type="chooseAvatar" bindchooseavatar="onChooseAvatar">
-      <image wx:if="{{user.avatarUrl || pendingAvatarUrl}}" class="avatar-img" src="{{pendingAvatarUrl || user.avatarUrl}}" mode="aspectFill" />
-      <view wx:else class="avatar-placeholder">刷</view>
+    <button class="avatar-btn" open-type="chooseAvatar" bindchooseavatar="onChooseAvatar" style="width:108rpx;height:108rpx;border-radius:50%;padding:0;margin:0;background:#2AAE67;overflow:hidden;display:flex;align-items:center;justify-content:center;">
+      <image wx:if="{{user.avatarUrl || pendingAvatarUrl}}" class="avatar-img" src="{{pendingAvatarUrl || user.avatarUrl}}" mode="aspectFill" style="width:108rpx;height:108rpx;border-radius:50%;" />
+      <view wx:else class="avatar-placeholder" style="width:108rpx;height:108rpx;border-radius:50%;color:#fff;display:flex;align-items:center;justify-content:center;font-size:48rpx;font-weight:800;">刷</view>
     </button>
     <view class="profile-main">
       <input class="nickname-input" type="nickname" placeholder="点击填写微信昵称" value="{{pendingNickName}}" bindinput="onNicknameInput" />
-      <view class="muted">使用微信头像昵称登录 · 学习记录同步云端</view>
+      <view class="muted">{{hasLogin ? '学习记录同步云端' : '使用微信头像昵称登录'}}</view>
     </view>
   </view>
 
@@ -22,7 +22,6 @@
     <view class="progress"><view class="progress-bar" style="width: {{stats.completionPercent || 0}}%"></view></view>
   </view>
 
-  <button class="btn btn-primary" bindtap="login">{{hasLogin ? '同步微信资料' : '微信头像昵称登录'}}</button>
   <button class="btn btn-secondary" bindtap="checkin">今日打卡</button>
 
   <view class="card menu-card">
