@@ -58,6 +58,8 @@ describe('刷词英语 phase-2 delivery', () => {
     assert.match(banksJs, /wx\.setStorageSync\(['"]shuaci_selected_bank['"]/);
     const studyJs = read('miniprogram/pages/study/study.js');
     assert.match(studyJs, /wx\.getStorageSync\(['"]shuaci_selected_bank['"]\)/);
+    assert.match(studyJs, /daily/);
+    assert.match(studyJs, /limit:\s*50/);
   });
 
   it('cloud getWordList supports imported ECDICT words by CET flags and avoids unindexed ordering', () => {
@@ -65,6 +67,8 @@ describe('刷词英语 phase-2 delivery', () => {
     assert.match(code, /bankIdToWhere/);
     assert.match(code, /is_in_cet4/);
     assert.match(code, /is_in_cet6/);
+    assert.match(code, /cet6_new/);
+    assert.match(code, /dailySkip/);
     assert.doesNotMatch(code, /orderBy\(/);
   });
 

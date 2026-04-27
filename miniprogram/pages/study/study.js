@@ -1,8 +1,14 @@
 const { callCloud } = require('../../utils/api');
 const store = require('../../utils/store');
 
+function getDayIndex() {
+  const now = new Date();
+  const start = new Date(now.getFullYear(), 0, 0);
+  return Math.floor((now - start) / 86400000);
+}
+
 Page({
-  data: { bankId: 'cet4_core', words: [], index: 0, word: null, flipped: false },
+  data: { bankId: 'cet4_core', words: [], index: 0, word: null, flipped: false, batchLabel: '今日 50 词' },
   onLoad(q) {
     if (q.bankId) {
       wx.setStorageSync('shuaci_selected_bank', q.bankId);
@@ -18,9 +24,14 @@ Page({
     }
   },
   load() {
-    callCloud('getWordList', { bankId: this.data.bankId }).then(r => {
+    const dayIndex = getDayIndex();
+    callCloud('getWordList', { bankId: this.data.bankId, mode: 'daily', dayIndex, limit: 50 }).then(r => {
       const words = r.data || [];
-      this.setData({ words, word: words[0] || null });
+      const meta = r.meta || {};
+      const batchLabel = this.data.bankId === 'cet6_core'
+        ? '今日 50 词 · 优先六级新增词'
+        : '今日 50 词 · 四级核心';
+      this.setData({ words, word: words[0] || null, index: 0, flipped: false, batchLabel: meta.fallback ? batchLabel + '（本地缓存）' : batchLabel });
     });
   },
   flip() { this.setData({ flipped: !this.data.flipped }); },
@@ -29,7 +40,7 @@ Page({
     const i = (this.data.index + 1) % this.data.words.length;
     const word = this.data.words[i];
     this.setData({ index: i, word, flipped: false });
-    callCloud('updateWordProgress', { bankId: this.data.bankId, currentIndex: i, learnedWords: i + 1, todayGoal: 20, streakDays: 12 });
+    callCloud('updateWordProgress', { bankId: this.data.bankId, currentIndex: i, learnedWords: i + 1, todayGoal: 50, streakDays: 12 });
   },
   toggleFavorite() {
     if (!this.data.word) return;
