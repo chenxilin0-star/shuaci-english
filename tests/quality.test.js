@@ -129,6 +129,10 @@ describe('刷词英语 phase-2 delivery', () => {
     const topics = JSON.parse(read('data/grammar_topics.json'));
     assert.ok(topics.length >= 50);
     assert.ok(topics.every(t => Array.isArray(t.practice) && t.practice.length >= 3 && t.practice.length <= 5));
+    const cloudbaseLines = read('data/import/grammar_topics.cloudbase.json').trim().split('\n');
+    assert.ok(cloudbaseLines.length >= 50);
+    assert.doesNotMatch(cloudbaseLines[0], /^\s*\[/, 'CloudBase console import requires JSON Lines, not a JSON array');
+    assert.ok(cloudbaseLines.every(line => JSON.parse(line).id));
     const grammarWxml = read('miniprogram/pages/grammar/grammar.wxml');
     const grammarJs = read('miniprogram/pages/grammar/grammar.js');
     assert.match(grammarWxml, /专项练习/);
