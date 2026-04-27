@@ -15,7 +15,12 @@ fs.mkdirSync(path.join(root, outDir), { recursive: true });
 for (const [name, rows] of Object.entries(collections)) {
   if (!rows.length) continue;
   const docs = rows.map((row, index) => ({ ...row, _id: row._id || row.id || `${name}_${index}` }));
-  fs.writeFileSync(path.join(root, outDir, `${name}.array.json`), JSON.stringify(docs, null, 2), 'utf8');
-  fs.writeFileSync(path.join(root, outDir, `${name}.jsonl`), docs.map(d => JSON.stringify(d)).join('\n'), 'utf8');
-  console.log(`${name}: ${docs.length} -> ${outDir}/${name}.array.json + .jsonl`);
+  const jsonLines = docs.map(d => JSON.stringify(d)).join('\n') + '\n';
+  // CloudBase console import expects JSON Lines, but its file picker often only accepts .json.
+  // Therefore *.cloudbase.json is JSON Lines content with a selectable .json suffix.
+  fs.writeFileSync(path.join(root, outDir, `${name}.cloudbase.json`), jsonLines, 'utf8');
+  fs.writeFileSync(path.join(root, outDir, `${name}.jsonl`), jsonLines, 'utf8');
+  // Keep array JSON only for inspection/debugging; do NOT use it in CloudBase console import.
+  fs.writeFileSync(path.join(root, outDir, `${name}.array.debug.json`), JSON.stringify(docs, null, 2), 'utf8');
+  console.log(`${name}: ${docs.length} -> ${outDir}/${name}.cloudbase.json (JSON Lines)`);
 }

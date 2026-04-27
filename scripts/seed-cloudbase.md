@@ -70,11 +70,11 @@ node scripts/prepare-cloudbase-import-files.js --input=data/processed/cet_words.
 然后在微信开发者工具 → 云开发 → 数据库：
 
 1. 创建集合：`word_banks`、`words`、`grammar_topics`
-2. 进入 `word_banks` 集合 → 导入 → 选择 `data/import/word_banks.array.json` 或 `data/import/word_banks.jsonl`
-3. 进入 `words` 集合 → 导入 → 选择 `data/import/words.array.json` 或 `data/import/words.jsonl`
-4. 进入 `grammar_topics` 集合 → 导入 → 选择 `data/import/grammar_topics.array.json` 或 `data/import/grammar_topics.jsonl`
+2. 进入 `word_banks` 集合 → 导入 → 选择 `data/import/word_banks.cloudbase.json`
+3. 进入 `words` 集合 → 导入 → 选择 `data/import/words.cloudbase.json`
+4. 进入 `grammar_topics` 集合 → 导入 → 选择 `data/import/grammar_topics.cloudbase.json`
 
-如果控制台导入 JSON 数组失败，就使用 `.jsonl` 文件；如果 `.jsonl` 失败，就使用 `.array.json` 文件。
+注意：`*.cloudbase.json` 虽然是 `.json` 后缀，但内容是 CloudBase 要求的 **JSON Lines**（一行一个 JSON 对象）。不要导入 `*.array.debug.json`，它是普通 JSON 数组，仅供排查。
 
 ## 5. 微信开发者工具内确认
 

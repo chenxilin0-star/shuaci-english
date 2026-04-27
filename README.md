@@ -52,6 +52,16 @@ node scripts/import-cloudbase-data.js --dry-run --input=data/processed/cet_words
 node scripts/prepare-cloudbase-import-files.js --input=data/processed/cet_words.full.json --out=data/import
 ```
 
+手动导入 CloudBase 控制台时，请选择：
+
+```text
+data/import/word_banks.cloudbase.json
+data/import/words.cloudbase.json
+data/import/grammar_topics.cloudbase.json
+```
+
+这些文件是 JSON Lines 格式，只是使用 `.json` 后缀以便微信开发者工具文件选择器识别。
+
 校验会检查关键文件、页面、云函数是否存在，并确认项目代码中没有旧品牌名。
 
 ## 下一步建议
