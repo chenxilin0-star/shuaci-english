@@ -155,7 +155,9 @@ describe('刷词英语 phase-2 delivery', () => {
     assert.match(wxml, /audio-control/);
     assert.match(wxml, /audio-glyph/);
     assert.doesNotMatch(wxml, /<button class="audio-btn"[^>]*>🔊<\/button>/);
-    assert.match(wxss, /audio-control\{width:88rpx;height:88rpx/);
+    assert.match(wxss, /audio-control\{width:30px;height:30px;line-height:30px/);
+    assert.match(wxss, /min-height:0/);
+    assert.match(wxss, /font-size:0/);
     assert.match(wxss, /audio-ring/);
     assert.match(wxss, /linear-gradient\(135deg,#EAFBF1,#FFFFFF\)/);
     assert.match(wxss, /has-supplement/);
