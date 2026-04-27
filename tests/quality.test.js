@@ -103,7 +103,10 @@ describe('刷词英语 phase-2 delivery', () => {
     assert.match(wxml, /学习曲线/);
     assert.match(js, /estimateDays/);
     assert.match(js, /curvePoints/);
-    assert.match(read('miniprogram/pages/banks/banks.wxml'), /查看详情/);
+    assert.match(read('miniprogram/pages/banks/banks.wxml'), /查看词库详情/);
+    assert.doesNotMatch(read('miniprogram/pages/banks/banks.wxml'), /查看详情：词库结构 \/ 预计完成 \/ 学习曲线/);
+    assert.match(read('miniprogram/pages/banks/banks.wxss'), /bank-switch\{display:grid/);
+    assert.doesNotMatch(read('miniprogram/pages/banks/banks.wxss'), /overflow-x:auto/);
   });
 
   it('implements mode-specific study plans matching bank page promises', () => {
