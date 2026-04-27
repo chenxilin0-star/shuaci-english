@@ -1,6 +1,7 @@
 const { callCloud } = require('../../utils/api');
 const store = require('../../utils/store');
 const loop = require('../../utils/learningLoop');
+const pronunciation = require('../../utils/pronunciation');
 
 const MODE_META = {
   daily: { title: '新词模式', apiMode: 'daily', desc: '35 新词 + 10 复习 + 5 错词' },
@@ -69,6 +70,10 @@ Page({
     });
   },
   flip() { this.setData({ flipped: !this.data.flipped }); },
+  playAudio() {
+    if (!this.data.word) return;
+    pronunciation.playWord(this.data.word.text);
+  },
   next() {
     if (!this.data.words.length) return;
     if (this.data.index >= this.data.words.length - 1) { this.finishToday(); return; }

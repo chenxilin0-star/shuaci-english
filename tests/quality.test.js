@@ -149,7 +149,13 @@ describe('刷词英语 phase-2 delivery', () => {
     assert.match(wxml, /plan-stat/);
     assert.match(wxml, /action-bar/);
     assert.match(wxml, /补充词/);
+    assert.match(wxml, /playAudio/);
+    assert.match(wxml, /audio-btn/);
     assert.match(wxss, /has-supplement/);
+    assert.match(wxss, /action-btn\{height:92rpx;width:100%;min-width:0;margin:0;padding:0;box-sizing:border-box/);
+    assert.match(read('miniprogram/utils/pronunciation.js'), /dictvoice/);
+    assert.match(read('miniprogram/pages/spelling/spelling.wxml'), /playAudio/);
+    assert.match(read('miniprogram/pages/word-detail/word-detail.wxml'), /playAudio/);
     assert.match(wxss, /safe-area-inset-bottom/);
     assert.match(wxss, /word-card/);
     assert.match(wxss, /action-bar/);

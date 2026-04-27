@@ -42,8 +42,11 @@
       <view class="muted">点击卡片翻面</view>
     </view>
     <view class="word-main">
-      <view class="word">{{word.text}}</view>
-      <view class="phonetic">{{word.phonetic_us || word.phonetic_uk || ' '}}</view>
+      <view class="word-line">
+        <view class="word">{{word.text}}</view>
+        <button class="audio-btn" catchtap="playAudio">🔊</button>
+      </view>
+      <view class="phonetic">{{word.phonetic_us || word.phonetic_uk || '点击喇叭听发音'}}</view>
     </view>
     <view wx:if="{{flipped}}" class="back">
       <text class="tag pos-tag">{{word.pos || '词汇'}}</text>

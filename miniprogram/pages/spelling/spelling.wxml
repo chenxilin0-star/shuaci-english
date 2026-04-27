@@ -3,7 +3,7 @@
   <view wx:if="{{word}}" class="card quiz-card">
     <view class="muted">根据释义写出单词</view>
     <view class="meaning">{{word.meaning_cn}}</view>
-    <view><text class="tag">{{word.pos}}</text><text class="muted">{{word.phonetic_us}}</text></view>
+    <view class="sound-row"><text class="tag">{{word.pos}}</text><text class="muted">{{word.phonetic_us}}</text><button class="sound-btn" catchtap="playAudio">🔊 发音</button></view>
     <input class="input answer" value="{{answer}}" bindinput="onInput" placeholder="输入英文拼写" confirm-type="done" bindconfirm="submit" />
     <view wx:if="{{feedback}}" class="feedback {{feedbackClass}}">{{feedback}}</view>
     <button class="btn btn-primary" bindtap="submit">提交答案</button>

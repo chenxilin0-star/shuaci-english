@@ -1,1 +1,22 @@
-<view class="container"><view class="card"><view class="title">单词详情</view><view class="muted">展示音标、释义、例句、搭配与收藏。</view><button class="btn btn-primary" bindtap="back">返回</button></view></view>
+<view class="container detail-page">
+  <view wx:if="{{word}}" class="card word-detail-card">
+    <view class="eyebrow">单词详情</view>
+    <view class="word-row">
+      <view>
+        <view class="title">{{word.text}}</view>
+        <view class="muted">{{word.phonetic_us || word.phonetic_uk || '点击播放标准发音'}}</view>
+      </view>
+      <button class="audio-btn" catchtap="playAudio">🔊</button>
+    </view>
+    <view class="meaning">{{word.meaning_cn || '暂无释义'}}</view>
+    <view wx:if="{{word.pos}}" class="tag">{{word.pos}}</view>
+    <view wx:if="{{word.example_sentence}}" class="example">{{word.example_sentence}}</view>
+    <view wx:if="{{word.example_cn}}" class="muted">{{word.example_cn}}</view>
+    <button class="btn btn-primary back-btn" bindtap="back">返回</button>
+  </view>
+  <view wx:else class="card">
+    <view class="title">单词详情</view>
+    <view class="muted">暂无单词数据</view>
+    <button class="btn btn-primary back-btn" bindtap="back">返回</button>
+  </view>
+</view>
