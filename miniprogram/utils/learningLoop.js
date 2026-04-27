@@ -36,7 +36,7 @@ function ensureRecord(state, word) {
 }
 function getItemId(item, idx, planType) { return item.id || item.wordId || item.itemId || item.text || `${planType}_${idx}`; }
 function tagItems(items, planType, limit, used = new Set()) {
-  const labels = { new: '新词', review: '复习', mistake: '错题' };
+  const labels = { new: '新词', review: '复习', mistake: '错题', supplement: '补充' };
   const out = [];
   for (const item of items || []) {
     if (out.length >= limit) break;
@@ -47,8 +47,8 @@ function tagItems(items, planType, limit, used = new Set()) {
   }
   return out;
 }
-function fillShortage(items, pools, used, targetTotal, fallbackType = 'review') {
-  const fallbackLabels = { new: '补充新词', review: '补充复习', mistake: '补充错题' };
+function fillShortage(items, pools, used, targetTotal, fallbackType = 'supplement') {
+  const fallbackLabels = { new: '补充新词', review: '补充复习', mistake: '补充错题', supplement: '补充' };
   for (const pool of pools) {
     for (const item of pool || []) {
       if (items.length >= targetTotal) return items;
@@ -67,16 +67,16 @@ function buildStudyPlan({ mode = 'daily', newWords = [], reviewWords = [], mista
   let items = [];
   if (normalizedMode === 'mistake') {
     items = items.concat(tagItems(mistakeWords, 'mistake', target.mistakeCount, used));
-    fillShortage(items, [reviewWords, newWords], used, target.total, 'mistake');
+    fillShortage(items, [reviewWords, newWords], used, target.total, 'supplement');
   } else if (normalizedMode === 'review') {
     items = items.concat(tagItems(reviewWords, 'review', target.reviewCount, used));
     items = items.concat(tagItems(mistakeWords, 'mistake', target.mistakeCount, used));
-    fillShortage(items, [reviewWords, mistakeWords, newWords], used, target.total, 'review');
+    fillShortage(items, [reviewWords, mistakeWords, newWords], used, target.total, 'supplement');
   } else {
     items = items.concat(tagItems(newWords, 'new', target.newCount, used));
     items = items.concat(tagItems(reviewWords, 'review', target.reviewCount, used));
     items = items.concat(tagItems(mistakeWords, 'mistake', target.mistakeCount, used));
-    fillShortage(items, [newWords, reviewWords, mistakeWords], used, target.total, 'new');
+    fillShortage(items, [newWords, reviewWords, mistakeWords], used, target.total, 'supplement');
   }
   const finalItems = items.slice(0, target.total);
   return {
@@ -86,7 +86,8 @@ function buildStudyPlan({ mode = 'daily', newWords = [], reviewWords = [], mista
     stats: {
       new: finalItems.filter(i => i.planType === 'new').length,
       review: finalItems.filter(i => i.planType === 'review').length,
-      mistake: finalItems.filter(i => i.planType === 'mistake').length
+      mistake: finalItems.filter(i => i.planType === 'mistake').length,
+      supplement: finalItems.filter(i => i.planType === 'supplement').length
     },
     target: { ...target }
   };
@@ -100,6 +101,7 @@ function summarizeStudySession(items = [], completedCount = 0) {
     newCount: learned.filter(i => i.planType === 'new').length,
     reviewCount: learned.filter(i => i.planType === 'review').length,
     mistakeCount: learned.filter(i => i.planType === 'mistake').length,
+    supplementCount: learned.filter(i => i.planType === 'supplement').length,
     completionRate: items.length ? Math.round((learned.length / items.length) * 100) : 0,
     finishedAt: nowIso()
   };

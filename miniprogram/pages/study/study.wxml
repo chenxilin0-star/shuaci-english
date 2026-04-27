@@ -16,18 +16,22 @@
       </view>
       <text class="tag">{{modeTitle}}</text>
     </view>
-    <view class="plan-grid">
+    <view class="plan-grid {{planStats.supplement ? 'has-supplement' : ''}}">
       <view class="plan-stat new-stat">
         <view class="stat-num">{{planStats.new}}</view>
-        <view class="stat-label">新词 / {{target.newCount}}</view>
+        <view class="stat-label">新词目标 {{target.newCount}}</view>
       </view>
       <view class="plan-stat review-stat">
         <view class="stat-num">{{planStats.review}}</view>
-        <view class="stat-label">复习 / {{target.reviewCount}}</view>
+        <view class="stat-label">复习目标 {{target.reviewCount}}</view>
       </view>
       <view class="plan-stat mistake-stat">
         <view class="stat-num">{{planStats.mistake}}</view>
-        <view class="stat-label">错词 / {{target.mistakeCount}}</view>
+        <view class="stat-label">错词目标 {{target.mistakeCount}}</view>
+      </view>
+      <view wx:if="{{planStats.supplement}}" class="plan-stat supplement-stat">
+        <view class="stat-num">{{planStats.supplement}}</view>
+        <view class="stat-label">补充词</view>
       </view>
     </view>
   </view>

@@ -127,6 +127,10 @@ describe('刷词英语 phase-2 delivery', () => {
     assert.strictEqual(daily.items.filter(i => i.planType === 'new').length, 35);
     assert.strictEqual(daily.items.filter(i => i.planType === 'review').length, 10);
     assert.strictEqual(daily.items.filter(i => i.planType === 'mistake').length, 5);
+    const dailyShort = loop.buildStudyPlan({ ...pools, mistakeWords: pools.mistakeWords.slice(0, 1), mode: 'daily' });
+    assert.strictEqual(dailyShort.items.filter(i => i.planType === 'new').length, 35);
+    assert.strictEqual(dailyShort.items.filter(i => i.planType === 'mistake').length, 1);
+    assert.strictEqual(dailyShort.stats.supplement, 4);
     assert.strictEqual(review.items.filter(i => i.planType === 'new').length, 0);
     assert.strictEqual(review.items.filter(i => i.planType === 'review').length, 40);
     assert.strictEqual(review.items.filter(i => i.planType === 'mistake').length, 10);
@@ -144,7 +148,8 @@ describe('刷词英语 phase-2 delivery', () => {
     assert.match(wxml, /study-hero/);
     assert.match(wxml, /plan-stat/);
     assert.match(wxml, /action-bar/);
-    assert.match(wxml, /empty-card/);
+    assert.match(wxml, /补充词/);
+    assert.match(wxss, /has-supplement/);
     assert.match(wxss, /safe-area-inset-bottom/);
     assert.match(wxss, /word-card/);
     assert.match(wxss, /action-bar/);
