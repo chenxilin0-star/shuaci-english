@@ -135,6 +135,18 @@ describe('刷词英语 phase-2 delivery', () => {
     assert.match(read('miniprogram/pages/study-result/study-result.wxml'), /今日学习成果/);
   });
 
+  it('uses polished study page layout classes for release UI', () => {
+    const wxml = read('miniprogram/pages/study/study.wxml');
+    const wxss = read('miniprogram/pages/study/study.wxss');
+    assert.match(wxml, /study-hero/);
+    assert.match(wxml, /plan-stat/);
+    assert.match(wxml, /action-bar/);
+    assert.match(wxml, /empty-card/);
+    assert.match(wxss, /safe-area-inset-bottom/);
+    assert.match(wxss, /word-card/);
+    assert.match(wxss, /action-bar/);
+  });
+
   it('uses real local learning stats for home/profile/banks instead of hardcoded fake counters', () => {
     const loop = require('../miniprogram/utils/learningLoop');
     const state = loop.createInitialState('u1');

@@ -1,37 +1,68 @@
 <view class="container study-page">
-  <view class="row header-row">
-    <view>
+  <view class="study-hero">
+    <view class="hero-main">
+      <view class="eyebrow">{{modeTitle}}</view>
       <view class="title">单词学习</view>
-      <view class="muted">{{batchLabel}}</view>
+      <view class="hero-desc">{{batchLabel}}</view>
     </view>
-    <text class="muted">{{index+1}}/{{words.length}}</text>
+    <view class="counter-pill">{{words.length ? index+1 : 0}}/{{words.length}}</view>
   </view>
 
   <view class="card plan-card">
-    <view class="plan-title">{{modeTitle}} · 今日真实学习计划</view>
-    <view class="grid-3">
-      <view><view class="stat-num">{{planStats.new}}</view><view class="muted">新词 / {{target.newCount}}</view></view>
-      <view><view class="stat-num">{{planStats.review}}</view><view class="muted">复习 / {{target.reviewCount}}</view></view>
-      <view><view class="stat-num">{{planStats.mistake}}</view><view class="muted">错词 / {{target.mistakeCount}}</view></view>
+    <view class="plan-head">
+      <view>
+        <view class="plan-title">今日计划</view>
+        <view class="muted">按当前学习模式自动分配任务</view>
+      </view>
+      <text class="tag">{{modeTitle}}</text>
+    </view>
+    <view class="plan-grid">
+      <view class="plan-stat new-stat">
+        <view class="stat-num">{{planStats.new}}</view>
+        <view class="stat-label">新词 / {{target.newCount}}</view>
+      </view>
+      <view class="plan-stat review-stat">
+        <view class="stat-num">{{planStats.review}}</view>
+        <view class="stat-label">复习 / {{target.reviewCount}}</view>
+      </view>
+      <view class="plan-stat mistake-stat">
+        <view class="stat-num">{{planStats.mistake}}</view>
+        <view class="stat-label">错词 / {{target.mistakeCount}}</view>
+      </view>
     </view>
   </view>
 
   <view wx:if="{{word}}" class="card word-card" bindtap="flip">
-    <view class="tag plan-tag">{{word.planLabel}}</view>
-    <view class="word">{{word.text}}</view>
-    <view class="phonetic">{{word.phonetic_us}}</view>
-    <view wx:if="{{flipped}}" class="back">
-      <text class="tag">{{word.pos}}</text>
-      <view class="meaning">{{word.meaning_cn}}</view>
-      <view class="example">{{word.example_sentence}}</view>
-      <view class="muted">{{word.example_cn}}</view>
+    <view class="word-top">
+      <view class="tag plan-tag">{{word.planLabel}}</view>
+      <view class="muted">点击卡片翻面</view>
     </view>
-    <view wx:else class="muted">点击卡片查看释义</view>
+    <view class="word-main">
+      <view class="word">{{word.text}}</view>
+      <view class="phonetic">{{word.phonetic_us || word.phonetic_uk || ' '}}</view>
+    </view>
+    <view wx:if="{{flipped}}" class="back">
+      <text class="tag pos-tag">{{word.pos || '词汇'}}</text>
+      <view class="meaning">{{word.meaning_cn || '暂无释义'}}</view>
+      <view wx:if="{{word.example_sentence}}" class="example">{{word.example_sentence}}</view>
+      <view wx:if="{{word.example_cn}}" class="muted example-cn">{{word.example_cn}}</view>
+    </view>
+    <view wx:else class="front-hint">先回忆释义，再点卡片查看答案</view>
   </view>
 
-  <view class="grid-2">
-    <button class="btn btn-secondary" bindtap="toggleFavorite">{{word.isFavorite?'取消收藏':'收藏'}}</button>
-    <button class="btn btn-primary" bindtap="next">{{index >= words.length-1 ? '完成今日目标' : '下一个'}}</button>
+  <view wx:else class="card empty-card">
+    <view class="empty-icon">📭</view>
+    <view class="h2">暂无学习词单</view>
+    <view class="muted">请先在词库页选择 CET-4 或 CET-6，并确认数据库已导入词库。</view>
   </view>
-  <view class="grid-2 tools"><button bindtap="goSpell">拼写练习</button><button bindtap="goDetail">单词详情</button></view>
+
+  <view class="action-bar" wx:if="{{word}}">
+    <button class="action-btn secondary" catchtap="toggleFavorite">{{word.isFavorite?'取消收藏':'收藏'}}</button>
+    <button class="action-btn primary" catchtap="next">{{index >= words.length-1 ? '完成今日目标' : '下一个'}}</button>
+  </view>
+
+  <view class="tool-row" wx:if="{{word}}">
+    <button class="tool-btn" catchtap="goSpell">拼写练习</button>
+    <button class="tool-btn" catchtap="goDetail">单词详情</button>
+  </view>
 </view>
