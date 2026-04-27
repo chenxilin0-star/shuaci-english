@@ -1,1 +1,2 @@
 .bad{color:#E85D5D;margin-top:12rpx}.small{width:160rpx;font-size:24rpx}
+button.small{width:160rpx}
