@@ -1,1 +1,15 @@
-<view class="container"><view class="card"><view class="title">阅读练习</view><view class="muted">阅读文章并完成选择题，支持错题解析。</view><button class="btn btn-primary" bindtap="back">返回</button></view></view>
+<view class="container reading-page">
+  <view class="row"><view class="title">阅读理解</view><text class="muted">{{index+1}}/{{passages.length}}</text></view>
+  <view wx:if="{{passage}}" class="card passage-card">
+    <view class="passage-title">{{passage.title}}</view>
+    <view class="passage-text">{{passage.passageText}}</view>
+    <view wx:for="{{passage.questions}}" wx:key="id" class="question-card">
+      <view class="question-text">{{index+1}}. {{item.questionText}}</view>
+      <view wx:for="{{item.options}}" wx:for-item="opt" wx:for-index="optKey" wx:key="optKey" class="option {{answers[item.id]===optKey?'active':''}}" bindtap="chooseAnswer" data-qid="{{item.id}}" data-ans="{{optKey}}">{{optKey}}. {{opt}}</view>
+    </view>
+    <button class="btn btn-primary" bindtap="submit">提交答案</button>
+    <view wx:if="{{result}}" class="result">答对 {{result.correct}} / {{result.total}} 题</view>
+  </view>
+  <view wx:else class="card"><view class="muted">暂无阅读材料</view></view>
+  <button class="plain" bindtap="back">返回</button>
+</view>

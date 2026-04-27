@@ -28,7 +28,8 @@ Page({
     bankId: 'cet4_core', mode: 'daily', modeTitle: '新词模式',
     words: [], index: 0, word: null, flipped: false,
     batchLabel: '今日计划', planStats: { new: 0, review: 0, mistake: 0 },
-    target: loop.MODE_PLANS.daily
+    target: loop.MODE_PLANS.daily,
+    _locking: false
   },
   onLoad(q) {
     if (q.bankId) wx.setStorageSync('shuaci_selected_bank', q.bankId);
@@ -76,27 +77,32 @@ Page({
     pronunciation.playWord(this.data.word.text);
   },
   next() {
-    if (!this.data.words.length) return;
+    if (this.data._locking || !this.data.words.length) return;
     if (this.data.index >= this.data.words.length - 1) { this.finishToday(); return; }
+    this.setData({ _locking: true });
     const i = this.data.index + 1;
     store.markWordStudied(this.data.word, this.data.word.planType);
     const word = this.data.words[i];
-    this.setData({ index: i, word, flipped: false });
     const stats = store.getLearningStats();
     callCloud('updateWordProgress', { bankId: this.data.bankId, currentIndex: i, learnedWords: i + 1, todayGoal: this.data.words.length, streakDays: stats.streakDays, mode: this.data.mode });
+    this.setData({ index: i, word, flipped: false, _locking: false });
   },
   finishToday() {
+    if (this.data._locking) return;
+    this.setData({ _locking: true });
     if (this.data.word) store.markWordStudied(this.data.word, this.data.word.planType);
     const result = { ...loop.summarizeStudySession(this.data.words, this.data.index + 1), mode: this.data.mode, modeTitle: this.data.modeTitle };
     wx.setStorageSync('shuaci_last_study_result', result);
     const stats = store.getLearningStats();
     callCloud('updateWordProgress', { bankId: this.data.bankId, currentIndex: this.data.index, learnedWords: result.completed, todayGoal: result.total, streakDays: stats.streakDays, mode: this.data.mode });
     wx.navigateTo({ url: '/pages/study-result/study-result' });
+    this.setData({ _locking: false });
   },
   toggleFavorite() {
-    if (!this.data.word) return;
+    if (this.data._locking || !this.data.word) return;
+    this.setData({ _locking: true });
     const word = { ...this.data.word, isFavorite: !this.data.word.isFavorite };
-    this.setData({ word });
+    this.setData({ word, _locking: false });
     store.toggleFavorite(word, word.isFavorite);
     callCloud('toggleFavorite', { itemId: word.id, itemType: 'word', itemText: word.text, isFavorite: word.isFavorite });
   },

@@ -1,1 +1,9 @@
-<view class="container"><view class="card"><view class="title">新手引导</view><view class="muted">选择 CET-4/CET-6，设定每日目标，开始刷词。</view><button class="btn btn-primary" bindtap="back">返回</button></view></view>
+<view class="container onboarding-page">
+  <view class="step-card">
+    <view class="step-num">{{step+1}} / {{4}}</view>
+    <view class="title">{{current.title}}</view>
+    <view class="muted">{{current.desc}}</view>
+  </view>
+  <button class="btn btn-primary" bindtap="next">{{step >= 3 ? '开始刷词' : '下一步'}}</button>
+  <button class="plain" bindtap="skip">跳过引导</button>
+</view>

@@ -2,7 +2,7 @@ page { background: #F8F9FA; color: #212529; font-family: -apple-system, BlinkMac
 .container { padding: 32rpx; max-width: 750rpx; margin: 0 auto; box-sizing: border-box; }
 .card { background: #fff; border-radius: 24rpx; padding: 32rpx; box-shadow: 0 4rpx 16rpx rgba(0,0,0,.06); margin-bottom: 24rpx; }
 .primary { color: #2AAE67; }
-.btn { height: 88rpx; border-radius: 16rpx; display: flex; align-items: center; justify-content: center; font-weight: 600; font-size: 30rpx; }
+.btn { height: 88rpx; border-radius: 16rpx; display: flex; align-items: center; justify-content: center; font-weight: 600; font-size: 30rpx; border: none; }
 .btn-primary { background: #2AAE67; color: #fff; }
 .btn-secondary { background: #E8F7EF; color: #187A47; }
 .muted { color: #868E96; font-size: 24rpx; }

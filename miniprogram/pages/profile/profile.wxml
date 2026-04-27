@@ -5,7 +5,7 @@
       <view wx:else class="avatar-placeholder" style="width:108rpx;height:108rpx;border-radius:50%;color:#fff;display:flex;align-items:center;justify-content:center;font-size:48rpx;font-weight:800;">刷</view>
     </button>
     <view class="profile-main">
-      <input class="nickname-input" type="nickname" placeholder="点击填写微信昵称" value="{{pendingNickName}}" bindinput="onNicknameInput" />
+      <input class="nickname-input" type="nickname" placeholder="点击填写微信昵称" value="{{pendingNickName}}" bindinput="onNicknameInput" bindblur="onNicknameBlur" />
       <view class="muted">{{hasLogin ? '学习记录同步云端' : '使用微信头像昵称登录'}}</view>
     </view>
   </view>

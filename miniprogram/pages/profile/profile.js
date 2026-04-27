@@ -39,10 +39,23 @@ Page({
     const avatarUrl = e && e.detail ? e.detail.avatarUrl : '';
     if (!avatarUrl) return;
     this.setData({ pendingAvatarUrl: avatarUrl, user: normalizeUser({ ...this.data.user, avatarUrl }) });
+    // 自动登录：如果已有昵称，选择头像后立即同步
+    if ((this.data.pendingNickName || '').trim()) {
+      this.login();
+    }
   },
   onNicknameInput(e) {
     const nickName = e && e.detail ? e.detail.value : '';
     this.setData({ pendingNickName: nickName, user: normalizeUser({ ...this.data.user, nickName }) });
+  },
+  onNicknameBlur(e) {
+    const nickName = (e && e.detail ? e.detail.value : '').trim();
+    if (!nickName) return;
+    this.setData({ pendingNickName: nickName });
+    // 自动登录：如果已有头像，填写昵称后立即同步
+    if (this.data.pendingAvatarUrl || this.data.user.avatarUrl) {
+      this.login();
+    }
   },
   login() {
     const nickName = (this.data.pendingNickName || '').trim();

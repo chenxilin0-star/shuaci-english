@@ -7,7 +7,11 @@ Page({
   onLoad(q = {}) {
     const wordId = q.wordId || q.id || '';
     this.setData({ wordId });
-    if (wordId) this.load(wordId);
+    if (!wordId) {
+      wx.showToast({ title: '缺少单词参数', icon: 'none' });
+      return;
+    }
+    this.load(wordId);
   },
   load(wordId) {
     callCloud('getWordDetail', { wordId }).then(r => {

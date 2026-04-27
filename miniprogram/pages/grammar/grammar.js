@@ -21,7 +21,8 @@ function decorateTopic(topic, index) {
 Page({
   data: {
     topics: [], filtered: [], categories: ['全部'], active: '全部', selectedTopic: null,
-    search: '', masteryLabel: '待学习', practiceIndex: 0, selectedAnswer: '', practiceResult: null
+    search: '', masteryLabel: '待学习', practiceIndex: 0, selectedAnswer: '', practiceResult: null,
+    _locking: false
   },
   onShow() {
     callCloud('getGrammarTopics').then(r => {
@@ -67,12 +68,14 @@ Page({
   chooseAnswer(e) { this.setData({ selectedAnswer: e.currentTarget.dataset.answer }); },
   answerPractice() { this.submitGrammarAnswer(); },
   submitGrammarAnswer() {
+    if (this.data._locking) return;
     const topic = this.data.selectedTopic;
     const practice = topic && topic.currentPractice;
     const answer = this.data.selectedAnswer;
     if (!topic || !practice || !answer) { wx.showToast({ title: '先选择一个答案', icon: 'none' }); return; }
+    this.setData({ _locking: true });
     const result = store.submitGrammar(topic, practice, answer);
-    this.setData({ practiceResult: result.isCorrect ? '回答正确，继续保持' : '已加入语法错题本，稍后复盘' });
+    this.setData({ practiceResult: result.isCorrect ? '回答正确，继续保持' : '已加入语法错题本，稍后复盘', _locking: false });
   },
   markLearned() {
     if (!this.data.selectedTopic) return;

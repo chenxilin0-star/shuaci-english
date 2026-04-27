@@ -1,0 +1,9 @@
+{
+  "name": "updateMistakeBook",
+  "version": "1.0.0",
+  "description": "Update mistake book review status",
+  "main": "index.js",
+  "dependencies": {
+    "wx-server-sdk": "latest"
+  }
+}
