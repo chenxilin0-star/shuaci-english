@@ -1,1 +1,51 @@
-<view class="container"><view class="title">语法学习</view><view class="tabs"><text wx:for="{{categories}}" wx:key="*this" class="tag" bindtap="select" data-cat="{{item}}">{{item}}</text></view><view wx:for="{{filtered}}" wx:key="id" class="card"><view class="row"><view class="h2">{{item.title}}</view><text class="tag">{{item.frequency}}</text></view><view class="muted">{{item.category}}</view><view>{{item.summary}}</view><view class="grammar-content">{{item.content}}</view></view></view>
+<view class="container grammar-page">
+  <view class="page-hero">
+    <view class="eyebrow">考点地图</view>
+    <view class="title">语法不是背概念，是会做题</view>
+    <view class="muted">按四六级高频考点拆成知识卡：看规则、看例句、记考试提醒，再做 1 道小练习。</view>
+  </view>
+
+  <input class="input search" placeholder="搜索语法点 / 从句 / 虚拟语气" bindinput="onSearch" value="{{search}}" />
+
+  <scroll-view scroll-x class="tabs">
+    <text wx:for="{{categories}}" wx:key="*this" class="cat {{active===item?'active':''}}" bindtap="select" data-cat="{{item}}">{{item}}</text>
+  </scroll-view>
+
+  <view class="layout">
+    <view class="topic-list">
+      <view wx:for="{{filtered}}" wx:key="id" class="topic-item {{selectedTopic && selectedTopic.id===item.id?'active':''}}" bindtap="selectTopic" data-id="{{item.id}}">
+        <view class="topic-title">{{item.title}}</view>
+        <view class="topic-meta"><text>{{item.category}}</text><text>{{item.frequency}}</text><text>{{item.masteryLabel}}</text></view>
+      </view>
+    </view>
+
+    <view wx:if="{{selectedTopic}}" class="card detail-card">
+      <view class="row">
+        <view>
+          <view class="eyebrow">{{selectedTopic.category}} · {{selectedTopic.frequency}}</view>
+          <view class="h2">{{selectedTopic.title}}</view>
+        </view>
+        <text class="tag">{{masteryLabel}}</text>
+      </view>
+      <view class="summary">{{selectedTopic.summary}}</view>
+      <view class="block-title">核心规则</view>
+      <view class="content-box">{{selectedTopic.content}}</view>
+      <view class="block-title">考试提醒</view>
+      <view wx:for="{{selectedTopic.examTips}}" wx:key="*this" class="tip-line">• {{item}}</view>
+      <view class="block-title">例句</view>
+      <view class="example-card">
+        <view class="example-en">{{selectedTopic.example.en}}</view>
+        <view class="muted">{{selectedTopic.example.cn}}</view>
+      </view>
+      <view class="block-title">小练习</view>
+      <view class="practice-card">
+        <view>{{selectedTopic.firstPractice.question}}</view>
+        <view class="answer">答案：{{selectedTopic.firstPractice.answer}}</view>
+        <view class="muted">{{selectedTopic.firstPractice.explanation}}</view>
+      </view>
+      <button class="btn btn-primary learned-btn" bindtap="markLearned">学会了，加入复习</button>
+    </view>
+
+    <view wx:else class="card"><view class="muted">没有找到相关语法点，换个关键词试试。</view></view>
+  </view>
+</view>

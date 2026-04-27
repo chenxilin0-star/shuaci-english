@@ -9,10 +9,6 @@ const words = [
   { id:'w101', bankId:'cet6_core', text:'ambiguous', phonetic_us:'/æmˈbɪɡjuəs/', pos:'adj.', meaning_cn:'模棱两可的；含糊的', example_sentence:'The instructions were ambiguous and confusing.', example_cn:'说明含糊不清，令人困惑。', difficulty_level:3, frequency_tag:'medium', cet6_new:true },
   { id:'w102', bankId:'cet6_core', text:'sustainable', phonetic_us:'/səˈsteɪnəbl/', pos:'adj.', meaning_cn:'可持续的', example_sentence:'We need sustainable economic growth.', example_cn:'我们需要可持续的经济增长。', difficulty_level:3, frequency_tag:'high', cet6_new:true }
 ];
-const grammarTopics = [
-  { id:'g001', title:'现在完成时', category:'时态语态', frequency:'高频', summary:'强调过去动作对现在的影响。', content:'结构：have/has + done。常与 already, yet, since, for 连用。', examples:[{en:'I have finished my homework.', cn:'我已经完成作业了。'}] },
-  { id:'g002', title:'定语从句', category:'从句', frequency:'高频', summary:'用来修饰名词或代词。', content:'关系词 who/which/that/where/when 引导从句。', examples:[{en:'This is the book that I bought yesterday.', cn:'这是我昨天买的书。'}] },
-  { id:'g003', title:'虚拟语气', category:'特殊句式', frequency:'中频', summary:'表达与事实相反或主观愿望。', content:'If I were you, I would review words every day.', examples:[{en:'If I were you, I would start now.', cn:'如果我是你，我会现在开始。'}] }
-];
+const grammarTopics = require('./grammarTopics');
 const readingPassages = [{ id:'r001', title:'The Habit of Review', category:'cet4', difficulty:2, passageText:'Vocabulary learning is not about memorizing a long list once. Effective learners review words repeatedly and use them in context. Short daily sessions often work better than a single long session before an exam.', questions:[{ id:'q1', questionText:'What is the main idea of the passage?', options:{A:'Long lists are enough', B:'Review and context improve vocabulary learning', C:'Exams are easy', D:'Daily learning is useless'}, correctAnswer:'B', explanation:'文章强调重复复习和语境使用。'}] }];
 module.exports = { wordBanks, words, grammarTopics, readingPassages };

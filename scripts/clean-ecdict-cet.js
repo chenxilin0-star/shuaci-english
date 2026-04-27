@@ -41,21 +41,7 @@ function frequencyTag(row) {
   return rank <= 3000 ? 'high' : rank <= 10000 ? 'medium' : 'low';
 }
 function defaultGrammarTopics() {
-  const rows = [
-    ['g_present_perfect','现在完成时','时态语态','高频','have/has + done，强调过去动作对现在的影响。','I have finished my homework.','我已经完成作业了。'],
-    ['g_passive_voice','被动语态','时态语态','高频','be + done，强调动作承受者。','The book was written by a famous scholar.','这本书由一位著名学者撰写。'],
-    ['g_attributive_clause','定语从句','从句','高频','用 who/which/that/where 等关系词修饰名词。','This is the book that I bought yesterday.','这是我昨天买的书。'],
-    ['g_adverbial_clause','状语从句','从句','高频','表示时间、条件、原因、让步等逻辑关系。','Although it was raining, they kept studying.','尽管下雨，他们仍继续学习。'],
-    ['g_nonfinite_to_do','不定式','非谓语动词','高频','to do 可作主语、宾语、定语、状语。','To improve vocabulary, you need daily review.','为了提高词汇量，你需要每日复习。'],
-    ['g_gerund','动名词','非谓语动词','中频','doing 可作名词性成分。','Reading English every day is helpful.','每天阅读英语很有帮助。'],
-    ['g_subjunctive','虚拟语气','特殊句式','中频','表达非真实条件、愿望或建议。','If I were you, I would start now.','如果我是你，我会现在开始。'],
-    ['g_inversion','倒装句','特殊句式','中频','否定词或 only 位于句首时常用部分倒装。','Never have I seen such progress.','我从未见过这样的进步。'],
-    ['g_emphasis','强调句','特殊句式','中频','It is/was ... that/who ... 强调句子成分。','It was practice that made the difference.','正是练习带来了不同。'],
-    ['g_modal_verbs','情态动词','词法','高频','must/may/might/could 表推测、能力或许可。','You must review the words before the test.','考试前你必须复习单词。'],
-    ['g_preposition_collocation','介词搭配','词汇搭配','高频','常见动词/形容词与介词固定搭配。','She is good at memorizing new words.','她擅长记新单词。'],
-    ['g_comparative','比较级与最高级','词法','中频','用于比较两者或三者以上。','This method is more effective than rote learning.','这种方法比死记硬背更有效。']
-  ];
-  return rows.map((r, i) => ({ id:r[0], title:r[1], category:r[2], frequency:r[3], summary:r[4], content:r[4], examples:[{ en:r[5], cn:r[6] }], order:i + 1, isActive:true, createdAt:new Date().toISOString() }));
+  return JSON.parse(fs.readFileSync(path.join(root, 'data/grammar_topics.json'), 'utf8'));
 }
 function clean() {
   const csvPath = path.join(root, input);

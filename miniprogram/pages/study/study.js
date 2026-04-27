@@ -25,7 +25,9 @@ Page({
   },
   load() {
     const dayIndex = getDayIndex();
-    callCloud('getWordList', { bankId: this.data.bankId, mode: 'daily', dayIndex, limit: 50 }).then(r => {
+    const mode = wx.getStorageSync('shuaci_study_mode') || 'daily';
+    const includeOverlap = !!wx.getStorageSync('shuaci_include_overlap');
+    callCloud('getWordList', { bankId: this.data.bankId, mode, dayIndex, limit: 50, includeOverlap }).then(r => {
       const words = r.data || [];
       const meta = r.meta || {};
       const batchLabel = this.data.bankId === 'cet6_core'

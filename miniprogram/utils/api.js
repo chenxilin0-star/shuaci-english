@@ -39,7 +39,7 @@ function localFallback(name, data) {
     case 'getWordDetail': return { success:true, data: mock.words.find(w => w.id === data.wordId || w.text === data.wordId) || mock.words[0] };
     case 'getStudyProgress': return { success:true, data: wx.getStorageSync('shuaci_progress') || { learnedWords:326, masteredWords:188, todayGoal:20, streakDays:12, currentIndex:0 } };
     case 'updateWordProgress': wx.setStorageSync('shuaci_progress', data); return { success:true, data };
-    case 'getGrammarTopics': return { success:true, data: mock.grammarTopics };
+    case 'getGrammarTopics': return { success:true, data: mock.grammarTopics.slice(0, data.limit || 100) };
     case 'toggleFavorite': {
       const favorites = get('shuaci_favorites').filter(x => x.itemId !== data.itemId);
       if (data.isFavorite) favorites.unshift({ itemId:data.itemId, itemType:data.itemType || 'word', itemText:data.itemText || data.itemId, createdAt:new Date().toISOString() });

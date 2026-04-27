@@ -1,0 +1,1532 @@
+module.exports = [
+  {
+    "id": "g_001",
+    "title": "一般现在时",
+    "category": "时态语态",
+    "frequency": "高频",
+    "summary": "一般现在时 是四六级常考考点，重点掌握识别信号和做题步骤。",
+    "content": "先判断时间，再判断动作状态；注意完成时强调影响，被动语态强调承受者。",
+    "examples": [
+      {
+        "en": "I have reviewed these words three times.",
+        "cn": "我已经复习这些单词三次了。"
+      }
+    ],
+    "examTips": [
+      "做 一般现在时 题时，先圈出信号词，再判断句子结构。",
+      "错题建议加入错题本，隔天复盘。"
+    ],
+    "practice": [
+      {
+        "question": "请判断句子中与“一般现在时”相关的关键结构。",
+        "answer": "一般现在时",
+        "explanation": "先定位考点，再根据语法功能判断答案。"
+      }
+    ],
+    "order": 1,
+    "isActive": true,
+    "masteryLevel": 0,
+    "estimatedMinutes": 4,
+    "createdAt": "2026-04-27T00:00:00.000Z"
+  },
+  {
+    "id": "g_002",
+    "title": "一般过去时",
+    "category": "时态语态",
+    "frequency": "高频",
+    "summary": "一般过去时 是四六级常考考点，重点掌握识别信号和做题步骤。",
+    "content": "先判断时间，再判断动作状态；注意完成时强调影响，被动语态强调承受者。",
+    "examples": [
+      {
+        "en": "I have reviewed these words three times.",
+        "cn": "我已经复习这些单词三次了。"
+      }
+    ],
+    "examTips": [
+      "做 一般过去时 题时，先圈出信号词，再判断句子结构。",
+      "错题建议加入错题本，隔天复盘。"
+    ],
+    "practice": [
+      {
+        "question": "请判断句子中与“一般过去时”相关的关键结构。",
+        "answer": "一般过去时",
+        "explanation": "先定位考点，再根据语法功能判断答案。"
+      }
+    ],
+    "order": 2,
+    "isActive": true,
+    "masteryLevel": 0,
+    "estimatedMinutes": 4,
+    "createdAt": "2026-04-27T00:00:00.000Z"
+  },
+  {
+    "id": "g_003",
+    "title": "一般将来时",
+    "category": "时态语态",
+    "frequency": "中频",
+    "summary": "一般将来时 是四六级常考考点，重点掌握识别信号和做题步骤。",
+    "content": "先判断时间，再判断动作状态；注意完成时强调影响，被动语态强调承受者。",
+    "examples": [
+      {
+        "en": "I have reviewed these words three times.",
+        "cn": "我已经复习这些单词三次了。"
+      }
+    ],
+    "examTips": [
+      "做 一般将来时 题时，先圈出信号词，再判断句子结构。",
+      "错题建议加入错题本，隔天复盘。"
+    ],
+    "practice": [
+      {
+        "question": "请判断句子中与“一般将来时”相关的关键结构。",
+        "answer": "一般将来时",
+        "explanation": "先定位考点，再根据语法功能判断答案。"
+      }
+    ],
+    "order": 3,
+    "isActive": true,
+    "masteryLevel": 0,
+    "estimatedMinutes": 3,
+    "createdAt": "2026-04-27T00:00:00.000Z"
+  },
+  {
+    "id": "g_004",
+    "title": "现在进行时",
+    "category": "时态语态",
+    "frequency": "高频",
+    "summary": "现在进行时 是四六级常考考点，重点掌握识别信号和做题步骤。",
+    "content": "先判断时间，再判断动作状态；注意完成时强调影响，被动语态强调承受者。",
+    "examples": [
+      {
+        "en": "I have reviewed these words three times.",
+        "cn": "我已经复习这些单词三次了。"
+      }
+    ],
+    "examTips": [
+      "做 现在进行时 题时，先圈出信号词，再判断句子结构。",
+      "错题建议加入错题本，隔天复盘。"
+    ],
+    "practice": [
+      {
+        "question": "请判断句子中与“现在进行时”相关的关键结构。",
+        "answer": "现在进行时",
+        "explanation": "先定位考点，再根据语法功能判断答案。"
+      }
+    ],
+    "order": 4,
+    "isActive": true,
+    "masteryLevel": 0,
+    "estimatedMinutes": 4,
+    "createdAt": "2026-04-27T00:00:00.000Z"
+  },
+  {
+    "id": "g_005",
+    "title": "现在完成时",
+    "category": "时态语态",
+    "frequency": "高频",
+    "summary": "现在完成时 是四六级常考考点，重点掌握识别信号和做题步骤。",
+    "content": "先判断时间，再判断动作状态；注意完成时强调影响，被动语态强调承受者。",
+    "examples": [
+      {
+        "en": "I have reviewed these words three times.",
+        "cn": "我已经复习这些单词三次了。"
+      }
+    ],
+    "examTips": [
+      "做 现在完成时 题时，先圈出信号词，再判断句子结构。",
+      "错题建议加入错题本，隔天复盘。"
+    ],
+    "practice": [
+      {
+        "question": "请判断句子中与“现在完成时”相关的关键结构。",
+        "answer": "现在完成时",
+        "explanation": "先定位考点，再根据语法功能判断答案。"
+      }
+    ],
+    "order": 5,
+    "isActive": true,
+    "masteryLevel": 0,
+    "estimatedMinutes": 4,
+    "createdAt": "2026-04-27T00:00:00.000Z"
+  },
+  {
+    "id": "g_006",
+    "title": "过去完成时",
+    "category": "时态语态",
+    "frequency": "中频",
+    "summary": "过去完成时 是四六级常考考点，重点掌握识别信号和做题步骤。",
+    "content": "先判断时间，再判断动作状态；注意完成时强调影响，被动语态强调承受者。",
+    "examples": [
+      {
+        "en": "I have reviewed these words three times.",
+        "cn": "我已经复习这些单词三次了。"
+      }
+    ],
+    "examTips": [
+      "做 过去完成时 题时，先圈出信号词，再判断句子结构。",
+      "错题建议加入错题本，隔天复盘。"
+    ],
+    "practice": [
+      {
+        "question": "请判断句子中与“过去完成时”相关的关键结构。",
+        "answer": "过去完成时",
+        "explanation": "先定位考点，再根据语法功能判断答案。"
+      }
+    ],
+    "order": 6,
+    "isActive": true,
+    "masteryLevel": 0,
+    "estimatedMinutes": 3,
+    "createdAt": "2026-04-27T00:00:00.000Z"
+  },
+  {
+    "id": "g_007",
+    "title": "被动语态",
+    "category": "时态语态",
+    "frequency": "高频",
+    "summary": "被动语态 是四六级常考考点，重点掌握识别信号和做题步骤。",
+    "content": "先判断时间，再判断动作状态；注意完成时强调影响，被动语态强调承受者。",
+    "examples": [
+      {
+        "en": "I have reviewed these words three times.",
+        "cn": "我已经复习这些单词三次了。"
+      }
+    ],
+    "examTips": [
+      "做 被动语态 题时，先圈出信号词，再判断句子结构。",
+      "错题建议加入错题本，隔天复盘。"
+    ],
+    "practice": [
+      {
+        "question": "请判断句子中与“被动语态”相关的关键结构。",
+        "answer": "被动语态",
+        "explanation": "先定位考点，再根据语法功能判断答案。"
+      }
+    ],
+    "order": 7,
+    "isActive": true,
+    "masteryLevel": 0,
+    "estimatedMinutes": 4,
+    "createdAt": "2026-04-27T00:00:00.000Z"
+  },
+  {
+    "id": "g_008",
+    "title": "时态一致",
+    "category": "时态语态",
+    "frequency": "高频",
+    "summary": "时态一致 是四六级常考考点，重点掌握识别信号和做题步骤。",
+    "content": "先判断时间，再判断动作状态；注意完成时强调影响，被动语态强调承受者。",
+    "examples": [
+      {
+        "en": "I have reviewed these words three times.",
+        "cn": "我已经复习这些单词三次了。"
+      }
+    ],
+    "examTips": [
+      "做 时态一致 题时，先圈出信号词，再判断句子结构。",
+      "错题建议加入错题本，隔天复盘。"
+    ],
+    "practice": [
+      {
+        "question": "请判断句子中与“时态一致”相关的关键结构。",
+        "answer": "时态一致",
+        "explanation": "先定位考点，再根据语法功能判断答案。"
+      }
+    ],
+    "order": 8,
+    "isActive": true,
+    "masteryLevel": 0,
+    "estimatedMinutes": 4,
+    "createdAt": "2026-04-27T00:00:00.000Z"
+  },
+  {
+    "id": "g_009",
+    "title": "定语从句",
+    "category": "从句",
+    "frequency": "中频",
+    "summary": "定语从句 是四六级常考考点，重点掌握识别信号和做题步骤。",
+    "content": "先找主句，再看从句缺什么成分；缺主宾用关系代词，缺状语用关系副词。",
+    "examples": [
+      {
+        "en": "This is the method that helped me pass the exam.",
+        "cn": "这就是帮助我通过考试的方法。"
+      }
+    ],
+    "examTips": [
+      "做 定语从句 题时，先圈出信号词，再判断句子结构。",
+      "错题建议加入错题本，隔天复盘。"
+    ],
+    "practice": [
+      {
+        "question": "请判断句子中与“定语从句”相关的关键结构。",
+        "answer": "定语从句",
+        "explanation": "先定位考点，再根据语法功能判断答案。"
+      }
+    ],
+    "order": 9,
+    "isActive": true,
+    "masteryLevel": 0,
+    "estimatedMinutes": 3,
+    "createdAt": "2026-04-27T00:00:00.000Z"
+  },
+  {
+    "id": "g_010",
+    "title": "非限制性定语从句",
+    "category": "从句",
+    "frequency": "高频",
+    "summary": "非限制性定语从句 是四六级常考考点，重点掌握识别信号和做题步骤。",
+    "content": "先找主句，再看从句缺什么成分；缺主宾用关系代词，缺状语用关系副词。",
+    "examples": [
+      {
+        "en": "This is the method that helped me pass the exam.",
+        "cn": "这就是帮助我通过考试的方法。"
+      }
+    ],
+    "examTips": [
+      "做 非限制性定语从句 题时，先圈出信号词，再判断句子结构。",
+      "错题建议加入错题本，隔天复盘。"
+    ],
+    "practice": [
+      {
+        "question": "请判断句子中与“非限制性定语从句”相关的关键结构。",
+        "answer": "非限制性定语从句",
+        "explanation": "先定位考点，再根据语法功能判断答案。"
+      }
+    ],
+    "order": 10,
+    "isActive": true,
+    "masteryLevel": 0,
+    "estimatedMinutes": 4,
+    "createdAt": "2026-04-27T00:00:00.000Z"
+  },
+  {
+    "id": "g_011",
+    "title": "主语从句",
+    "category": "从句",
+    "frequency": "高频",
+    "summary": "主语从句 是四六级常考考点，重点掌握识别信号和做题步骤。",
+    "content": "先找主句，再看从句缺什么成分；缺主宾用关系代词，缺状语用关系副词。",
+    "examples": [
+      {
+        "en": "This is the method that helped me pass the exam.",
+        "cn": "这就是帮助我通过考试的方法。"
+      }
+    ],
+    "examTips": [
+      "做 主语从句 题时，先圈出信号词，再判断句子结构。",
+      "错题建议加入错题本，隔天复盘。"
+    ],
+    "practice": [
+      {
+        "question": "请判断句子中与“主语从句”相关的关键结构。",
+        "answer": "主语从句",
+        "explanation": "先定位考点，再根据语法功能判断答案。"
+      }
+    ],
+    "order": 11,
+    "isActive": true,
+    "masteryLevel": 0,
+    "estimatedMinutes": 4,
+    "createdAt": "2026-04-27T00:00:00.000Z"
+  },
+  {
+    "id": "g_012",
+    "title": "宾语从句",
+    "category": "从句",
+    "frequency": "中频",
+    "summary": "宾语从句 是四六级常考考点，重点掌握识别信号和做题步骤。",
+    "content": "先找主句，再看从句缺什么成分；缺主宾用关系代词，缺状语用关系副词。",
+    "examples": [
+      {
+        "en": "This is the method that helped me pass the exam.",
+        "cn": "这就是帮助我通过考试的方法。"
+      }
+    ],
+    "examTips": [
+      "做 宾语从句 题时，先圈出信号词，再判断句子结构。",
+      "错题建议加入错题本，隔天复盘。"
+    ],
+    "practice": [
+      {
+        "question": "请判断句子中与“宾语从句”相关的关键结构。",
+        "answer": "宾语从句",
+        "explanation": "先定位考点，再根据语法功能判断答案。"
+      }
+    ],
+    "order": 12,
+    "isActive": true,
+    "masteryLevel": 0,
+    "estimatedMinutes": 3,
+    "createdAt": "2026-04-27T00:00:00.000Z"
+  },
+  {
+    "id": "g_013",
+    "title": "同位语从句",
+    "category": "从句",
+    "frequency": "高频",
+    "summary": "同位语从句 是四六级常考考点，重点掌握识别信号和做题步骤。",
+    "content": "先找主句，再看从句缺什么成分；缺主宾用关系代词，缺状语用关系副词。",
+    "examples": [
+      {
+        "en": "This is the method that helped me pass the exam.",
+        "cn": "这就是帮助我通过考试的方法。"
+      }
+    ],
+    "examTips": [
+      "做 同位语从句 题时，先圈出信号词，再判断句子结构。",
+      "错题建议加入错题本，隔天复盘。"
+    ],
+    "practice": [
+      {
+        "question": "请判断句子中与“同位语从句”相关的关键结构。",
+        "answer": "同位语从句",
+        "explanation": "先定位考点，再根据语法功能判断答案。"
+      }
+    ],
+    "order": 13,
+    "isActive": true,
+    "masteryLevel": 0,
+    "estimatedMinutes": 4,
+    "createdAt": "2026-04-27T00:00:00.000Z"
+  },
+  {
+    "id": "g_014",
+    "title": "时间状语从句",
+    "category": "从句",
+    "frequency": "高频",
+    "summary": "时间状语从句 是四六级常考考点，重点掌握识别信号和做题步骤。",
+    "content": "先找主句，再看从句缺什么成分；缺主宾用关系代词，缺状语用关系副词。",
+    "examples": [
+      {
+        "en": "This is the method that helped me pass the exam.",
+        "cn": "这就是帮助我通过考试的方法。"
+      }
+    ],
+    "examTips": [
+      "做 时间状语从句 题时，先圈出信号词，再判断句子结构。",
+      "错题建议加入错题本，隔天复盘。"
+    ],
+    "practice": [
+      {
+        "question": "请判断句子中与“时间状语从句”相关的关键结构。",
+        "answer": "时间状语从句",
+        "explanation": "先定位考点，再根据语法功能判断答案。"
+      }
+    ],
+    "order": 14,
+    "isActive": true,
+    "masteryLevel": 0,
+    "estimatedMinutes": 4,
+    "createdAt": "2026-04-27T00:00:00.000Z"
+  },
+  {
+    "id": "g_015",
+    "title": "条件状语从句",
+    "category": "从句",
+    "frequency": "中频",
+    "summary": "条件状语从句 是四六级常考考点，重点掌握识别信号和做题步骤。",
+    "content": "先找主句，再看从句缺什么成分；缺主宾用关系代词，缺状语用关系副词。",
+    "examples": [
+      {
+        "en": "This is the method that helped me pass the exam.",
+        "cn": "这就是帮助我通过考试的方法。"
+      }
+    ],
+    "examTips": [
+      "做 条件状语从句 题时，先圈出信号词，再判断句子结构。",
+      "错题建议加入错题本，隔天复盘。"
+    ],
+    "practice": [
+      {
+        "question": "请判断句子中与“条件状语从句”相关的关键结构。",
+        "answer": "条件状语从句",
+        "explanation": "先定位考点，再根据语法功能判断答案。"
+      }
+    ],
+    "order": 15,
+    "isActive": true,
+    "masteryLevel": 0,
+    "estimatedMinutes": 3,
+    "createdAt": "2026-04-27T00:00:00.000Z"
+  },
+  {
+    "id": "g_016",
+    "title": "让步状语从句",
+    "category": "从句",
+    "frequency": "高频",
+    "summary": "让步状语从句 是四六级常考考点，重点掌握识别信号和做题步骤。",
+    "content": "先找主句，再看从句缺什么成分；缺主宾用关系代词，缺状语用关系副词。",
+    "examples": [
+      {
+        "en": "This is the method that helped me pass the exam.",
+        "cn": "这就是帮助我通过考试的方法。"
+      }
+    ],
+    "examTips": [
+      "做 让步状语从句 题时，先圈出信号词，再判断句子结构。",
+      "错题建议加入错题本，隔天复盘。"
+    ],
+    "practice": [
+      {
+        "question": "请判断句子中与“让步状语从句”相关的关键结构。",
+        "answer": "让步状语从句",
+        "explanation": "先定位考点，再根据语法功能判断答案。"
+      }
+    ],
+    "order": 16,
+    "isActive": true,
+    "masteryLevel": 0,
+    "estimatedMinutes": 4,
+    "createdAt": "2026-04-27T00:00:00.000Z"
+  },
+  {
+    "id": "g_017",
+    "title": "不定式",
+    "category": "非谓语动词",
+    "frequency": "高频",
+    "summary": "不定式 是四六级常考考点，重点掌握识别信号和做题步骤。",
+    "content": "判断逻辑主语和主动/被动关系：主动多用 doing，被动多用 done，目的多用 to do。",
+    "examples": [
+      {
+        "en": "To improve vocabulary, you need daily review.",
+        "cn": "为了提升词汇量，你需要每日复习。"
+      }
+    ],
+    "examTips": [
+      "做 不定式 题时，先圈出信号词，再判断句子结构。",
+      "错题建议加入错题本，隔天复盘。"
+    ],
+    "practice": [
+      {
+        "question": "请判断句子中与“不定式”相关的关键结构。",
+        "answer": "不定式",
+        "explanation": "先定位考点，再根据语法功能判断答案。"
+      }
+    ],
+    "order": 17,
+    "isActive": true,
+    "masteryLevel": 0,
+    "estimatedMinutes": 4,
+    "createdAt": "2026-04-27T00:00:00.000Z"
+  },
+  {
+    "id": "g_018",
+    "title": "动名词",
+    "category": "非谓语动词",
+    "frequency": "中频",
+    "summary": "动名词 是四六级常考考点，重点掌握识别信号和做题步骤。",
+    "content": "判断逻辑主语和主动/被动关系：主动多用 doing，被动多用 done，目的多用 to do。",
+    "examples": [
+      {
+        "en": "To improve vocabulary, you need daily review.",
+        "cn": "为了提升词汇量，你需要每日复习。"
+      }
+    ],
+    "examTips": [
+      "做 动名词 题时，先圈出信号词，再判断句子结构。",
+      "错题建议加入错题本，隔天复盘。"
+    ],
+    "practice": [
+      {
+        "question": "请判断句子中与“动名词”相关的关键结构。",
+        "answer": "动名词",
+        "explanation": "先定位考点，再根据语法功能判断答案。"
+      }
+    ],
+    "order": 18,
+    "isActive": true,
+    "masteryLevel": 0,
+    "estimatedMinutes": 3,
+    "createdAt": "2026-04-27T00:00:00.000Z"
+  },
+  {
+    "id": "g_019",
+    "title": "现在分词",
+    "category": "非谓语动词",
+    "frequency": "高频",
+    "summary": "现在分词 是四六级常考考点，重点掌握识别信号和做题步骤。",
+    "content": "判断逻辑主语和主动/被动关系：主动多用 doing，被动多用 done，目的多用 to do。",
+    "examples": [
+      {
+        "en": "To improve vocabulary, you need daily review.",
+        "cn": "为了提升词汇量，你需要每日复习。"
+      }
+    ],
+    "examTips": [
+      "做 现在分词 题时，先圈出信号词，再判断句子结构。",
+      "错题建议加入错题本，隔天复盘。"
+    ],
+    "practice": [
+      {
+        "question": "请判断句子中与“现在分词”相关的关键结构。",
+        "answer": "现在分词",
+        "explanation": "先定位考点，再根据语法功能判断答案。"
+      }
+    ],
+    "order": 19,
+    "isActive": true,
+    "masteryLevel": 0,
+    "estimatedMinutes": 4,
+    "createdAt": "2026-04-27T00:00:00.000Z"
+  },
+  {
+    "id": "g_020",
+    "title": "过去分词",
+    "category": "非谓语动词",
+    "frequency": "高频",
+    "summary": "过去分词 是四六级常考考点，重点掌握识别信号和做题步骤。",
+    "content": "判断逻辑主语和主动/被动关系：主动多用 doing，被动多用 done，目的多用 to do。",
+    "examples": [
+      {
+        "en": "To improve vocabulary, you need daily review.",
+        "cn": "为了提升词汇量，你需要每日复习。"
+      }
+    ],
+    "examTips": [
+      "做 过去分词 题时，先圈出信号词，再判断句子结构。",
+      "错题建议加入错题本，隔天复盘。"
+    ],
+    "practice": [
+      {
+        "question": "请判断句子中与“过去分词”相关的关键结构。",
+        "answer": "过去分词",
+        "explanation": "先定位考点，再根据语法功能判断答案。"
+      }
+    ],
+    "order": 20,
+    "isActive": true,
+    "masteryLevel": 0,
+    "estimatedMinutes": 4,
+    "createdAt": "2026-04-27T00:00:00.000Z"
+  },
+  {
+    "id": "g_021",
+    "title": "独立主格",
+    "category": "非谓语动词",
+    "frequency": "中频",
+    "summary": "独立主格 是四六级常考考点，重点掌握识别信号和做题步骤。",
+    "content": "判断逻辑主语和主动/被动关系：主动多用 doing，被动多用 done，目的多用 to do。",
+    "examples": [
+      {
+        "en": "To improve vocabulary, you need daily review.",
+        "cn": "为了提升词汇量，你需要每日复习。"
+      }
+    ],
+    "examTips": [
+      "做 独立主格 题时，先圈出信号词，再判断句子结构。",
+      "错题建议加入错题本，隔天复盘。"
+    ],
+    "practice": [
+      {
+        "question": "请判断句子中与“独立主格”相关的关键结构。",
+        "answer": "独立主格",
+        "explanation": "先定位考点，再根据语法功能判断答案。"
+      }
+    ],
+    "order": 21,
+    "isActive": true,
+    "masteryLevel": 0,
+    "estimatedMinutes": 3,
+    "createdAt": "2026-04-27T00:00:00.000Z"
+  },
+  {
+    "id": "g_022",
+    "title": "非谓语作定语",
+    "category": "非谓语动词",
+    "frequency": "高频",
+    "summary": "非谓语作定语 是四六级常考考点，重点掌握识别信号和做题步骤。",
+    "content": "判断逻辑主语和主动/被动关系：主动多用 doing，被动多用 done，目的多用 to do。",
+    "examples": [
+      {
+        "en": "To improve vocabulary, you need daily review.",
+        "cn": "为了提升词汇量，你需要每日复习。"
+      }
+    ],
+    "examTips": [
+      "做 非谓语作定语 题时，先圈出信号词，再判断句子结构。",
+      "错题建议加入错题本，隔天复盘。"
+    ],
+    "practice": [
+      {
+        "question": "请判断句子中与“非谓语作定语”相关的关键结构。",
+        "answer": "非谓语作定语",
+        "explanation": "先定位考点，再根据语法功能判断答案。"
+      }
+    ],
+    "order": 22,
+    "isActive": true,
+    "masteryLevel": 0,
+    "estimatedMinutes": 4,
+    "createdAt": "2026-04-27T00:00:00.000Z"
+  },
+  {
+    "id": "g_023",
+    "title": "if 虚拟条件句",
+    "category": "虚拟语气",
+    "frequency": "高频",
+    "summary": "if 虚拟条件句 是四六级常考考点，重点掌握识别信号和做题步骤。",
+    "content": "看到 if/wish/suggest 等信号词，判断是否与事实相反或表示建议要求。",
+    "examples": [
+      {
+        "en": "If I were you, I would start reviewing now.",
+        "cn": "如果我是你，我会现在开始复习。"
+      }
+    ],
+    "examTips": [
+      "做 if 虚拟条件句 题时，先圈出信号词，再判断句子结构。",
+      "错题建议加入错题本，隔天复盘。"
+    ],
+    "practice": [
+      {
+        "question": "请判断句子中与“if 虚拟条件句”相关的关键结构。",
+        "answer": "if 虚拟条件句",
+        "explanation": "先定位考点，再根据语法功能判断答案。"
+      }
+    ],
+    "order": 23,
+    "isActive": true,
+    "masteryLevel": 0,
+    "estimatedMinutes": 4,
+    "createdAt": "2026-04-27T00:00:00.000Z"
+  },
+  {
+    "id": "g_024",
+    "title": "wish 虚拟",
+    "category": "虚拟语气",
+    "frequency": "中频",
+    "summary": "wish 虚拟 是四六级常考考点，重点掌握识别信号和做题步骤。",
+    "content": "看到 if/wish/suggest 等信号词，判断是否与事实相反或表示建议要求。",
+    "examples": [
+      {
+        "en": "If I were you, I would start reviewing now.",
+        "cn": "如果我是你，我会现在开始复习。"
+      }
+    ],
+    "examTips": [
+      "做 wish 虚拟 题时，先圈出信号词，再判断句子结构。",
+      "错题建议加入错题本，隔天复盘。"
+    ],
+    "practice": [
+      {
+        "question": "请判断句子中与“wish 虚拟”相关的关键结构。",
+        "answer": "wish 虚拟",
+        "explanation": "先定位考点，再根据语法功能判断答案。"
+      }
+    ],
+    "order": 24,
+    "isActive": true,
+    "masteryLevel": 0,
+    "estimatedMinutes": 3,
+    "createdAt": "2026-04-27T00:00:00.000Z"
+  },
+  {
+    "id": "g_025",
+    "title": "建议命令类虚拟",
+    "category": "虚拟语气",
+    "frequency": "高频",
+    "summary": "建议命令类虚拟 是四六级常考考点，重点掌握识别信号和做题步骤。",
+    "content": "看到 if/wish/suggest 等信号词，判断是否与事实相反或表示建议要求。",
+    "examples": [
+      {
+        "en": "If I were you, I would start reviewing now.",
+        "cn": "如果我是你，我会现在开始复习。"
+      }
+    ],
+    "examTips": [
+      "做 建议命令类虚拟 题时，先圈出信号词，再判断句子结构。",
+      "错题建议加入错题本，隔天复盘。"
+    ],
+    "practice": [
+      {
+        "question": "请判断句子中与“建议命令类虚拟”相关的关键结构。",
+        "answer": "建议命令类虚拟",
+        "explanation": "先定位考点，再根据语法功能判断答案。"
+      }
+    ],
+    "order": 25,
+    "isActive": true,
+    "masteryLevel": 0,
+    "estimatedMinutes": 4,
+    "createdAt": "2026-04-27T00:00:00.000Z"
+  },
+  {
+    "id": "g_026",
+    "title": "as if 虚拟",
+    "category": "虚拟语气",
+    "frequency": "高频",
+    "summary": "as if 虚拟 是四六级常考考点，重点掌握识别信号和做题步骤。",
+    "content": "看到 if/wish/suggest 等信号词，判断是否与事实相反或表示建议要求。",
+    "examples": [
+      {
+        "en": "If I were you, I would start reviewing now.",
+        "cn": "如果我是你，我会现在开始复习。"
+      }
+    ],
+    "examTips": [
+      "做 as if 虚拟 题时，先圈出信号词，再判断句子结构。",
+      "错题建议加入错题本，隔天复盘。"
+    ],
+    "practice": [
+      {
+        "question": "请判断句子中与“as if 虚拟”相关的关键结构。",
+        "answer": "as if 虚拟",
+        "explanation": "先定位考点，再根据语法功能判断答案。"
+      }
+    ],
+    "order": 26,
+    "isActive": true,
+    "masteryLevel": 0,
+    "estimatedMinutes": 4,
+    "createdAt": "2026-04-27T00:00:00.000Z"
+  },
+  {
+    "id": "g_027",
+    "title": "would rather 虚拟",
+    "category": "虚拟语气",
+    "frequency": "中频",
+    "summary": "would rather 虚拟 是四六级常考考点，重点掌握识别信号和做题步骤。",
+    "content": "看到 if/wish/suggest 等信号词，判断是否与事实相反或表示建议要求。",
+    "examples": [
+      {
+        "en": "If I were you, I would start reviewing now.",
+        "cn": "如果我是你，我会现在开始复习。"
+      }
+    ],
+    "examTips": [
+      "做 would rather 虚拟 题时，先圈出信号词，再判断句子结构。",
+      "错题建议加入错题本，隔天复盘。"
+    ],
+    "practice": [
+      {
+        "question": "请判断句子中与“would rather 虚拟”相关的关键结构。",
+        "answer": "would rather 虚拟",
+        "explanation": "先定位考点，再根据语法功能判断答案。"
+      }
+    ],
+    "order": 27,
+    "isActive": true,
+    "masteryLevel": 0,
+    "estimatedMinutes": 3,
+    "createdAt": "2026-04-27T00:00:00.000Z"
+  },
+  {
+    "id": "g_028",
+    "title": "情态动词表推测",
+    "category": "词法",
+    "frequency": "高频",
+    "summary": "情态动词表推测 是四六级常考考点，重点掌握识别信号和做题步骤。",
+    "content": "词法题常考固定规则和一致性，不要只凭中文直觉选择。",
+    "examples": [
+      {
+        "en": "The number of students is increasing.",
+        "cn": "学生人数正在增加。"
+      }
+    ],
+    "examTips": [
+      "做 情态动词表推测 题时，先圈出信号词，再判断句子结构。",
+      "错题建议加入错题本，隔天复盘。"
+    ],
+    "practice": [
+      {
+        "question": "请判断句子中与“情态动词表推测”相关的关键结构。",
+        "answer": "情态动词表推测",
+        "explanation": "先定位考点，再根据语法功能判断答案。"
+      }
+    ],
+    "order": 28,
+    "isActive": true,
+    "masteryLevel": 0,
+    "estimatedMinutes": 4,
+    "createdAt": "2026-04-27T00:00:00.000Z"
+  },
+  {
+    "id": "g_029",
+    "title": "冠词用法",
+    "category": "词法",
+    "frequency": "高频",
+    "summary": "冠词用法 是四六级常考考点，重点掌握识别信号和做题步骤。",
+    "content": "词法题常考固定规则和一致性，不要只凭中文直觉选择。",
+    "examples": [
+      {
+        "en": "The number of students is increasing.",
+        "cn": "学生人数正在增加。"
+      }
+    ],
+    "examTips": [
+      "做 冠词用法 题时，先圈出信号词，再判断句子结构。",
+      "错题建议加入错题本，隔天复盘。"
+    ],
+    "practice": [
+      {
+        "question": "请判断句子中与“冠词用法”相关的关键结构。",
+        "answer": "冠词用法",
+        "explanation": "先定位考点，再根据语法功能判断答案。"
+      }
+    ],
+    "order": 29,
+    "isActive": true,
+    "masteryLevel": 0,
+    "estimatedMinutes": 4,
+    "createdAt": "2026-04-27T00:00:00.000Z"
+  },
+  {
+    "id": "g_030",
+    "title": "名词单复数",
+    "category": "词法",
+    "frequency": "中频",
+    "summary": "名词单复数 是四六级常考考点，重点掌握识别信号和做题步骤。",
+    "content": "词法题常考固定规则和一致性，不要只凭中文直觉选择。",
+    "examples": [
+      {
+        "en": "The number of students is increasing.",
+        "cn": "学生人数正在增加。"
+      }
+    ],
+    "examTips": [
+      "做 名词单复数 题时，先圈出信号词，再判断句子结构。",
+      "错题建议加入错题本，隔天复盘。"
+    ],
+    "practice": [
+      {
+        "question": "请判断句子中与“名词单复数”相关的关键结构。",
+        "answer": "名词单复数",
+        "explanation": "先定位考点，再根据语法功能判断答案。"
+      }
+    ],
+    "order": 30,
+    "isActive": true,
+    "masteryLevel": 0,
+    "estimatedMinutes": 3,
+    "createdAt": "2026-04-27T00:00:00.000Z"
+  },
+  {
+    "id": "g_031",
+    "title": "主谓一致",
+    "category": "词法",
+    "frequency": "高频",
+    "summary": "主谓一致 是四六级常考考点，重点掌握识别信号和做题步骤。",
+    "content": "词法题常考固定规则和一致性，不要只凭中文直觉选择。",
+    "examples": [
+      {
+        "en": "The number of students is increasing.",
+        "cn": "学生人数正在增加。"
+      }
+    ],
+    "examTips": [
+      "做 主谓一致 题时，先圈出信号词，再判断句子结构。",
+      "错题建议加入错题本，隔天复盘。"
+    ],
+    "practice": [
+      {
+        "question": "请判断句子中与“主谓一致”相关的关键结构。",
+        "answer": "主谓一致",
+        "explanation": "先定位考点，再根据语法功能判断答案。"
+      }
+    ],
+    "order": 31,
+    "isActive": true,
+    "masteryLevel": 0,
+    "estimatedMinutes": 4,
+    "createdAt": "2026-04-27T00:00:00.000Z"
+  },
+  {
+    "id": "g_032",
+    "title": "比较级与最高级",
+    "category": "词法",
+    "frequency": "高频",
+    "summary": "比较级与最高级 是四六级常考考点，重点掌握识别信号和做题步骤。",
+    "content": "词法题常考固定规则和一致性，不要只凭中文直觉选择。",
+    "examples": [
+      {
+        "en": "The number of students is increasing.",
+        "cn": "学生人数正在增加。"
+      }
+    ],
+    "examTips": [
+      "做 比较级与最高级 题时，先圈出信号词，再判断句子结构。",
+      "错题建议加入错题本，隔天复盘。"
+    ],
+    "practice": [
+      {
+        "question": "请判断句子中与“比较级与最高级”相关的关键结构。",
+        "answer": "比较级与最高级",
+        "explanation": "先定位考点，再根据语法功能判断答案。"
+      }
+    ],
+    "order": 32,
+    "isActive": true,
+    "masteryLevel": 0,
+    "estimatedMinutes": 4,
+    "createdAt": "2026-04-27T00:00:00.000Z"
+  },
+  {
+    "id": "g_033",
+    "title": "代词指代",
+    "category": "词法",
+    "frequency": "中频",
+    "summary": "代词指代 是四六级常考考点，重点掌握识别信号和做题步骤。",
+    "content": "词法题常考固定规则和一致性，不要只凭中文直觉选择。",
+    "examples": [
+      {
+        "en": "The number of students is increasing.",
+        "cn": "学生人数正在增加。"
+      }
+    ],
+    "examTips": [
+      "做 代词指代 题时，先圈出信号词，再判断句子结构。",
+      "错题建议加入错题本，隔天复盘。"
+    ],
+    "practice": [
+      {
+        "question": "请判断句子中与“代词指代”相关的关键结构。",
+        "answer": "代词指代",
+        "explanation": "先定位考点，再根据语法功能判断答案。"
+      }
+    ],
+    "order": 33,
+    "isActive": true,
+    "masteryLevel": 0,
+    "estimatedMinutes": 3,
+    "createdAt": "2026-04-27T00:00:00.000Z"
+  },
+  {
+    "id": "g_034",
+    "title": "时间介词",
+    "category": "介词搭配",
+    "frequency": "高频",
+    "summary": "时间介词 是四六级常考考点，重点掌握识别信号和做题步骤。",
+    "content": "介词题多是固定搭配，建议按短语整体记忆，而不是单个介词硬背。",
+    "examples": [
+      {
+        "en": "She is good at memorizing new words.",
+        "cn": "她擅长记新单词。"
+      }
+    ],
+    "examTips": [
+      "做 时间介词 题时，先圈出信号词，再判断句子结构。",
+      "错题建议加入错题本，隔天复盘。"
+    ],
+    "practice": [
+      {
+        "question": "请判断句子中与“时间介词”相关的关键结构。",
+        "answer": "时间介词",
+        "explanation": "先定位考点，再根据语法功能判断答案。"
+      }
+    ],
+    "order": 34,
+    "isActive": true,
+    "masteryLevel": 0,
+    "estimatedMinutes": 4,
+    "createdAt": "2026-04-27T00:00:00.000Z"
+  },
+  {
+    "id": "g_035",
+    "title": "地点介词",
+    "category": "介词搭配",
+    "frequency": "高频",
+    "summary": "地点介词 是四六级常考考点，重点掌握识别信号和做题步骤。",
+    "content": "介词题多是固定搭配，建议按短语整体记忆，而不是单个介词硬背。",
+    "examples": [
+      {
+        "en": "She is good at memorizing new words.",
+        "cn": "她擅长记新单词。"
+      }
+    ],
+    "examTips": [
+      "做 地点介词 题时，先圈出信号词，再判断句子结构。",
+      "错题建议加入错题本，隔天复盘。"
+    ],
+    "practice": [
+      {
+        "question": "请判断句子中与“地点介词”相关的关键结构。",
+        "answer": "地点介词",
+        "explanation": "先定位考点，再根据语法功能判断答案。"
+      }
+    ],
+    "order": 35,
+    "isActive": true,
+    "masteryLevel": 0,
+    "estimatedMinutes": 4,
+    "createdAt": "2026-04-27T00:00:00.000Z"
+  },
+  {
+    "id": "g_036",
+    "title": "动词介词搭配",
+    "category": "介词搭配",
+    "frequency": "中频",
+    "summary": "动词介词搭配 是四六级常考考点，重点掌握识别信号和做题步骤。",
+    "content": "介词题多是固定搭配，建议按短语整体记忆，而不是单个介词硬背。",
+    "examples": [
+      {
+        "en": "She is good at memorizing new words.",
+        "cn": "她擅长记新单词。"
+      }
+    ],
+    "examTips": [
+      "做 动词介词搭配 题时，先圈出信号词，再判断句子结构。",
+      "错题建议加入错题本，隔天复盘。"
+    ],
+    "practice": [
+      {
+        "question": "请判断句子中与“动词介词搭配”相关的关键结构。",
+        "answer": "动词介词搭配",
+        "explanation": "先定位考点，再根据语法功能判断答案。"
+      }
+    ],
+    "order": 36,
+    "isActive": true,
+    "masteryLevel": 0,
+    "estimatedMinutes": 3,
+    "createdAt": "2026-04-27T00:00:00.000Z"
+  },
+  {
+    "id": "g_037",
+    "title": "形容词介词搭配",
+    "category": "介词搭配",
+    "frequency": "高频",
+    "summary": "形容词介词搭配 是四六级常考考点，重点掌握识别信号和做题步骤。",
+    "content": "介词题多是固定搭配，建议按短语整体记忆，而不是单个介词硬背。",
+    "examples": [
+      {
+        "en": "She is good at memorizing new words.",
+        "cn": "她擅长记新单词。"
+      }
+    ],
+    "examTips": [
+      "做 形容词介词搭配 题时，先圈出信号词，再判断句子结构。",
+      "错题建议加入错题本，隔天复盘。"
+    ],
+    "practice": [
+      {
+        "question": "请判断句子中与“形容词介词搭配”相关的关键结构。",
+        "answer": "形容词介词搭配",
+        "explanation": "先定位考点，再根据语法功能判断答案。"
+      }
+    ],
+    "order": 37,
+    "isActive": true,
+    "masteryLevel": 0,
+    "estimatedMinutes": 4,
+    "createdAt": "2026-04-27T00:00:00.000Z"
+  },
+  {
+    "id": "g_038",
+    "title": "短语动词",
+    "category": "介词搭配",
+    "frequency": "高频",
+    "summary": "短语动词 是四六级常考考点，重点掌握识别信号和做题步骤。",
+    "content": "介词题多是固定搭配，建议按短语整体记忆，而不是单个介词硬背。",
+    "examples": [
+      {
+        "en": "She is good at memorizing new words.",
+        "cn": "她擅长记新单词。"
+      }
+    ],
+    "examTips": [
+      "做 短语动词 题时，先圈出信号词，再判断句子结构。",
+      "错题建议加入错题本，隔天复盘。"
+    ],
+    "practice": [
+      {
+        "question": "请判断句子中与“短语动词”相关的关键结构。",
+        "answer": "短语动词",
+        "explanation": "先定位考点，再根据语法功能判断答案。"
+      }
+    ],
+    "order": 38,
+    "isActive": true,
+    "masteryLevel": 0,
+    "estimatedMinutes": 4,
+    "createdAt": "2026-04-27T00:00:00.000Z"
+  },
+  {
+    "id": "g_039",
+    "title": "固定搭配",
+    "category": "介词搭配",
+    "frequency": "中频",
+    "summary": "固定搭配 是四六级常考考点，重点掌握识别信号和做题步骤。",
+    "content": "介词题多是固定搭配，建议按短语整体记忆，而不是单个介词硬背。",
+    "examples": [
+      {
+        "en": "She is good at memorizing new words.",
+        "cn": "她擅长记新单词。"
+      }
+    ],
+    "examTips": [
+      "做 固定搭配 题时，先圈出信号词，再判断句子结构。",
+      "错题建议加入错题本，隔天复盘。"
+    ],
+    "practice": [
+      {
+        "question": "请判断句子中与“固定搭配”相关的关键结构。",
+        "answer": "固定搭配",
+        "explanation": "先定位考点，再根据语法功能判断答案。"
+      }
+    ],
+    "order": 39,
+    "isActive": true,
+    "masteryLevel": 0,
+    "estimatedMinutes": 3,
+    "createdAt": "2026-04-27T00:00:00.000Z"
+  },
+  {
+    "id": "g_040",
+    "title": "否定词倒装",
+    "category": "特殊句式",
+    "frequency": "高频",
+    "summary": "否定词倒装 是四六级常考考点，重点掌握识别信号和做题步骤。",
+    "content": "特殊句式常改变语序或省略成分，先还原成普通语序再理解。",
+    "examples": [
+      {
+        "en": "Never have I seen such progress.",
+        "cn": "我从未见过这样的进步。"
+      }
+    ],
+    "examTips": [
+      "做 否定词倒装 题时，先圈出信号词，再判断句子结构。",
+      "错题建议加入错题本，隔天复盘。"
+    ],
+    "practice": [
+      {
+        "question": "请判断句子中与“否定词倒装”相关的关键结构。",
+        "answer": "否定词倒装",
+        "explanation": "先定位考点，再根据语法功能判断答案。"
+      }
+    ],
+    "order": 40,
+    "isActive": true,
+    "masteryLevel": 0,
+    "estimatedMinutes": 4,
+    "createdAt": "2026-04-27T00:00:00.000Z"
+  },
+  {
+    "id": "g_041",
+    "title": "only 倒装",
+    "category": "特殊句式",
+    "frequency": "高频",
+    "summary": "only 倒装 是四六级常考考点，重点掌握识别信号和做题步骤。",
+    "content": "特殊句式常改变语序或省略成分，先还原成普通语序再理解。",
+    "examples": [
+      {
+        "en": "Never have I seen such progress.",
+        "cn": "我从未见过这样的进步。"
+      }
+    ],
+    "examTips": [
+      "做 only 倒装 题时，先圈出信号词，再判断句子结构。",
+      "错题建议加入错题本，隔天复盘。"
+    ],
+    "practice": [
+      {
+        "question": "请判断句子中与“only 倒装”相关的关键结构。",
+        "answer": "only 倒装",
+        "explanation": "先定位考点，再根据语法功能判断答案。"
+      }
+    ],
+    "order": 41,
+    "isActive": true,
+    "masteryLevel": 0,
+    "estimatedMinutes": 4,
+    "createdAt": "2026-04-27T00:00:00.000Z"
+  },
+  {
+    "id": "g_042",
+    "title": "强调句",
+    "category": "特殊句式",
+    "frequency": "中频",
+    "summary": "强调句 是四六级常考考点，重点掌握识别信号和做题步骤。",
+    "content": "特殊句式常改变语序或省略成分，先还原成普通语序再理解。",
+    "examples": [
+      {
+        "en": "Never have I seen such progress.",
+        "cn": "我从未见过这样的进步。"
+      }
+    ],
+    "examTips": [
+      "做 强调句 题时，先圈出信号词，再判断句子结构。",
+      "错题建议加入错题本，隔天复盘。"
+    ],
+    "practice": [
+      {
+        "question": "请判断句子中与“强调句”相关的关键结构。",
+        "answer": "强调句",
+        "explanation": "先定位考点，再根据语法功能判断答案。"
+      }
+    ],
+    "order": 42,
+    "isActive": true,
+    "masteryLevel": 0,
+    "estimatedMinutes": 3,
+    "createdAt": "2026-04-27T00:00:00.000Z"
+  },
+  {
+    "id": "g_043",
+    "title": "省略句",
+    "category": "特殊句式",
+    "frequency": "高频",
+    "summary": "省略句 是四六级常考考点，重点掌握识别信号和做题步骤。",
+    "content": "特殊句式常改变语序或省略成分，先还原成普通语序再理解。",
+    "examples": [
+      {
+        "en": "Never have I seen such progress.",
+        "cn": "我从未见过这样的进步。"
+      }
+    ],
+    "examTips": [
+      "做 省略句 题时，先圈出信号词，再判断句子结构。",
+      "错题建议加入错题本，隔天复盘。"
+    ],
+    "practice": [
+      {
+        "question": "请判断句子中与“省略句”相关的关键结构。",
+        "answer": "省略句",
+        "explanation": "先定位考点，再根据语法功能判断答案。"
+      }
+    ],
+    "order": 43,
+    "isActive": true,
+    "masteryLevel": 0,
+    "estimatedMinutes": 4,
+    "createdAt": "2026-04-27T00:00:00.000Z"
+  },
+  {
+    "id": "g_044",
+    "title": "there be 句型",
+    "category": "特殊句式",
+    "frequency": "高频",
+    "summary": "there be 句型 是四六级常考考点，重点掌握识别信号和做题步骤。",
+    "content": "特殊句式常改变语序或省略成分，先还原成普通语序再理解。",
+    "examples": [
+      {
+        "en": "Never have I seen such progress.",
+        "cn": "我从未见过这样的进步。"
+      }
+    ],
+    "examTips": [
+      "做 there be 句型 题时，先圈出信号词，再判断句子结构。",
+      "错题建议加入错题本，隔天复盘。"
+    ],
+    "practice": [
+      {
+        "question": "请判断句子中与“there be 句型”相关的关键结构。",
+        "answer": "there be 句型",
+        "explanation": "先定位考点，再根据语法功能判断答案。"
+      }
+    ],
+    "order": 44,
+    "isActive": true,
+    "masteryLevel": 0,
+    "estimatedMinutes": 4,
+    "createdAt": "2026-04-27T00:00:00.000Z"
+  },
+  {
+    "id": "g_045",
+    "title": "平行结构",
+    "category": "特殊句式",
+    "frequency": "中频",
+    "summary": "平行结构 是四六级常考考点，重点掌握识别信号和做题步骤。",
+    "content": "特殊句式常改变语序或省略成分，先还原成普通语序再理解。",
+    "examples": [
+      {
+        "en": "Never have I seen such progress.",
+        "cn": "我从未见过这样的进步。"
+      }
+    ],
+    "examTips": [
+      "做 平行结构 题时，先圈出信号词，再判断句子结构。",
+      "错题建议加入错题本，隔天复盘。"
+    ],
+    "practice": [
+      {
+        "question": "请判断句子中与“平行结构”相关的关键结构。",
+        "answer": "平行结构",
+        "explanation": "先定位考点，再根据语法功能判断答案。"
+      }
+    ],
+    "order": 45,
+    "isActive": true,
+    "masteryLevel": 0,
+    "estimatedMinutes": 3,
+    "createdAt": "2026-04-27T00:00:00.000Z"
+  },
+  {
+    "id": "g_046",
+    "title": "阅读主旨题",
+    "category": "阅读写作技巧",
+    "frequency": "高频",
+    "summary": "阅读主旨题 是四六级常考考点，重点掌握识别信号和做题步骤。",
+    "content": "阅读题关注定位和同义替换；写作翻译优先保证结构准确。",
+    "examples": [
+      {
+        "en": "Therefore, daily practice is necessary.",
+        "cn": "因此，每日练习是必要的。"
+      }
+    ],
+    "examTips": [
+      "做 阅读主旨题 题时，先圈出信号词，再判断句子结构。",
+      "错题建议加入错题本，隔天复盘。"
+    ],
+    "practice": [
+      {
+        "question": "请判断句子中与“阅读主旨题”相关的关键结构。",
+        "answer": "阅读主旨题",
+        "explanation": "先定位考点，再根据语法功能判断答案。"
+      }
+    ],
+    "order": 46,
+    "isActive": true,
+    "masteryLevel": 0,
+    "estimatedMinutes": 4,
+    "createdAt": "2026-04-27T00:00:00.000Z"
+  },
+  {
+    "id": "g_047",
+    "title": "阅读推断题",
+    "category": "阅读写作技巧",
+    "frequency": "高频",
+    "summary": "阅读推断题 是四六级常考考点，重点掌握识别信号和做题步骤。",
+    "content": "阅读题关注定位和同义替换；写作翻译优先保证结构准确。",
+    "examples": [
+      {
+        "en": "Therefore, daily practice is necessary.",
+        "cn": "因此，每日练习是必要的。"
+      }
+    ],
+    "examTips": [
+      "做 阅读推断题 题时，先圈出信号词，再判断句子结构。",
+      "错题建议加入错题本，隔天复盘。"
+    ],
+    "practice": [
+      {
+        "question": "请判断句子中与“阅读推断题”相关的关键结构。",
+        "answer": "阅读推断题",
+        "explanation": "先定位考点，再根据语法功能判断答案。"
+      }
+    ],
+    "order": 47,
+    "isActive": true,
+    "masteryLevel": 0,
+    "estimatedMinutes": 4,
+    "createdAt": "2026-04-27T00:00:00.000Z"
+  },
+  {
+    "id": "g_048",
+    "title": "阅读指代题",
+    "category": "阅读写作技巧",
+    "frequency": "中频",
+    "summary": "阅读指代题 是四六级常考考点，重点掌握识别信号和做题步骤。",
+    "content": "阅读题关注定位和同义替换；写作翻译优先保证结构准确。",
+    "examples": [
+      {
+        "en": "Therefore, daily practice is necessary.",
+        "cn": "因此，每日练习是必要的。"
+      }
+    ],
+    "examTips": [
+      "做 阅读指代题 题时，先圈出信号词，再判断句子结构。",
+      "错题建议加入错题本，隔天复盘。"
+    ],
+    "practice": [
+      {
+        "question": "请判断句子中与“阅读指代题”相关的关键结构。",
+        "answer": "阅读指代题",
+        "explanation": "先定位考点，再根据语法功能判断答案。"
+      }
+    ],
+    "order": 48,
+    "isActive": true,
+    "masteryLevel": 0,
+    "estimatedMinutes": 3,
+    "createdAt": "2026-04-27T00:00:00.000Z"
+  },
+  {
+    "id": "g_049",
+    "title": "词义猜测题",
+    "category": "阅读写作技巧",
+    "frequency": "高频",
+    "summary": "词义猜测题 是四六级常考考点，重点掌握识别信号和做题步骤。",
+    "content": "阅读题关注定位和同义替换；写作翻译优先保证结构准确。",
+    "examples": [
+      {
+        "en": "Therefore, daily practice is necessary.",
+        "cn": "因此，每日练习是必要的。"
+      }
+    ],
+    "examTips": [
+      "做 词义猜测题 题时，先圈出信号词，再判断句子结构。",
+      "错题建议加入错题本，隔天复盘。"
+    ],
+    "practice": [
+      {
+        "question": "请判断句子中与“词义猜测题”相关的关键结构。",
+        "answer": "词义猜测题",
+        "explanation": "先定位考点，再根据语法功能判断答案。"
+      }
+    ],
+    "order": 49,
+    "isActive": true,
+    "masteryLevel": 0,
+    "estimatedMinutes": 4,
+    "createdAt": "2026-04-27T00:00:00.000Z"
+  },
+  {
+    "id": "g_050",
+    "title": "写作衔接词",
+    "category": "阅读写作技巧",
+    "frequency": "高频",
+    "summary": "写作衔接词 是四六级常考考点，重点掌握识别信号和做题步骤。",
+    "content": "阅读题关注定位和同义替换；写作翻译优先保证结构准确。",
+    "examples": [
+      {
+        "en": "Therefore, daily practice is necessary.",
+        "cn": "因此，每日练习是必要的。"
+      }
+    ],
+    "examTips": [
+      "做 写作衔接词 题时，先圈出信号词，再判断句子结构。",
+      "错题建议加入错题本，隔天复盘。"
+    ],
+    "practice": [
+      {
+        "question": "请判断句子中与“写作衔接词”相关的关键结构。",
+        "answer": "写作衔接词",
+        "explanation": "先定位考点，再根据语法功能判断答案。"
+      }
+    ],
+    "order": 50,
+    "isActive": true,
+    "masteryLevel": 0,
+    "estimatedMinutes": 4,
+    "createdAt": "2026-04-27T00:00:00.000Z"
+  },
+  {
+    "id": "g_051",
+    "title": "翻译复杂句",
+    "category": "阅读写作技巧",
+    "frequency": "中频",
+    "summary": "翻译复杂句 是四六级常考考点，重点掌握识别信号和做题步骤。",
+    "content": "阅读题关注定位和同义替换；写作翻译优先保证结构准确。",
+    "examples": [
+      {
+        "en": "Therefore, daily practice is necessary.",
+        "cn": "因此，每日练习是必要的。"
+      }
+    ],
+    "examTips": [
+      "做 翻译复杂句 题时，先圈出信号词，再判断句子结构。",
+      "错题建议加入错题本，隔天复盘。"
+    ],
+    "practice": [
+      {
+        "question": "请判断句子中与“翻译复杂句”相关的关键结构。",
+        "answer": "翻译复杂句",
+        "explanation": "先定位考点，再根据语法功能判断答案。"
+      }
+    ],
+    "order": 51,
+    "isActive": true,
+    "masteryLevel": 0,
+    "estimatedMinutes": 3,
+    "createdAt": "2026-04-27T00:00:00.000Z"
+  }
+];

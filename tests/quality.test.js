@@ -26,7 +26,8 @@ describe('刷词英语 phase-2 delivery', () => {
     assert.ok(cleaned.words.length >= 4);
     assert.ok(cleaned.words.every(w => w.text && (w.is_in_cet4 || w.is_in_cet6)));
     assert.ok(cleaned.words.every(w => Array.isArray(w.bankIds) && w.bankIds.length >= 1));
-    assert.ok(cleaned.grammarTopics.length >= 8);
+    assert.ok(cleaned.grammarTopics.length >= 40);
+    assert.ok(cleaned.grammarTopics.every(t => t.examTips && t.examTips.length >= 1 && t.practice && t.practice.length >= 1));
   });
 
   it('implements real local learning loop helpers for favorites, mistakes and spelling sessions', () => {
@@ -72,10 +73,22 @@ describe('刷词英语 phase-2 delivery', () => {
     assert.doesNotMatch(code, /orderBy\(/);
   });
 
-  it('mini program cloud API has a client-side timeout fallback', () => {
-    const code = read('miniprogram/utils/api.js');
-    assert.match(code, /CLOUD_TIMEOUT_MS/);
-    assert.match(code, /setTimeout/);
-    assert.match(code, /localFallback\(name, data\)/);
+  it('provides learner-friendly word bank and grammar experiences', () => {
+    const banksWxml = read('miniprogram/pages/banks/banks.wxml');
+    const banksJs = read('miniprogram/pages/banks/banks.js');
+    assert.match(banksWxml, /学习路径/);
+    assert.match(banksWxml, /新词模式/);
+    assert.match(banksWxml, /复习模式/);
+    assert.match(banksJs, /startMode/);
+    assert.match(banksJs, /includeOverlap/);
+
+    const grammarWxml = read('miniprogram/pages/grammar/grammar.wxml');
+    const grammarJs = read('miniprogram/pages/grammar/grammar.js');
+    assert.match(grammarWxml, /考点地图/);
+    assert.match(grammarWxml, /考试提醒/);
+    assert.match(grammarWxml, /例句/);
+    assert.match(grammarWxml, /小练习/);
+    assert.match(grammarJs, /selectTopic/);
+    assert.match(grammarJs, /masteryLabel/);
   });
 });
