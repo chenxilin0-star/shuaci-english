@@ -1,4 +1,5 @@
 const { callCloud } = require('../../utils/api');
+const store = require('../../utils/store');
 
 const BANK_META = {
   cet4_core: {
@@ -24,13 +25,16 @@ const BANK_META = {
 function decorateBank(bank) {
   const meta = BANK_META[bank.id] || BANK_META[bank.code === 'cet6' ? 'cet6_core' : 'cet4_core'];
   const totalWords = bank.totalWords || bank.word_count || 0;
-  const learnedWords = bank.learnedWords || 0;
+  const local = store.getBankProgress(bank.id);
+  const learnedWords = local.learnedWords || 0;
+  const masteredWords = local.masteredWords || 0;
   const percent = totalWords ? Math.min(100, Math.round((learnedWords / totalWords) * 100)) : 0;
   return {
     ...bank,
     ...meta,
     totalWords,
     learnedWords,
+    masteredWords,
     percent,
     remainingWords: Math.max(0, totalWords - learnedWords),
     tags: bank.tags && bank.tags.length ? bank.tags : [meta.exam, meta.dailyGoal + '词/天']

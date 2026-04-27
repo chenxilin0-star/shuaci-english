@@ -1,1 +1,31 @@
-<view class="container"><view class="card profile"><view class="avatar">刷</view><view><view class="title">刷词同学</view><view class="muted">微信登录即用 · 前期免费</view></view></view><view class="grid-2"><view class="card center"><view class="num">12</view><view class="muted">连续打卡</view></view><view class="card center"><view class="num">188</view><view class="muted">已掌握</view></view></view><button class="btn btn-primary" bindtap="login">微信一键登录</button><button class="btn btn-secondary" bindtap="checkin">今日打卡</button><view class="card"><view class="row" bindtap="goFav"><text>生词本/收藏</text><text>›</text></view><view class="row" bindtap="goMistakes"><text>错题本</text><text>›</text></view></view></view>
+<view class="container profile-page">
+  <view class="card profile-hero">
+    <view class="avatar">刷</view>
+    <view class="profile-main">
+      <view class="title">{{hasLogin ? '刷词同学' : '未登录用户'}}</view>
+      <view class="muted">本地学习记录实时统计 · 登录后同步云端</view>
+    </view>
+  </view>
+
+  <view class="grid-2 stat-grid">
+    <view class="card center"><view class="num">{{stats.streakDays || 0}}</view><view class="muted">连续学习</view></view>
+    <view class="card center"><view class="num">{{stats.learnedWords || 0}}</view><view class="muted">已学词</view></view>
+    <view class="card center"><view class="num">{{stats.masteredWords || 0}}</view><view class="muted">已掌握</view></view>
+    <view class="card center"><view class="num">{{stats.mistakeCount || 0}}</view><view class="muted">待复盘</view></view>
+  </view>
+
+  <view class="card today-card">
+    <view class="row"><view><view class="h2">今日学习</view><view class="muted">{{stats.todayLearned || 0}}/{{stats.todayGoal || 50}} 个任务</view></view><text class="tag">{{stats.completionPercent || 0}}%</text></view>
+    <view class="progress"><view class="progress-bar" style="width: {{stats.completionPercent || 0}}%"></view></view>
+  </view>
+
+  <button class="btn btn-primary" bindtap="login">{{hasLogin ? '重新同步登录' : '微信一键登录'}}</button>
+  <button class="btn btn-secondary" bindtap="checkin">今日打卡</button>
+
+  <view class="card menu-card">
+    <view class="menu-row" bindtap="goFav"><view><text class="menu-icon">⭐</text><text>生词本 / 收藏</text></view><text class="muted">{{stats.favoriteCount || 0}} ›</text></view>
+    <view class="menu-row" bindtap="goMistakes"><view><text class="menu-icon">🎯</text><text>错题本</text></view><text class="muted">{{stats.mistakeCount || 0}} ›</text></view>
+    <view class="menu-row" bindtap="goBanks"><view><text class="menu-icon">📚</text><text>学习计划</text></view><text class="muted">›</text></view>
+    <view class="menu-row" bindtap="goGrammar"><view><text class="menu-icon">🧩</text><text>语法专项</text></view><text class="muted">›</text></view>
+  </view>
+</view>

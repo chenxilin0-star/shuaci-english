@@ -76,13 +76,15 @@ Page({
     store.markWordStudied(this.data.word, this.data.word.planType);
     const word = this.data.words[i];
     this.setData({ index: i, word, flipped: false });
-    callCloud('updateWordProgress', { bankId: this.data.bankId, currentIndex: i, learnedWords: i + 1, todayGoal: this.data.words.length, streakDays: 12, mode: this.data.mode });
+    const stats = store.getLearningStats();
+    callCloud('updateWordProgress', { bankId: this.data.bankId, currentIndex: i, learnedWords: i + 1, todayGoal: this.data.words.length, streakDays: stats.streakDays, mode: this.data.mode });
   },
   finishToday() {
     if (this.data.word) store.markWordStudied(this.data.word, this.data.word.planType);
     const result = { ...loop.summarizeStudySession(this.data.words, this.data.index + 1), mode: this.data.mode, modeTitle: this.data.modeTitle };
     wx.setStorageSync('shuaci_last_study_result', result);
-    callCloud('updateWordProgress', { bankId: this.data.bankId, currentIndex: this.data.index, learnedWords: result.completed, todayGoal: result.total, streakDays: 12, mode: this.data.mode });
+    const stats = store.getLearningStats();
+    callCloud('updateWordProgress', { bankId: this.data.bankId, currentIndex: this.data.index, learnedWords: result.completed, todayGoal: result.total, streakDays: stats.streakDays, mode: this.data.mode });
     wx.navigateTo({ url: '/pages/study-result/study-result' });
   },
   toggleFavorite() {

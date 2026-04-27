@@ -1,19 +1,43 @@
 const cloud = require('wx-server-sdk');
 cloud.init({ env: cloud.DYNAMIC_CURRENT_ENV });
 const db = cloud.database();
-const mock = {
-  wordBanks: [
-    { id:'cet4_core', code:'cet4', name:'CET-4 核心词汇', totalWords:4500, learnedWords:326, tags:['四级必过','高频'] },
-    { id:'cet6_core', code:'cet6', name:'CET-6 核心词汇', totalWords:5500, learnedWords:128, tags:['六级拔高','进阶'] }
-  ],
-  words: [
-    { id:'w001', bankId:'cet4_core', text:'abandon', phonetic_us:'/əˈbændən/', pos:'v.', meaning_cn:'放弃；抛弃', example_sentence:'He abandoned his car and ran for help.' },
-    { id:'w002', bankId:'cet4_core', text:'benefit', phonetic_us:'/ˈbenɪfɪt/', pos:'n./v.', meaning_cn:'益处；使受益', example_sentence:'Regular review will benefit your memory.' },
-    { id:'w101', bankId:'cet6_core', text:'ambiguous', phonetic_us:'/æmˈbɪɡjuəs/', pos:'adj.', meaning_cn:'模棱两可的', example_sentence:'The instructions were ambiguous.' }
-  ],
-  grammarTopics: [{ id:'g001', title:'现在完成时', category:'时态语态', frequency:'高频', summary:'强调过去动作对现在的影响。' }]
-};
 function ok(data){ return { success:true, data }; }
-function fail(err, data){ return { success:false, error: err && err.message ? err.message : String(err), data }; }
-
-exports.main = async (event) => { const wxContext=cloud.getWXContext(); const openid=wxContext.OPENID||event.openid||'mock-openid'; try { const res=await db.collection('user_progress').where({openid}).orderBy('updatedAt','desc').limit(1).get(); return ok(res.data[0] || {learnedWords:326, masteredWords:188, todayGoal:20, streakDays:12, currentIndex:0}); } catch(e) { return ok({learnedWords:326, masteredWords:188, todayGoal:20, streakDays:12, currentIndex:0}); } };
+const emptyProgress = { learnedWords:0, masteredWords:0, todayGoal:50, todayLearned:0, streakDays:0, currentIndex:0, favoriteCount:0, mistakeCount:0 };
+function todayKey(){ return new Date().toISOString().slice(0,10); }
+function streakFromRows(rows){
+  const days = new Set((rows || []).map(r => String(r.date || r.createdAt || '').slice(0,10)).filter(Boolean));
+  let streak = 0;
+  const d = new Date();
+  while (days.has(d.toISOString().slice(0,10))) { streak += 1; d.setDate(d.getDate() - 1); }
+  return streak;
+}
+exports.main = async (event = {}) => {
+  const wxContext = cloud.getWXContext();
+  const openid = wxContext.OPENID || event.openid || 'local-user';
+  try {
+    const [progress, records, mistakes, favorites, checkins] = await Promise.all([
+      db.collection('user_progress').where({ openid }).orderBy('updatedAt','desc').limit(1).get(),
+      db.collection('user_word_records').where({ openid }).limit(1000).get(),
+      db.collection('mistake_books').where({ openid, isReviewed:false }).limit(1000).get(),
+      db.collection('favorites').where({ openid, isFavorite:true }).limit(1000).get(),
+      db.collection('checkins').where({ openid }).limit(366).get()
+    ]);
+    const latest = progress.data[0] || {};
+    const today = todayKey();
+    const learnedWords = records.data.length;
+    const masteredWords = records.data.filter(r => r.status === 'mastered' || Number(r.familiarity || 0) >= 80).length;
+    const todayLearned = records.data.filter(r => String(r.lastStudyAt || r.updatedAt || '').slice(0,10) === today).length;
+    return ok({
+      ...emptyProgress,
+      currentIndex: latest.currentIndex || 0,
+      todayGoal: latest.todayGoal || emptyProgress.todayGoal,
+      learnedWords,
+      masteredWords,
+      todayLearned,
+      favoriteCount:favorites.data.length,
+      mistakeCount:mistakes.data.length,
+      streakDays: Math.max(streakFromRows(checkins.data), latest.streakDays || 0),
+      updatedAt: latest.updatedAt || null
+    });
+  } catch(e) { return ok(emptyProgress); }
+};

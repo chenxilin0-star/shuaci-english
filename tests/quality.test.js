@@ -135,6 +135,33 @@ describe('刷词英语 phase-2 delivery', () => {
     assert.match(read('miniprogram/pages/study-result/study-result.wxml'), /今日学习成果/);
   });
 
+  it('uses real local learning stats for home/profile/banks instead of hardcoded fake counters', () => {
+    const loop = require('../miniprogram/utils/learningLoop');
+    const state = loop.createInitialState('u1');
+    const s1 = loop.markWordStudied(state, { id: 'w1', text: 'abandon' }, 'new');
+    const s2 = loop.toggleFavoriteState(s1, { id: 'w1', text: 'abandon', meaning_cn: '放弃' }, true);
+    const s3 = loop.submitSpellingAnswer(s2, { id: 'w2', text: 'benefit', meaning_cn: '益处' }, 'benfit').state;
+    const stats = loop.getLearningStats(s3);
+    assert.strictEqual(stats.learnedWords, 2);
+    assert.strictEqual(stats.favoriteCount, 1);
+    assert.strictEqual(stats.mistakeCount, 1);
+    assert.ok('masteredWords' in stats);
+
+    for (const file of [
+      'miniprogram/pages/index/index.js',
+      'miniprogram/pages/index/index.wxml',
+      'miniprogram/pages/profile/profile.js',
+      'miniprogram/pages/profile/profile.wxml',
+      'cloudfunctions/getStudyProgress/index.js',
+      'cloudfunctions/getWordBanks/index.js'
+    ]) {
+      assert.doesNotMatch(read(file), /\b(326|188|128|12)\b/, `${file} still contains fake launch stats`);
+    }
+    assert.match(read('miniprogram/pages/index/index.js'), /getLearningStats/);
+    assert.match(read('miniprogram/pages/profile/profile.js'), /getLearningStats/);
+    assert.match(read('miniprogram/pages/banks/banks.js'), /getBankProgress/);
+  });
+
   it('expands grammar practice to 3-5 questions per topic and archives grammar mistakes', () => {
     const topics = JSON.parse(read('data/grammar_topics.json'));
     assert.ok(topics.length >= 50);

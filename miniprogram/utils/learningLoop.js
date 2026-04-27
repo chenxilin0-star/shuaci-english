@@ -8,8 +8,9 @@ const MODE_PLANS = {
 const DAILY_PLAN = MODE_PLANS.daily;
 
 function nowIso() { return new Date().toISOString(); }
+function todayKey(date = new Date()) { return date.toISOString().slice(0, 10); }
 function createInitialState(openid = 'local-user') {
-  return { openid, wordRecords: {}, favorites: [], mistakes: [], sessions: [], updatedAt: nowIso() };
+  return { openid, wordRecords: {}, favorites: [], mistakes: [], sessions: [], checkins: [], updatedAt: nowIso() };
 }
 function clone(state) { return JSON.parse(JSON.stringify(state || createInitialState())); }
 function normalizeAnswer(v) { return String(v || '').trim().toLowerCase(); }
@@ -19,7 +20,9 @@ function ensureRecord(state, word) {
   const old = state.wordRecords[id] || {};
   return {
     wordId: id,
-    wordText: word.text,
+    wordText: word.text || old.wordText || '',
+    bankId: word.bankId || old.bankId || ((word.bankIds || old.bankIds || [])[0]) || '',
+    bankIds: word.bankIds || old.bankIds || (word.bankId ? [word.bankId] : []),
     status: old.status || 'learning',
     familiarity: old.familiarity || 0,
     wrongCount: old.wrongCount || 0,
@@ -75,14 +78,15 @@ function buildStudyPlan({ mode = 'daily', newWords = [], reviewWords = [], mista
     items = items.concat(tagItems(mistakeWords, 'mistake', target.mistakeCount, used));
     fillShortage(items, [newWords, reviewWords, mistakeWords], used, target.total, 'new');
   }
+  const finalItems = items.slice(0, target.total);
   return {
     mode: normalizedMode,
-    items: items.slice(0, target.total),
-    total: Math.min(items.length, target.total),
+    items: finalItems,
+    total: finalItems.length,
     stats: {
-      new: items.slice(0, target.total).filter(i => i.planType === 'new').length,
-      review: items.slice(0, target.total).filter(i => i.planType === 'review').length,
-      mistake: items.slice(0, target.total).filter(i => i.planType === 'mistake').length
+      new: finalItems.filter(i => i.planType === 'new').length,
+      review: finalItems.filter(i => i.planType === 'review').length,
+      mistake: finalItems.filter(i => i.planType === 'mistake').length
     },
     target: { ...target }
   };
@@ -99,6 +103,54 @@ function summarizeStudySession(items = [], completedCount = 0) {
     completionRate: items.length ? Math.round((learned.length / items.length) * 100) : 0,
     finishedAt: nowIso()
   };
+}
+function getLearningStats(state = createInitialState()) {
+  const records = Object.values(state.wordRecords || {});
+  const learnedWords = records.length;
+  const masteredWords = records.filter(r => r.status === 'mastered' || (r.familiarity || 0) >= 80).length;
+  const reviewWords = records.filter(r => r.status === 'review' || r.status === 'mastered').length;
+  const mistakeCount = (state.mistakes || []).filter(m => !m.isReviewed).length;
+  const favoriteCount = (state.favorites || []).length;
+  const today = todayKey();
+  const todaySessions = (state.sessions || []).filter(s => String(s.createdAt || '').slice(0, 10) === today);
+  const todayLearned = new Set(todaySessions.filter(s => s.itemId).map(s => s.itemId)).size;
+  const streakDays = computeStreakDays(state);
+  return {
+    learnedWords,
+    masteredWords,
+    reviewWords,
+    mistakeCount,
+    favoriteCount,
+    todayLearned,
+    todayGoal: DAILY_PLAN.total,
+    streakDays,
+    completionPercent: DAILY_PLAN.total ? Math.min(100, Math.round((todayLearned / DAILY_PLAN.total) * 100)) : 0,
+    totalSessions: (state.sessions || []).length,
+    lastStudyAt: records.map(r => r.lastStudyAt).filter(Boolean).sort().pop() || ''
+  };
+}
+function getBankProgress(state = createInitialState(), bankId) {
+  const records = Object.values(state.wordRecords || {});
+  const bankRecords = bankId ? records.filter(r => r.bankId === bankId || (r.bankIds || []).includes(bankId)) : records;
+  return {
+    learnedWords: bankRecords.length,
+    masteredWords: bankRecords.filter(r => r.status === 'mastered' || (r.familiarity || 0) >= 80).length,
+    reviewWords: bankRecords.filter(r => r.status === 'review' || r.status === 'mastered').length,
+    percentOf(recordsTotal) { return recordsTotal ? Math.min(100, Math.round((bankRecords.length / recordsTotal) * 100)) : 0; }
+  };
+}
+function computeStreakDays(state = createInitialState()) {
+  const days = new Set([
+    ...(state.checkins || []).map(c => String(c.date || c.createdAt || '').slice(0, 10)),
+    ...(state.sessions || []).map(s => String(s.createdAt || '').slice(0, 10))
+  ].filter(Boolean));
+  let streak = 0;
+  const date = new Date();
+  while (days.has(todayKey(date))) {
+    streak += 1;
+    date.setDate(date.getDate() - 1);
+  }
+  return streak;
 }
 function toggleFavoriteState(state, word, isFavorite) {
   const id = word.id || word.text;
@@ -121,7 +173,7 @@ function markWordStudied(state, word, planType = 'new') {
   record.status = record.familiarity >= 80 ? 'mastered' : 'review';
   record.nextReviewAt = new Date(nextReviewDate(record.familiarity)).toISOString();
   next.wordRecords[id] = record;
-  next.sessions.unshift({ sessionType:'word-card', itemId:id, planType, isCorrect:true, createdAt:nowIso() });
+  next.sessions.unshift({ sessionType:'word-card', itemId:id, bankId:record.bankId, planType, isCorrect:true, createdAt:nowIso() });
   next.updatedAt = nowIso();
   return next;
 }
@@ -130,7 +182,7 @@ function listReviewCandidates(state) {
   return records
     .filter(r => r.status === 'review' || r.status === 'mastered')
     .sort((a, b) => String(a.nextReviewAt || '').localeCompare(String(b.nextReviewAt || '')))
-    .map(r => ({ id:r.wordId, text:r.wordText, wordText:r.wordText, planType:'review', planLabel:'复习' }));
+    .map(r => ({ id:r.wordId, text:r.wordText, wordText:r.wordText, bankId:r.bankId, bankIds:r.bankIds, planType:'review', planLabel:'复习' }));
 }
 function upsertMistake(next, item, wrongAnswer, correctAnswer, itemType = 'word') {
   const id = item.id || item.text;
@@ -164,7 +216,7 @@ function submitSpellingAnswer(state, word, answer) {
     upsertMistake(next, word, answer, word.text, 'word');
   }
   next.wordRecords[id] = record;
-  next.sessions.unshift({ sessionType:'spelling', itemId:id, userAnswer:answer, correctAnswer:word.text, isCorrect, createdAt:nowIso() });
+  next.sessions.unshift({ sessionType:'spelling', itemId:id, bankId:record.bankId, userAnswer:answer, correctAnswer:word.text, isCorrect, createdAt:nowIso() });
   next.updatedAt = nowIso();
   return { isCorrect, state: next, record };
 }
@@ -173,9 +225,7 @@ function submitGrammarAnswer(state, topic, practice, answer) {
   const correctAnswer = practice.answer || practice.correctAnswer;
   const isCorrect = normalizeAnswer(answer) === normalizeAnswer(correctAnswer);
   const itemId = practice.id || `${topic.id}_${practice.question}`;
-  if (!isCorrect) {
-    upsertMistake(next, { id: itemId, title: topic.title, question: practice.question, summary: practice.explanation }, answer, correctAnswer, 'grammar');
-  }
+  if (!isCorrect) upsertMistake(next, { id: itemId, title: topic.title, question: practice.question, summary: practice.explanation }, answer, correctAnswer, 'grammar');
   next.sessions.unshift({ sessionType:'grammar', topicId:topic.id, itemId, userAnswer:answer, correctAnswer, isCorrect, createdAt:nowIso() });
   next.updatedAt = nowIso();
   return { isCorrect, state: next };
@@ -187,4 +237,12 @@ function markMistakeReviewed(state, itemId) {
   next.updatedAt = nowIso();
   return next;
 }
-module.exports = { MODE_PLANS, DAILY_PLAN, createInitialState, buildStudyPlan, buildDailyPlan, summarizeStudySession, toggleFavoriteState, markWordStudied, listReviewCandidates, submitSpellingAnswer, submitGrammarAnswer, markMistakeReviewed };
+function checkinState(state) {
+  const next = clone(state);
+  const date = todayKey();
+  next.checkins = (next.checkins || []).filter(c => c.date !== date);
+  next.checkins.unshift({ date, createdAt: nowIso() });
+  next.updatedAt = nowIso();
+  return next;
+}
+module.exports = { MODE_PLANS, DAILY_PLAN, createInitialState, buildStudyPlan, buildDailyPlan, summarizeStudySession, getLearningStats, getBankProgress, toggleFavoriteState, markWordStudied, listReviewCandidates, submitSpellingAnswer, submitGrammarAnswer, markMistakeReviewed, checkinState };

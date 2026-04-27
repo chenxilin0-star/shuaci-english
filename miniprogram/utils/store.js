@@ -5,6 +5,8 @@ function getState(openid = 'local-user') {
   return data && data.wordRecords ? data : loop.createInitialState(openid);
 }
 function setState(state) { wx.setStorageSync(KEY, state); return state; }
+function getLearningStats() { return loop.getLearningStats(getState()); }
+function getBankProgress(bankId) { return loop.getBankProgress(getState(), bankId); }
 function toggleFavorite(word, isFavorite) { return setState(loop.toggleFavoriteState(getState(), word, isFavorite)); }
 function markWordStudied(word, planType) { return setState(loop.markWordStudied(getState(), word, planType)); }
 function listReviewCandidates() { return loop.listReviewCandidates(getState()); }
@@ -13,4 +15,5 @@ function submitGrammar(topic, practice, answer) { const result = loop.submitGram
 function listFavorites() { return getState().favorites || []; }
 function listMistakes(type) { const items = getState().mistakes || []; return type ? items.filter(i => i.itemType === type) : items; }
 function markMistakeReviewed(itemId) { return setState(loop.markMistakeReviewed(getState(), itemId)); }
-module.exports = { getState, setState, toggleFavorite, markWordStudied, listReviewCandidates, submitSpelling, submitGrammar, listFavorites, listMistakes, markMistakeReviewed };
+function checkin() { return setState(loop.checkinState(getState())); }
+module.exports = { getState, setState, getLearningStats, getBankProgress, toggleFavorite, markWordStudied, listReviewCandidates, submitSpelling, submitGrammar, listFavorites, listMistakes, markMistakeReviewed, checkin };

@@ -1,1 +1,46 @@
-<view class="container"><view class="hero card"><view class="muted">欢迎回来</view><view class="title">刷词英语</view><view class="stats"><view><text class="num">{{progress.learnedWords}}</text><text> 已学词</text></view><view><text class="num">{{progress.streakDays}}</text><text> 连续天</text></view></view><view class="progress"><view class="progress-bar" style="width: {{percent}}%"></view></view></view><view class="grid-2"><view class="entry card" bindtap="goBanks"><text>📘</text><view>CET-4</view><text class="muted">核心词汇</text></view><view class="entry card purple" bindtap="goBanks"><text>🎓</text><view>CET-6</view><text class="muted">进阶刷词</text></view></view><view class="card"><view class="row"><view><view class="h2">继续学习</view><view class="muted">今日目标 {{progress.todayGoal}} 词</view></view><button class="btn btn-primary" bindtap="goStudy">开始</button></view></view><view class="card"><view class="h2">每日一句</view><view>Effective learners review words repeatedly and use them in context.</view><view class="muted">高效学习者会反复复习，并在语境中使用单词。</view></view></view>
+<view class="container home-page">
+  <view class="hero card">
+    <view class="hero-top">
+      <view>
+        <view class="muted light">欢迎回来</view>
+        <view class="title">刷词英语</view>
+        <view class="hero-sub">按新词、复习、错题推进四六级备考</view>
+      </view>
+      <view class="hero-badge">CET</view>
+    </view>
+    <view class="stats-grid">
+      <view><view class="num">{{stats.learnedWords || 0}}</view><view class="light">已学词</view></view>
+      <view><view class="num">{{stats.masteredWords || 0}}</view><view class="light">已掌握</view></view>
+      <view><view class="num">{{stats.streakDays || 0}}</view><view class="light">连续天</view></view>
+    </view>
+    <view class="today-row"><text>今日进度</text><text>{{stats.todayLearned || 0}}/{{stats.todayGoal || 50}}</text></view>
+    <view class="progress hero-progress"><view class="progress-bar" style="width: {{percent}}%"></view></view>
+  </view>
+
+  <view class="section-title">今天怎么学</view>
+  <view class="grid-2 quick-grid">
+    <view class="entry card" bindtap="goBanks"><view class="entry-icon green">📘</view><view class="entry-title">选词库</view><view class="muted">四级 / 六级路径</view></view>
+    <view class="entry card purple" bindtap="goStudy"><view class="entry-icon purple-bg">⚡</view><view class="entry-title">继续学习</view><view class="muted">按当前模式刷词</view></view>
+  </view>
+
+  <view class="card action-card">
+    <view class="row">
+      <view>
+        <view class="h2">今日任务</view>
+        <view class="muted">新词 35 · 复习 10 · 错词 5，可在词库页切换模式</view>
+      </view>
+      <button class="btn btn-primary small-btn" bindtap="goStudy">开始</button>
+    </view>
+  </view>
+
+  <view class="grid-2 quick-grid">
+    <view class="mini-card card" bindtap="goGrammar"><view class="mini-title">语法专项</view><view class="muted">考点 + 练习 + 错题</view></view>
+    <view class="mini-card card" bindtap="goMistakes"><view class="mini-title">错题复盘</view><view class="muted">{{stats.mistakeCount || 0}} 个待复盘</view></view>
+  </view>
+
+  <view class="card quote-card">
+    <view class="h2">每日一句</view>
+    <view class="quote">Effective learners review words repeatedly and use them in context.</view>
+    <view class="muted">高效学习者会反复复习，并在语境中使用单词。</view>
+  </view>
+</view>

@@ -2,14 +2,20 @@
   <view class="page-hero">
     <view class="eyebrow">学习路径</view>
     <view class="title">选择适合你的刷词节奏</view>
-    <view class="muted">不是把词库丢给你，而是每天按目标推进：新词、复习、错题各有入口。</view>
+    <view class="muted">根据当前阶段选择新词、复习或错题。已学数据来自本机学习记录，不再展示假进度。</view>
   </view>
 
-  <view class="bank-switch grid-2">
+  <view class="bank-switch">
     <view wx:for="{{banks}}" wx:key="id" class="bank-tab {{selectedId===item.id?'active '+item.accentClass:item.accentClass}}" bindtap="selectBank" data-id="{{item.id}}">
-      <view class="bank-exam">{{item.exam}}</view>
-      <view class="bank-name">{{item.name}}</view>
-      <view class="muted">{{item.totalWords}} 词 · 已学 {{item.learnedWords}}</view>
+      <view class="bank-row">
+        <view>
+          <view class="bank-exam">{{item.exam}}</view>
+          <view class="bank-name">{{item.name}}</view>
+        </view>
+        <view class="bank-percent">{{item.percent}}%</view>
+      </view>
+      <view class="progress mini-progress"><view class="progress-bar" style="width: {{item.percent}}%"></view></view>
+      <view class="bank-meta"><text>{{item.totalWords}} 词</text><text>已学 {{item.learnedWords}}</text><text>掌握 {{item.masteredWords}}</text></view>
     </view>
   </view>
 
@@ -22,29 +28,30 @@
       <text class="tag">{{selectedBank.exam}}</text>
     </view>
     <view class="slogan">{{selectedBank.slogan}}</view>
-    <view class="progress"><view class="progress-bar" style="width: {{selectedBank.percent}}%"></view></view>
     <view class="stats-row">
       <view><view class="stat-num">{{selectedBank.dailyGoal}}</view><view class="muted">今日目标</view></view>
-      <view><view class="stat-num">{{selectedBank.newWords}}</view><view class="muted">建议新词</view></view>
-      <view><view class="stat-num">{{selectedBank.reviewWords}}</view><view class="muted">建议复习</view></view>
+      <view><view class="stat-num">{{selectedBank.newWords}}</view><view class="muted">新词</view></view>
+      <view><view class="stat-num">{{selectedBank.reviewWords}}</view><view class="muted">复习</view></view>
+      <view><view class="stat-num">{{selectedBank.masteredWords}}</view><view class="muted">已掌握</view></view>
     </view>
     <view class="path-line">{{selectedBank.levelText}}</view>
     <button class="btn btn-secondary detail-btn" bindtap="viewDetail">查看详情：词库结构 / 预计完成 / 学习曲线</button>
   </view>
 
   <view class="section-title">学习模式</view>
-  <view class="sr-only">新词模式 复习模式</view>
-  <view wx:for="{{modes}}" wx:key="key" class="card mode-card" bindtap="startMode" data-mode="{{item.key}}" data-overlap="{{item.includeOverlap}}">
-    <view class="mode-icon">{{item.icon}}</view>
-    <view class="mode-main">
-      <view class="h2">{{item.title}}</view>
-      <view class="muted">{{item.desc}}</view>
+  <view class="mode-list">
+    <view wx:for="{{modes}}" wx:key="key" class="card mode-card" bindtap="startMode" data-mode="{{item.key}}" data-overlap="{{item.includeOverlap}}">
+      <view class="mode-icon">{{item.icon}}</view>
+      <view class="mode-main">
+        <view class="mode-title">{{item.title}}</view>
+        <view class="muted">{{item.desc}}</view>
+      </view>
+      <view class="start-pill">开始</view>
     </view>
-    <view class="start-pill">开始</view>
   </view>
 
   <view class="tip-card">
-    <view class="tip-title">为什么六级默认不同？</view>
-    <view class="muted">六级包含大量四级重叠词。刷词英语默认先推六级新增词；需要补基础时再用复习模式覆盖重叠词。</view>
+    <view class="tip-title">上线前学习规则</view>
+    <view class="muted">新词模式负责推进进度，复习模式优先学过的词，错题模式优先错词。六级新词模式默认避开四级重叠词。</view>
   </view>
 </view>
