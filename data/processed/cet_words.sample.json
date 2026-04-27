@@ -1,0 +1,161 @@
+{
+  "generatedAt": "2026-04-27T08:23:33.463Z",
+  "source": "data/samples/ecdict_sample.csv",
+  "wordBanks": [
+    {
+      "id": "cet4_core",
+      "code": "cet4",
+      "name": "CET-4 核心词汇",
+      "category": "cet4",
+      "totalWords": 3,
+      "isActive": true,
+      "sortOrder": 1,
+      "description": "大学英语四级核心高频词汇"
+    },
+    {
+      "id": "cet6_core",
+      "code": "cet6",
+      "name": "CET-6 核心词汇",
+      "category": "cet6",
+      "totalWords": 3,
+      "isActive": true,
+      "sortOrder": 2,
+      "description": "大学英语六级核心与新增词汇"
+    }
+  ],
+  "words": [
+    {
+      "id": "w_abandon",
+      "text": "abandon",
+      "phonetic_us": "/əˈbændən/",
+      "phonetic_uk": "/əˈbændən/",
+      "pos": "v",
+      "meaning_cn": "放弃；抛弃",
+      "meanings": [
+        {
+          "pos": "v",
+          "definition": "放弃；抛弃"
+        }
+      ],
+      "example_sentence": "",
+      "difficulty_level": 2,
+      "frequency_tag": "medium",
+      "bnc_rank": 3500,
+      "coca_rank": 3100,
+      "collins_stars": 3,
+      "is_in_cet4": true,
+      "is_in_cet6": false,
+      "cet6_new": false,
+      "tags": [
+        "cet4"
+      ]
+    },
+    {
+      "id": "w_ambiguous",
+      "text": "ambiguous",
+      "phonetic_us": "/æmˈbɪɡjuəs/",
+      "phonetic_uk": "/æmˈbɪɡjuəs/",
+      "pos": "adj",
+      "meaning_cn": "模棱两可的；含糊的",
+      "meanings": [
+        {
+          "pos": "adj",
+          "definition": "模棱两可的；含糊的"
+        }
+      ],
+      "example_sentence": "",
+      "difficulty_level": 3,
+      "frequency_tag": "medium",
+      "bnc_rank": 8900,
+      "coca_rank": 8400,
+      "collins_stars": 2,
+      "is_in_cet4": false,
+      "is_in_cet6": true,
+      "cet6_new": true,
+      "tags": [
+        "cet6"
+      ]
+    },
+    {
+      "id": "w_benefit",
+      "text": "benefit",
+      "phonetic_us": "/ˈbenɪfɪt/",
+      "phonetic_uk": "/ˈbenɪfɪt/",
+      "pos": "n/v",
+      "meaning_cn": "益处；使受益",
+      "meanings": [
+        {
+          "pos": "n/v",
+          "definition": "益处；使受益"
+        }
+      ],
+      "example_sentence": "",
+      "difficulty_level": 2,
+      "frequency_tag": "high",
+      "bnc_rank": 1200,
+      "coca_rank": 1000,
+      "collins_stars": 4,
+      "is_in_cet4": true,
+      "is_in_cet6": false,
+      "cet6_new": false,
+      "tags": [
+        "cet4"
+      ]
+    },
+    {
+      "id": "w_consequence",
+      "text": "consequence",
+      "phonetic_us": "/ˈkɑːnsəkwens/",
+      "phonetic_uk": "/ˈkɑːnsəkwens/",
+      "pos": "n",
+      "meaning_cn": "结果；后果",
+      "meanings": [
+        {
+          "pos": "n",
+          "definition": "结果；后果"
+        }
+      ],
+      "example_sentence": "",
+      "difficulty_level": 2,
+      "frequency_tag": "medium",
+      "bnc_rank": 4200,
+      "coca_rank": 3900,
+      "collins_stars": 3,
+      "is_in_cet4": true,
+      "is_in_cet6": true,
+      "cet6_new": false,
+      "tags": [
+        "cet4",
+        "cet6"
+      ]
+    },
+    {
+      "id": "w_sustainable",
+      "text": "sustainable",
+      "phonetic_us": "/səˈsteɪnəbl/",
+      "phonetic_uk": "/səˈsteɪnəbl/",
+      "pos": "adj",
+      "meaning_cn": "可持续的",
+      "meanings": [
+        {
+          "pos": "adj",
+          "definition": "可持续的"
+        }
+      ],
+      "example_sentence": "",
+      "difficulty_level": 2,
+      "frequency_tag": "medium",
+      "bnc_rank": 6100,
+      "coca_rank": 5700,
+      "collins_stars": 3,
+      "is_in_cet4": false,
+      "is_in_cet6": true,
+      "cet6_new": true,
+      "tags": [
+        "cet6"
+      ]
+    }
+  ],
+  "grammarTopics": [],
+  "readingPassages": []
+}

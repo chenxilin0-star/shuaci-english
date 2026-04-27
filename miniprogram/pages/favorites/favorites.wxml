@@ -1,1 +1,1 @@
-<view class="container"><view class="card"><view class="title">生词本</view><view class="muted">收藏的单词会出现在这里，后续可一键复习。</view><button class="btn btn-primary" bindtap="back">返回</button></view></view>
+<view class="container"><view class="title">生词本</view><view wx:for="{{items}}" wx:key="itemId" class="card"><view class="row"><view><view class="h2">{{item.itemText}}</view><view class="muted">{{item.meaning_cn}}</view></view><text class="tag">已收藏</text></view></view><view wx:if="{{!items.length}}" class="card"><view class="muted">暂无收藏。学习页点击收藏后会出现在这里。</view></view></view>

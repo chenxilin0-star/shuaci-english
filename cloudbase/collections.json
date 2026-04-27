@@ -1,0 +1,17 @@
+{
+  "version": 1,
+  "collections": [
+    {"name":"users","indexes":[{"name":"openid_unique","keys":{"openid":1},"unique":true},{"name":"createdAt","keys":{"createdAt":-1}}]},
+    {"name":"word_banks","indexes":[{"name":"code_unique","keys":{"code":1},"unique":true},{"name":"status_sort","keys":{"isActive":1,"sortOrder":1}}]},
+    {"name":"words","indexes":[{"name":"bank_text","keys":{"bankId":1,"text":1}},{"name":"bank_difficulty","keys":{"bankId":1,"difficulty_level":1}},{"name":"text","keys":{"text":1}}]},
+    {"name":"grammar_topics","indexes":[{"name":"category_order","keys":{"category":1,"order":1}}]},
+    {"name":"reading_passages","indexes":[{"name":"category_active","keys":{"category":1,"isActive":1}}]},
+    {"name":"reading_questions","indexes":[{"name":"passage_order","keys":{"passageId":1,"questionNumber":1}}]},
+    {"name":"user_progress","indexes":[{"name":"openid_bank","keys":{"openid":1,"bankId":1},"unique":true}]},
+    {"name":"user_word_records","indexes":[{"name":"openid_word","keys":{"openid":1,"wordId":1},"unique":true},{"name":"openid_status_review","keys":{"openid":1,"status":1,"nextReviewAt":1}}]},
+    {"name":"favorites","indexes":[{"name":"openid_item","keys":{"openid":1,"itemType":1,"itemId":1},"unique":true},{"name":"openid_created","keys":{"openid":1,"createdAt":-1}}]},
+    {"name":"mistake_books","indexes":[{"name":"openid_item","keys":{"openid":1,"itemType":1,"itemId":1},"unique":true},{"name":"openid_review","keys":{"openid":1,"isReviewed":1,"lastWrongAt":-1}}]},
+    {"name":"learning_sessions","indexes":[{"name":"openid_created","keys":{"openid":1,"createdAt":-1}}]},
+    {"name":"checkins","indexes":[{"name":"openid_date","keys":{"openid":1,"date":1},"unique":true}]}
+  ]
+}

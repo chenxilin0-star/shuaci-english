@@ -1,1 +1,1 @@
-Page({ back(){ wx.navigateBack({fail(){wx.switchTab({url:'/pages/index/index'});}}); } });
+const store=require('../../utils/store'); Page({data:{items:[]}, onShow(){this.refresh();}, refresh(){this.setData({items:store.listMistakes()});}, review(e){store.markMistakeReviewed(e.currentTarget.dataset.id); this.refresh();}});

@@ -1,1 +1,13 @@
-<view class="container"><view class="card"><view class="title">拼写练习</view><view class="muted">根据中文释义输入英文单词，提交后即时反馈。</view><button class="btn btn-primary" bindtap="back">返回</button></view></view>
+<view class="container">
+  <view class="row"><view class="title">拼写练习</view><text class="muted">{{index+1}}/{{words.length}}</text></view>
+  <view wx:if="{{word}}" class="card quiz-card">
+    <view class="muted">根据释义写出单词</view>
+    <view class="meaning">{{word.meaning_cn}}</view>
+    <view><text class="tag">{{word.pos}}</text><text class="muted">{{word.phonetic_us}}</text></view>
+    <input class="input answer" value="{{answer}}" bindinput="onInput" placeholder="输入英文拼写" confirm-type="done" bindconfirm="submit" />
+    <view wx:if="{{feedback}}" class="feedback {{feedbackClass}}">{{feedback}}</view>
+    <button class="btn btn-primary" bindtap="submit">提交答案</button>
+    <button class="btn btn-secondary" bindtap="next">下一题</button>
+  </view>
+  <view wx:else class="card"><view class="muted">暂无练习单词</view></view>
+</view>
