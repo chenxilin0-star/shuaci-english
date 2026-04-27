@@ -48,4 +48,13 @@ describe('刷词英语 phase-2 delivery', () => {
     assert.match(read('docs/wechat-preview-checklist.md'), /真机预览/);
     assert.match(read('docs/release-config.md'), /上线/);
   });
+
+  it('uses switchTab rather than navigateTo when opening tabBar study page from bank list', () => {
+    const banksJs = read('miniprogram/pages/banks/banks.js');
+    assert.match(banksJs, /wx\.switchTab\(\{\s*url:\s*['"]\/pages\/study\/study['"]/s);
+    assert.doesNotMatch(banksJs, /navigateTo\(\{\s*url:\s*['"]\/pages\/study\/study\?/s);
+    assert.match(banksJs, /wx\.setStorageSync\(['"]shuaci_selected_bank['"]/);
+    const studyJs = read('miniprogram/pages/study/study.js');
+    assert.match(studyJs, /wx\.getStorageSync\(['"]shuaci_selected_bank['"]\)/);
+  });
 });

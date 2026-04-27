@@ -1,1 +1,13 @@
-const { callCloud } = require('../../utils/api'); Page({ data:{banks:[]}, onShow(){callCloud('getWordBanks').then(r=>this.setData({banks:r.data||[]}));}, openBank(e){ wx.navigateTo({url:'/pages/study/study?bankId='+e.currentTarget.dataset.id}); }});
+const { callCloud } = require('../../utils/api');
+
+Page({
+  data: { banks: [] },
+  onShow() {
+    callCloud('getWordBanks').then(r => this.setData({ banks: r.data || [] }));
+  },
+  openBank(e) {
+    const bankId = e.currentTarget.dataset.id;
+    wx.setStorageSync('shuaci_selected_bank', bankId);
+    wx.switchTab({ url: '/pages/study/study' });
+  }
+});
