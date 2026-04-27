@@ -29,6 +29,7 @@
     <view class="menu-row" bindtap="goMistakes"><view><text class="menu-icon">🎯</text><text>错题本</text></view><text class="muted">{{stats.mistakeCount || 0}} ›</text></view>
     <view class="menu-row" bindtap="goBanks"><view><text class="menu-icon">📚</text><text>学习计划</text></view><text class="muted">›</text></view>
     <view class="menu-row" bindtap="goGrammar"><view><text class="menu-icon">🧩</text><text>语法专项</text></view><text class="muted">›</text></view>
+    <view class="menu-row" bindtap="goAbout"><view><text class="menu-icon">ℹ️</text><text>关于刷词英语</text></view><text class="muted">›</text></view>
   </view>
 
   <view class="card feedback-card">

@@ -1,0 +1,53 @@
+<view class="container about-page">
+  <view class="page-hero">
+    <view class="brand">刷词英语</view>
+    <view class="slogan">专为大学英语四六级考试打造的智能背单词小程序</view>
+  </view>
+
+  <view class="card intro-card">
+    <view class="h2">产品介绍</view>
+    <view class="seo-text">刷词英语是一款专注于大学英语四级（CET-4）和六级（CET-6）备考的智能背单词工具。我们覆盖 CET-4 核心词汇 3846 词、CET-6 新增词汇 1956 词，严格按照考试大纲和真题频率排序，帮助考生在最短时间内掌握最高频的英语单词。小程序无需下载安装，微信搜索「刷词英语」即可立即使用，支持离线学习、云端同步，换设备登录记录不丢失。</view>
+  </view>
+
+  <view class="section-title">核心功能</view>
+  <view class="feature-list">
+    <view wx:for="{{features}}" wx:key="title" class="card feature-card">
+      <view class="feature-icon">{{item.icon}}</view>
+      <view class="feature-main">
+        <view class="feature-title">{{item.title}}</view>
+        <view class="muted">{{item.desc}}</view>
+      </view>
+    </view>
+  </view>
+
+  <view class="section-title">学习模式</view>
+  <view class="card mode-card">
+    <view wx:for="{{modes}}" wx:key="title" class="mode-row">
+      <view class="mode-tag">{{item.title}}</view>
+      <view class="muted">{{item.desc}}</view>
+    </view>
+  </view>
+
+  <view class="section-title">适用人群</view>
+  <view class="card audience-card">
+    <view wx:for="{{audiences}}" wx:key="*this" class="audience-item">
+      <text class="bullet">•</text>
+      <text>{{item}}</text>
+    </view>
+  </view>
+
+  <view class="card seo-card">
+    <view class="h2">热门搜索</view>
+    <view class="tag-list">
+      <text wx:for="{{['四六级背单词','CET4词汇','CET6词汇','英语单词','大学英语四级','大学英语六级','四级核心词','六级新增词','背单词打卡','英语语法','单词拼写','生词本','错题本']}}" wx:key="*this" class="seo-tag">{{item}}</text>
+    </view>
+    <view class="seo-paragraph">刷词英语提供完整的四六级背单词解决方案，包含新词学习、复习巩固、错题回炉三大核心模式，配合单词拼写练习、语法专项训练、阅读理解训练等辅助模块。每日 50 词量化学习目标，科学对抗遗忘曲线。无论你是四级备考、六级冲刺，还是英语基础提升，刷词英语都能为你提供精准高效的词汇学习路径。微信搜索「刷词英语」或「四六级背单词」即可找到我们。</view>
+  </view>
+
+  <view class="footer">
+    <view class="muted">刷词英语｜让四六级备考更高效</view>
+    <view class="muted">如有问题请联系微信：xym7563</view>
+  </view>
+
+  <button class="plain back-btn" bindtap="back">返回</button>
+</view>

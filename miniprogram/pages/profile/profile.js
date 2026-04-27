@@ -91,6 +91,7 @@ Page({
   goMistakes() { wx.navigateTo({ url: '/pages/mistakes/mistakes' }); },
   goBanks() { wx.switchTab({ url: '/pages/banks/banks' }); },
   goGrammar() { wx.switchTab({ url: '/pages/grammar/grammar' }); },
+  goAbout() { wx.navigateTo({ url: '/pages/about/about' }); },
   onShareAppMessage() { return share.onShareAppMessage({ title: '刷词英语｜一起刷四六级核心词' }); },
   onShareTimeline() { return share.onShareTimeline({ title: '刷词英语｜四六级刷词、语法和错题复盘' }); }
 });

@@ -12,7 +12,8 @@
     "pages/spelling/spelling",
     "pages/reading/reading",
     "pages/favorites/favorites",
-    "pages/mistakes/mistakes"
+    "pages/mistakes/mistakes",
+    "pages/about/about"
   ],
   "window": {
     "navigationBarTitleText": "刷词英语",
