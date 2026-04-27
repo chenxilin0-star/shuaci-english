@@ -15,7 +15,11 @@ Page({
   },
   load(wordId) {
     callCloud('getWordDetail', { wordId }).then(r => {
-      this.setData({ word: r.data || null });
+      const word = r.data || null;
+      this.setData({ word });
+      if (word && word.text) {
+        wx.setNavigationBarTitle({ title: `${word.text}｜四六级单词详解` });
+      }
     });
   },
   playAudio() {

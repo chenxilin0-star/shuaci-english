@@ -43,4 +43,9 @@
     <view class="quote">Effective learners review words repeatedly and use them in context.</view>
     <view class="muted">高效学习者会反复复习，并在语境中使用单词。</view>
   </view>
+
+  <view class="card seo-card">
+    <view class="h2">关于刷词英语</view>
+    <view class="seo-text">刷词英语是专为大学英语四六级考试打造的智能背单词小程序，覆盖 CET-4 核心词汇 3846 词、CET-6 新增词汇 1956 词。提供新词学习、复习回炉、错题本三大模式，每日 50 词量化目标，包含单词拼写、语法专项、生词本、错题复盘等完整学习闭环。适合四级备考、六级冲刺、英语基础提升等多类人群。</view>
+  </view>
 </view>
