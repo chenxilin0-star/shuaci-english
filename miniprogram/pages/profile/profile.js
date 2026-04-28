@@ -27,13 +27,23 @@ Page({
   },
   onShow() {
     const user = normalizeUser(wx.getStorageSync('shuaci_user') || {});
+    const localStats = store.getLearningStats();
     this.setData({
       user,
       hasLogin: !!(user.openid || user.nickName || user.avatarUrl),
       pendingNickName: user.nickName || '',
       pendingAvatarUrl: user.avatarUrl || '',
-      stats: store.getLearningStats()
+      stats: localStats
     });
+    // 同步云端进度
+    callCloud('getStudyProgress').then(r => {
+      if (r.data) {
+        const cloud = r.data;
+        this.setData({
+          stats: { ...localStats, ...cloud, streakDays: Math.max(localStats.streakDays || 0, cloud.streakDays || 0) }
+        });
+      }
+    }).catch(() => {});
   },
   onChooseAvatar(e) {
     const avatarUrl = e && e.detail ? e.detail.avatarUrl : '';

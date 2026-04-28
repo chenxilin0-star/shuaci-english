@@ -8,7 +8,13 @@ const MODE_PLANS = {
 const DAILY_PLAN = MODE_PLANS.daily;
 
 function nowIso() { return new Date().toISOString(); }
-function todayKey(date = new Date()) { return date.toISOString().slice(0, 10); }
+function todayKey(date = new Date()) {
+  const d = date instanceof Date ? date : new Date(date);
+  const y = d.getFullYear();
+  const m = String(d.getMonth() + 1).padStart(2, '0');
+  const day = String(d.getDate()).padStart(2, '0');
+  return `${y}-${m}-${day}`;
+}
 function createInitialState(openid = 'local-user') {
   return { openid, wordRecords: {}, favorites: [], mistakes: [], sessions: [], checkins: [], updatedAt: nowIso() };
 }
@@ -114,7 +120,7 @@ function getLearningStats(state = createInitialState()) {
   const mistakeCount = (state.mistakes || []).filter(m => !m.isReviewed).length;
   const favoriteCount = (state.favorites || []).length;
   const today = todayKey();
-  const todaySessions = (state.sessions || []).filter(s => String(s.createdAt || '').slice(0, 10) === today);
+  const todaySessions = (state.sessions || []).filter(s => todayKey(s.createdAt) === today);
   const todayLearned = new Set(todaySessions.filter(s => s.itemId).map(s => s.itemId)).size;
   const streakDays = computeStreakDays(state);
   return {
@@ -143,8 +149,8 @@ function getBankProgress(state = createInitialState(), bankId) {
 }
 function computeStreakDays(state = createInitialState()) {
   const days = new Set([
-    ...(state.checkins || []).map(c => String(c.date || c.createdAt || '').slice(0, 10)),
-    ...(state.sessions || []).map(s => String(s.createdAt || '').slice(0, 10))
+    ...(state.checkins || []).map(c => todayKey(c.date || c.createdAt)),
+    ...(state.sessions || []).map(s => todayKey(s.createdAt))
   ].filter(Boolean));
   let streak = 0;
   const date = new Date();

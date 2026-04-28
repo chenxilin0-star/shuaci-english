@@ -91,6 +91,7 @@ Page({
     if (this.data._locking) return;
     this.setData({ _locking: true });
     if (this.data.word) store.markWordStudied(this.data.word, this.data.word.planType);
+    store.checkin();
     const result = { ...loop.summarizeStudySession(this.data.words, this.data.index + 1), mode: this.data.mode, modeTitle: this.data.modeTitle };
     wx.setStorageSync('shuaci_last_study_result', result);
     const stats = store.getLearningStats();

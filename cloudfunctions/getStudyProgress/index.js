@@ -2,13 +2,19 @@ const cloud = require('wx-server-sdk');
 cloud.init({ env: cloud.DYNAMIC_CURRENT_ENV });
 const db = cloud.database();
 function ok(data){ return { success:true, data }; }
+function todayKey(d = new Date()) {
+  const date = d instanceof Date ? d : new Date(d);
+  const y = date.getFullYear();
+  const m = String(date.getMonth() + 1).padStart(2, '0');
+  const day = String(date.getDate()).padStart(2, '0');
+  return `${y}-${m}-${day}`;
+}
 const emptyProgress = { learnedWords:0, masteredWords:0, todayGoal:50, todayLearned:0, streakDays:0, currentIndex:0, favoriteCount:0, mistakeCount:0 };
-function todayKey(){ return new Date().toISOString().slice(0,10); }
 function streakFromRows(rows){
-  const days = new Set((rows || []).map(r => String(r.date || r.createdAt || '').slice(0,10)).filter(Boolean));
+  const days = new Set((rows || []).map(r => todayKey(r.date || r.createdAt)).filter(Boolean));
   let streak = 0;
   const d = new Date();
-  while (days.has(d.toISOString().slice(0,10))) { streak += 1; d.setDate(d.getDate() - 1); }
+  while (days.has(todayKey(d))) { streak += 1; d.setDate(d.getDate() - 1); }
   return streak;
 }
 exports.main = async (event = {}) => {
